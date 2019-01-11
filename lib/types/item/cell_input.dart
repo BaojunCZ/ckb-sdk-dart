@@ -1,3 +1,10 @@
+/*
+ * @Author: BaojunCZ
+ * @Date: 2019-01-10 21:18:58
+ * @LastEditors: your name
+ * @LastEditTime: 2019-01-11 15:39:19
+ * @Description: file content
+ */
 import 'package:json_annotation/json_annotation.dart';
 part 'cell_input.g.dart';
 

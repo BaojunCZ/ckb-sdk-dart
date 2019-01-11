@@ -1,14 +1,14 @@
 import './response.dart';
 
-class BlockHashRes extends Response<String> {
+class BlockHashRes extends RPCResponse<String> {
   BlockHashRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
-  getBlockHash() {
-    return result;
-  }
 
   factory BlockHashRes.fromJson(Map<String, dynamic> json) {
-    return BlockHashRes(json['id'], json['jsonrpc'], json['result'],
-        json['error'] == null ? null : Error.fromJson(json['error']));
+    return BlockHashRes(
+        json['id'],
+        json['jsonrpc'],
+        json['result'] == null ? null : json['result'],
+        json['error'] == null ? null : RPCError.fromJson(json['error']));
   }
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': this.id,

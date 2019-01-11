@@ -1,13 +1,20 @@
+/*
+ * @Author: BaojunCZ
+ * @Date: 2019-01-10 21:18:58
+ * @LastEditors: your name
+ * @LastEditTime: 2019-01-11 16:33:49
+ * @Description: file content
+ */
+import 'package:json_annotation/json_annotation.dart';
+import "./out_point.dart";
 import './cell_input.dart';
 import './cell_output.dart';
-import './out_point.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'transaction.g.dart';
 
 @JsonSerializable()
 class Transaction {
-  List<OutPoint> deps;
   String hash;
+  List<OutPoint> deps;
   List<CellInput> inputs;
   List<CellOutput> outputs;
   int version;

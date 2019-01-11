@@ -1,3 +1,10 @@
+/*
+ * @Author: BaojunCZ
+ * @Date: 2019-01-10 21:18:58
+ * @LastEditors: your name
+ * @LastEditTime: 2019-01-11 15:39:34
+ * @Description: file content
+ */
 import 'package:json_annotation/json_annotation.dart';
 part 'header.g.dart';
 
@@ -35,7 +42,9 @@ class Header {
       this.unclesCount,
       this.unclesHash,
       this.version);
+      
   factory Header.fromJson(Map<String, dynamic> json) => _$HeaderFromJson(json);
+  Map<String, dynamic> toJson() => _$HeaderToJson(this);
 }
 
 @JsonSerializable()
@@ -46,4 +55,5 @@ class Seal {
   Seal(this.nonce, this.proof);
 
   factory Seal.fromJson(Map<String, dynamic> json) => _$SealFromJson(json);
+  Map<String, dynamic> toJson() => _$SealToJson(this);
 }
