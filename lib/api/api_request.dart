@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 18:11:46
+ * @LastEditTime: 2019-01-29 16:36:18
  * @Description: api request
  */
 import 'dart:convert';
@@ -59,8 +59,8 @@ class ApiRequest {
     if (null == json["result"]) {
       throw ApiError.nullResult;
     }
-    print(body["method"] + ">>>>");
-    print(json);
+    // print(body["method"] + ">>>>");
+    // print(json);
     return json;
   }
 }

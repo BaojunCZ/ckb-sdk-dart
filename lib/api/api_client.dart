@@ -2,12 +2,15 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 18:33:14
+ * @LastEditTime: 2019-01-29 16:33:14
  * @Description: json rpc api client
  */
 import './api_request.dart';
 import '../constant/service_url.dart';
 import '../types/res_export.dart';
+import './api_error.dart';
+import '../utils/Sha3.dart';
+import 'package:convert/convert.dart';
 
 export './api_request.dart';
 export '../types/res_export.dart';
@@ -81,5 +84,25 @@ class ApiClient {
   sendTransaction(transaction) async {
     return new SendTransactionRes.fromJson(
         await request.requestRpc(ServiceUrl.sendTransaction, [transaction]));
+  }
+
+  alwaysSuccessCellHash() async {
+    BlockRes blockRes = await genesisBlock();
+    List<CellOutput> outputs = blockRes.result.commitTransactions[0].outputs;
+    if (outputs.length == 0 || outputs[0] == null) {
+      throw ApiError.genericError("Cannot find always success cell");
+    }
+    final SHA3Digest sha3digest = new SHA3Digest(256);
+    var data = outputs[0].data.startsWith("0x")
+        ? outputs[0].data.replaceFirst("0x", "")
+        : outputs[0].data;
+    var result = sha3digest.process(hex.decode(data));
+    return hex.encode(result);
+  }
+
+  alwaysSuccessScriptOutPoint() async {
+    BlockRes blockRes = await genesisBlock();
+    String hash = blockRes.result.commitTransactions[0].hash;
+    return new OutPoint(hash, 0);
   }
 }

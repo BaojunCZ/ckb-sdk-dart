@@ -33,7 +33,17 @@ main() async {
   LocalNodeIdRes localNodeId = await apiClient.getLocalNodeId();
   print(localNodeId.result);
 
+  BlockRes blockRes = await apiClient.getBlock(
+      '0xb59a3a251076bc6e057d11c7ad0d140810984ef259fa08cdbfe4e2c8db40410f');
+  print(blockRes.result);
+
   SendTransactionRes transationRes =
       await apiClient.sendTransaction(new SendTransaction([], [], [], 2));
   print(transationRes.result);
+
+  String cellHash = await apiClient.alwaysSuccessCellHash();
+  print(cellHash);
+
+  OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
+  print(outPoint.toJson());
 }
