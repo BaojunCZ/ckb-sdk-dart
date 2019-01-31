@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../../lib/utils/Sha3.dart';
+import '../../lib/ckb-utils/Sha3.dart';
 import 'package:test/test.dart';
 import 'package:convert/convert.dart';
 

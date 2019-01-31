@@ -2,18 +2,18 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-01-29 16:33:14
+ * @LastEditTime: 2019-01-31 18:00:10
  * @Description: json rpc api client
  */
 import './api_request.dart';
-import '../constant/service_url.dart';
-import '../types/res_export.dart';
+import './service_url.dart';
+import '../ckb-types/res_export.dart';
 import './api_error.dart';
-import '../utils/Sha3.dart';
+import '../ckb-utils/Sha3.dart';
 import 'package:convert/convert.dart';
 
 export './api_request.dart';
-export '../types/res_export.dart';
+export '../ckb-types/res_export.dart';
 
 class ApiClient {
   static ApiRequest request;

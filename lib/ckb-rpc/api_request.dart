@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-01-29 16:36:18
+ * @LastEditTime: 2019-01-31 17:58:37
  * @Description: api request
  */
 import 'dart:convert';
@@ -11,7 +11,6 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 import './api_error.dart';
-import '../api/api_error.dart';
 
 class ApiRequest {
   static final id = 2;

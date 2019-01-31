@@ -1,4 +1,4 @@
-import '../lib/ckb_dart_sdk.dart';
+import '../lib/ckb_sdk_dart.dart';
 
 main() async {
   final apiClient = new ApiClient("http://192.168.2.203:8114/");
