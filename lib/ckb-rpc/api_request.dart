@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-01-31 17:58:37
+ * @LastEditTime: 2019-02-02 10:47:27
  * @Description: api request
  */
 import 'dart:convert';
@@ -13,9 +13,9 @@ import 'package:dio/dio.dart';
 import './api_error.dart';
 
 class ApiRequest {
-  static final id = 2;
-  static final jsonrpc = "2.0";
-  static Dio dio;
+  final id = 2;
+  final jsonrpc = "2.0";
+  Dio dio;
 
   ApiRequest(String nodeUrl) {
     dio = new Dio(new Options(

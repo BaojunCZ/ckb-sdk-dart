@@ -2,17 +2,17 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 18:06:39
+ * @LastEditTime: 2019-02-01 16:51:20
  * @Description: file content
  */
 import './item/transaction.dart';
 import './response.dart';
 
-class TransationRes extends RPCResponse<Transaction> {
-  TransationRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
+class TransactionRes extends RPCResponse<Transaction> {
+  TransactionRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
 
-  factory TransationRes.fromJson(Map<String, dynamic> json) {
-    return TransationRes(
+  factory TransactionRes.fromJson(Map<String, dynamic> json) {
+    return TransactionRes(
         json['id'],
         json['jsonrpc'],
         json['result'] == null ? null : Transaction.fromJson(json['result']),

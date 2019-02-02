@@ -1,4 +1,5 @@
 import 'package:test/test.dart';
+import 'dart:convert';
 import '../../lib/ckb-rpc/api_client.dart';
 
 void main() {
@@ -6,8 +7,8 @@ void main() {
 
   test("genesisBlockHash", () async {
     try {
-      BlockHashRes blockHashRes = await apiClient.genesisBlockHash();
-      expect(blockHashRes.result != null, true);
+      String blockHash = await apiClient.genesisBlockHash();
+      expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -16,8 +17,8 @@ void main() {
 
   test("genesisBlock", () async {
     try {
-      BlockRes blockRes = await apiClient.genesisBlock();
-      expect(blockRes.result != null, true);
+      Block blockRes = await apiClient.genesisBlock();
+      expect(blockRes != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -26,8 +27,8 @@ void main() {
 
   test("get block hash", () async {
     try {
-      BlockHashRes blockHashRes = await apiClient.getBlockHash(1);
-      expect(blockHashRes.result != null, true);
+      String blockHash = await apiClient.getBlockHash(1);
+      expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -36,34 +37,35 @@ void main() {
 
   group("get transaction", () {
     test("with right params", () async {
-      String hash =
-          "0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324";
-      TransationRes transaction = await apiClient.getTransaction(hash);
-      if (transaction.error == null) {
-        expect(transaction.result.hash, hash);
-      } else {
-        print(transaction.error.message);
-        expect(transaction.error.code, -1);
+      try {
+        String hash =
+            "0x3dbab447d2eed8bdbf9038752fe1264aa2b5bcc8231c4df95d300b1a665bd01a";
+        Transaction transaction = await apiClient.getTransaction(hash);
+        print(jsonEncode(transaction));
+        expect(transaction.hash, hash);
+      } catch (error) {
+        print(error.message);
+        expect(error.code, -1);
       }
     });
 
     test("with wrong params", () async {
-      String hash = "0x3f292cbae324";
-      TransationRes transaction = await apiClient.getTransaction(hash);
-      if (transaction.error == null) {
-        expect(transaction.result.hash, hash);
-      } else {
-        print(transaction.error.message);
-        expect(transaction.error.code, -1);
+      try {
+        String hash = "0x3f292cbae324";
+        Transaction transaction = await apiClient.getTransaction(hash);
+        expect(transaction.hash, hash);
+      } catch (error) {
+        print(error.message);
+        expect(error.code, -1);
       }
     });
   });
 
   test("get tip header", () async {
     try {
-      HeaderRes headerRes = await apiClient.getTipHeader();
-      print(headerRes.result.hash);
-      expect(headerRes.result.hash != null, true);
+      Header header = await apiClient.getTipHeader();
+      print(header.hash);
+      expect(header.hash != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -72,13 +74,14 @@ void main() {
 
   test("get cell by type hash", () async {
     try {
-      CellsByTypeHash cells = await apiClient.getCellsByTypeHash(
-          '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
+      List<Cell> cells = await apiClient.getCellsByTypeHash(
+          '0xc0a0565adcb163db486528b9d3b74485637138d99803aebc9e2055a95e866e98',
           1,
-          3);
+          375);
+      print(jsonEncode(cells));
       expect(
-          cells.result[0].lock ==
-              '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
+          cells[0].lock ==
+              '0xc0a0565adcb163db486528b9d3b74485637138d99803aebc9e2055a95e866e98',
           true);
     } catch (error) {
       print(error.message);
@@ -88,11 +91,12 @@ void main() {
 
   test("get live cell", () async {
     try {
-      LiveCellRes liveCellRes = await apiClient.getLiveCell(new OutPoint(
-          "0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324",
+      CellWithStatus liveCellRes = await apiClient.getLiveCell(new OutPoint(
+          "0xff50745e53c9af867763834dda3a94fbe833e9318ddb3570a2e914630fcaea17",
           0));
-      print(liveCellRes.result.cell.lock);
-      expect(liveCellRes.result != null, true);
+      print(liveCellRes.cell.lock);
+      print(jsonEncode(liveCellRes));
+      expect(liveCellRes != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -101,9 +105,9 @@ void main() {
 
   test("get tip block number", () async {
     try {
-      TipBlockNumberRes tipBlockNumber = await apiClient.getTipBlockNumber();
-      print(tipBlockNumber.result);
-      expect(tipBlockNumber.result != null, true);
+      int tipBlockNumber = await apiClient.getTipBlockNumber();
+      print(tipBlockNumber);
+      expect(tipBlockNumber != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -112,9 +116,9 @@ void main() {
 
   test("get local node id", () async {
     try {
-      LocalNodeIdRes localNodeId = await apiClient.getLocalNodeId();
-      print(localNodeId.result);
-      expect(localNodeId.result != null, true);
+      String localNodeId = await apiClient.getLocalNodeId();
+      print(localNodeId);
+      expect(localNodeId != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -123,10 +127,10 @@ void main() {
 
   test("get block", () async {
     try {
-      BlockRes blockRes = await apiClient.getBlock(
+      Block block = await apiClient.getBlock(
           '0xb59a3a251076bc6e057d11c7ad0d140810984ef259fa08cdbfe4e2c8db40410f');
-      print(blockRes.result);
-      expect(blockRes.result != null, true);
+      print(block);
+      expect(block != null, true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);

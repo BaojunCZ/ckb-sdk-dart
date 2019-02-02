@@ -2,107 +2,96 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-01-31 18:00:10
+ * @LastEditTime: 2019-02-02 13:56:08
  * @Description: json rpc api client
  */
 import './api_request.dart';
 import './service_url.dart';
 import '../ckb-types/res_export.dart';
 import './api_error.dart';
-import '../ckb-utils/Sha3.dart';
+import '../ckb-utils/sha3.dart';
 import 'package:convert/convert.dart';
 
 export './api_request.dart';
 export '../ckb-types/res_export.dart';
 
 class ApiClient {
-  static ApiRequest request;
+  ApiRequest _request;
+
   ApiClient(String nodeUrl) {
-    request = new ApiRequest(nodeUrl);
+    _request = ApiRequest(nodeUrl);
   }
 
-  genesisBlockHash() async {
-    return new BlockHashRes.fromJson(
-        await request.requestRpc(ServiceUrl.blockHash, [0]));
+  Future<String> genesisBlockHash() async {
+    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [0])).result;
   }
 
-  genesisBlock() async {
-    BlockHashRes blockHash = await genesisBlockHash();
-    if (blockHash.result != null) {
-      return new BlockRes.fromJson(
-          await request.requestRpc(ServiceUrl.block, [blockHash.result]));
+  Future<Block> genesisBlock() async {
+    String blockHash = await genesisBlockHash();
+    if (blockHash != null) {
+      return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
     } else {
-      return blockHash;
+      return null;
     }
   }
 
   //==============================Chain RPC Methods================================
 
-  getBlockHash(int blockNumber) async {
-    return new BlockHashRes.fromJson(
-        await request.requestRpc(ServiceUrl.blockHash, [blockNumber]));
+  Future<String> getBlockHash(int blockNumber) async {
+    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber])).result;
   }
 
-  getTransaction(String hash) async {
-    return new TransationRes.fromJson(
-        await request.requestRpc(ServiceUrl.transaction, [hash]));
+  Future<Transaction> getTransaction(String hash) async {
+    return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
   }
 
-  getTipHeader() async {
-    return new HeaderRes.fromJson(
-        await request.requestRpc(ServiceUrl.tipHeader, []));
+  Future<Header> getTipHeader() async {
+    return HeaderRes.fromJson(await _request.requestRpc(ServiceUrl.tipHeader, [])).result;
   }
 
-  getCellsByTypeHash(
-      String hash, int fromBlockNumber, int toBlockNumber) async {
-    return new CellsByTypeHash.fromJson(await request.requestRpc(
-        ServiceUrl.cellsByTypeHash, [hash, fromBlockNumber, toBlockNumber]));
+  Future<List<Cell>> getCellsByTypeHash(String hash, int fromBlockNumber, int toBlockNumber) async {
+    return CellsByTypeHashRes.fromJson(
+            await _request.requestRpc(ServiceUrl.cellsByTypeHash, [hash, fromBlockNumber, toBlockNumber]))
+        .result;
   }
 
-  getLiveCell(OutPoint outPoint) async {
-    return new LiveCellRes.fromJson(
-        await request.requestRpc(ServiceUrl.liveCell, [outPoint]));
+  Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
+    return LiveCellRes.fromJson(await _request.requestRpc(ServiceUrl.liveCell, [outPoint])).result;
   }
 
-  getTipBlockNumber() async {
-    return new TipBlockNumberRes.fromJson(
-        await request.requestRpc(ServiceUrl.tipBlockNumber, []));
+  Future<int> getTipBlockNumber() async {
+    return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, [])).result;
   }
 
-  getLocalNodeId() async {
-    return new LocalNodeIdRes.fromJson(
-        await request.requestRpc(ServiceUrl.localNodeId, []));
+  Future<String> getLocalNodeId() async {
+    return LocalNodeIdRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeId, [])).result;
   }
 
-  getBlock(String blockHash) async {
-    return new BlockRes.fromJson(
-        await request.requestRpc(ServiceUrl.block, [blockHash]));
+  Future<Block> getBlock(String blockHash) async {
+    return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
   }
 
   //================================Pool RPC Methods===============================
 
-  sendTransaction(transaction) async {
-    return new SendTransactionRes.fromJson(
-        await request.requestRpc(ServiceUrl.sendTransaction, [transaction]));
+  Future<String> sendTransaction(transaction) async {
+    return SendTransactionRes.fromJson(await _request.requestRpc(ServiceUrl.sendTransaction, [transaction])).result;
   }
 
   alwaysSuccessCellHash() async {
-    BlockRes blockRes = await genesisBlock();
-    List<CellOutput> outputs = blockRes.result.commitTransactions[0].outputs;
+    Block block = await genesisBlock();
+    List<CellOutput> outputs = block.commitTransactions[0].outputs;
     if (outputs.length == 0 || outputs[0] == null) {
       throw ApiError.genericError("Cannot find always success cell");
     }
-    final SHA3Digest sha3digest = new SHA3Digest(256);
-    var data = outputs[0].data.startsWith("0x")
-        ? outputs[0].data.replaceFirst("0x", "")
-        : outputs[0].data;
+    final SHA3Digest sha3digest = SHA3Digest(256);
+    var data = outputs[0].data.startsWith("0x") ? outputs[0].data.replaceFirst("0x", "") : outputs[0].data;
     var result = sha3digest.process(hex.decode(data));
     return hex.encode(result);
   }
 
   alwaysSuccessScriptOutPoint() async {
-    BlockRes blockRes = await genesisBlock();
-    String hash = blockRes.result.commitTransactions[0].hash;
-    return new OutPoint(hash, 0);
+    Block block = await genesisBlock();
+    String hash = block.commitTransactions[0].hash;
+    return OutPoint(hash, 0);
   }
 }

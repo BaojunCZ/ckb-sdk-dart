@@ -31,11 +31,12 @@ Map<String, dynamic> _$PreviousOutputToJson(PreviousOutput instance) =>
 
 Unlock _$UnlockFromJson(Map<String, dynamic> json) {
   return Unlock(
-      (json['args'] as List)?.map((e) => e as int)?.toList(),
-      json['binary'] as String,
-      json['reference'],
-      (json['signed_args'] as List)?.map((e) => e as int)?.toList(),
-      json['version'] as int);
+    json['version'] as int,
+    json['reference'],
+    (json['signed_args'] as List)?.map((e) => e as String)?.toList(),
+    (json['args'] as List)?.map((e) => e as int)?.toList(),
+    json['binary'] as String,
+  );
 }
 
 Map<String, dynamic> _$UnlockToJson(Unlock instance) => <String, dynamic>{
