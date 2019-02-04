@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-02-02 10:47:27
+ * @LastEditTime: 2019-02-04 11:03:54
  * @Description: api request
  */
 import 'dart:convert';
@@ -18,6 +18,10 @@ class ApiRequest {
   Dio dio;
 
   ApiRequest(String nodeUrl) {
+    setNodeUrl(nodeUrl);
+  }
+
+  setNodeUrl(String nodeUrl) {
     dio = new Dio(new Options(
         baseUrl: nodeUrl,
         connectTimeout: 5000,
