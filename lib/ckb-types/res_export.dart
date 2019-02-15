@@ -28,3 +28,4 @@ export './item/send_transaction.dart';
 export './item/error.dart';
 export './item/uncle_block.dart';
 export './item/block.dart';
+export './item/unlock.dart';

@@ -1,3 +1,3 @@
 final MIN_CELL_CAPACITY = 40;
 final MIN_UDT_CELL_CAPACITY = 48;
-final VERSION = 0;
+const VERSION = 0;

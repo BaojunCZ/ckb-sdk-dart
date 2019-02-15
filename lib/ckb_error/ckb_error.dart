@@ -2,12 +2,12 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:33:47
  * @LastEditors: your name
- * @LastEditTime: 2019-01-31 17:59:42
+ * @LastEditTime: 2019-02-04 12:54:03
  * @Description: api error
  */
 import '../ckb-types/item/error.dart';
 
-class ApiError {
+class CkbError {
   static var genericErrorCode = -1;
   static var invalidParameters =
       RPCError(genericErrorCode, "Invalid parameters");

@@ -28,6 +28,7 @@ void main() {
   test("get block hash", () async {
     try {
       String blockHash = await apiClient.getBlockHash(1);
+      print(blockHash);
       expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
@@ -39,7 +40,7 @@ void main() {
     test("with right params", () async {
       try {
         String hash =
-            "0x3dbab447d2eed8bdbf9038752fe1264aa2b5bcc8231c4df95d300b1a665bd01a";
+            "0xe5895c428d3b88000d1b630c1c8e42943ec3d3c39f5f1baf270510c72e7401f9";
         Transaction transaction = await apiClient.getTransaction(hash);
         print(jsonEncode(transaction));
         expect(transaction.hash, hash);
@@ -75,13 +76,13 @@ void main() {
   test("get cell by type hash", () async {
     try {
       List<Cell> cells = await apiClient.getCellsByTypeHash(
-          '0xc0a0565adcb163db486528b9d3b74485637138d99803aebc9e2055a95e866e98',
+          '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
           1,
-          375);
+          20);
       print(jsonEncode(cells));
       expect(
           cells[0].lock ==
-              '0xc0a0565adcb163db486528b9d3b74485637138d99803aebc9e2055a95e866e98',
+              '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
           true);
     } catch (error) {
       print(error.message);

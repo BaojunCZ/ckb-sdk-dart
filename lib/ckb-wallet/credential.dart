@@ -1,7 +1,8 @@
 import '../ckb-utils/number.dart' as number;
 import '../ckb-utils/crypto.dart' as crypto;
 import '../ckb-utils/file.dart' as fileUtils;
-import '../ckb-types//res_export.dart';
+import '../ckb-types/res_export.dart';
+import './wallet_constant.dart';
 
 class Credential {
   final BigInt privateKey;
@@ -21,7 +22,7 @@ class Credential {
 
   static BigInt _privateKeyToPulic(BigInt privateKey) {
     var list = number.numberToBytes(privateKey);
-    var pkBigInt = number.bytesToInt(crypto.publicKeyFromPrivate(list));
+    var pkBigInt = number.bytesToInt(crypto.publicKeyFromPrivate(list, true));
     return pkBigInt;
   }
 
@@ -30,19 +31,16 @@ class Credential {
   }
 
   Unlock getUnlockScript(String path,
-      {int version: 0,
-      String binary = "",
-      dynamic reference: null,
-      List<String> args: null}) {
+      {int version: VERSION, String binary = null, String reference = "", List<String> args: null}) {
     List<String> signedArgs = [];
     signedArgs.add(fileUtils.getScriptFromFile(path));
     signedArgs.add(number.toHex(publicKey, forcePadLen: 66));
     return Unlock(
       version,
-      binary,
+      reference,
       signedArgs,
       args == null ? [] : args,
-      reference,
+      binary,
     );
   }
 }

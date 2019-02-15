@@ -1,33 +1,32 @@
 import '../ckb-rpc/api_client.dart';
 import './wallet_utils.dart' as utils;
 import './wallet_constant.dart' as constant;
-import './credential.dart';
 import 'dart:math';
-import '../ckb-utils/sign_utils.dart' as sign;
+import '../ckb-utils/number.dart' as number;
 import '../ckb-utils/TransactionUtils.dart';
-import 'dart:convert';
 
-class CkbWallet {
-  Credential _credential;
+class AlwaysSuccessWallet {
   ApiClient _apiClient;
 
-  String _MRUBY_OUT_POINT_HASH = "";
-
-  CkbWallet(ApiClient apiClient, Credential credential) {
-    _credential = credential;
+  AlwaysSuccessWallet(ApiClient apiClient) {
     _apiClient = apiClient;
   }
 
-  Credential getCredential() {
-    return _credential;
+  Future<String> getAddress() async {
+    Unlock unlock = await getUnlockScript();
+    return unlock.getTypeHash();
   }
 
-  setCredential(Credential credential) {
-    _credential = credential;
-  }
-
-  setMRUBY_OUT_POINT_HASH(String mRubyOutPointHash) {
-    _MRUBY_OUT_POINT_HASH = mRubyOutPointHash;
+  Future<Unlock> getUnlockScript() async {
+    String reference = await _apiClient.alwaysSuccessCellHash();
+    reference = number.hexAdd0x(reference);
+    return Unlock(
+      constant.VERSION,
+      reference,
+      [],
+      [],
+      null,
+    );
   }
 
   Future<List<Cell>> getUnspentCells(String address) async {
@@ -57,12 +56,11 @@ class CkbWallet {
   Future<String> sendCapacity(Unlock unlock, String toAddress, int capacity) async {
     Transaction tx = await generateTx(unlock, toAddress, capacity);
     tx = formatTx(tx);
-    print(jsonEncode(tx));
     String hash = await _apiClient.sendTransaction(tx);
     return hash;
   }
 
-  Future<Transaction> generateTx(Unlock unlock, String toAddress, int capacity) async {
+  generateTx(Unlock unlock, String toAddress, int capacity) async {
     String address = unlock.getTypeHash();
     unlock.typeHash = address;
     utils.ValidInputs validInputs =
@@ -70,8 +68,7 @@ class CkbWallet {
     List<CellOutput> outputs = [];
     outputs.add(CellOutput(capacity, "", toAddress, null));
     outputs.add(CellOutput(validInputs.capacity - capacity, "", address, null));
-    var outpoints = [OutPoint(_MRUBY_OUT_POINT_HASH, 0)];
-    return Transaction(outpoints, "", sign.signSigHashAllInputs(validInputs.inputs, outputs, _credential.privateKey),
-        outputs, constant.VERSION);
+    OutPoint outpoints = await _apiClient.alwaysSuccessScriptOutPoint();
+    return Transaction([outpoints], null, validInputs.inputs, outputs, constant.VERSION);
   }
 }

@@ -18,14 +18,14 @@ main() async {
   List<Cell> cells = await apiClient.getCellsByTypeHash(
       '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
       1,
-      3);
+      1000);
   Cell cell = cells[0];
   OutPoint point = cell.outPoint;
   print(point.hash);
   print(point.index);
 
   CellWithStatus liveCellRes = await apiClient.getLiveCell(new OutPoint(
-      "0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324", 0));
+      "0xff50745e53c9af867763834dda3a94fbe833e9318ddb3570a2e914630fcaea17", 0));
   print(liveCellRes.cell.capacity);
 
   int tipBlockNumber = await apiClient.getTipBlockNumber();
@@ -35,7 +35,7 @@ main() async {
   print(localNodeId);
 
   Block block = await apiClient.getBlock(
-      '0xb59a3a251076bc6e057d11c7ad0d140810984ef259fa08cdbfe4e2c8db40410f');
+      '0xdc3b61fe382b3a6297453a712ca2d2581b254f62baab509c35e50b2d09c25702');
   print(jsonEncode(block));
 
   String transationHash =

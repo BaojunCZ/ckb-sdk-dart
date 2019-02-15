@@ -6,6 +6,7 @@
  * @Description: file content
  */
 import 'package:json_annotation/json_annotation.dart';
+import 'unlock.dart';
 part 'cell_output.g.dart';
 
 @JsonSerializable()
@@ -13,7 +14,7 @@ class CellOutput {
   int capacity;
   String data;
   String lock;
-  dynamic type;
+  Unlock type;
 
   CellOutput(this.capacity, this.data, this.lock, this.type);
 

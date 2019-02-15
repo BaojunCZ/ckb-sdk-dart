@@ -1,6 +1,33 @@
-class WalletUtils {
-  static final _MRUBY_CELL_HASH =
-      "0x2165b10c4f6c55302158a17049b9dad4fef0acaf1065c63c02ddeccbce97ac47";
-  static final _MRUBY_OUT_POINT_HASH =
-      "0xff50745e53c9af867763834dda3a94fbe833e9318ddb3570a2e914630fcaea17";
+import '../ckb-types/res_export.dart';
+import '../ckb_error/ckb_error.dart';
+
+ValidInputs gatherInputs(
+    List<Cell> unSpentCells, int capacity, int minCapacity, Unlock unlock) {
+  if (capacity < minCapacity) {
+    throw CkbError.genericError(
+        "capacity cannot be less than " + minCapacity.toString());
+  }
+  int inputCapacities = 0;
+  List<CellInput> result = [];
+  for (final cell in unSpentCells) {
+    var input = CellInput(
+        PreviousOutput(cell.outPoint.hash, cell.outPoint.index), unlock);
+    result.add(input);
+    inputCapacities += cell.capacity;
+    if (inputCapacities >= capacity &&
+        (inputCapacities - capacity) >= minCapacity) {
+      break;
+    }
+  }
+  if (inputCapacities < capacity) {
+    throw CkbError.genericError("Not enough capacity!");
+  }
+  return ValidInputs(result, inputCapacities);
+}
+
+class ValidInputs {
+  List<CellInput> inputs;
+  int capacity;
+
+  ValidInputs(this.inputs, this.capacity);
 }

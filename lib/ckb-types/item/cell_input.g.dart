@@ -28,21 +28,3 @@ PreviousOutput _$PreviousOutputFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$PreviousOutputToJson(PreviousOutput instance) =>
     <String, dynamic>{'hash': instance.hash, 'index': instance.index};
-
-Unlock _$UnlockFromJson(Map<String, dynamic> json) {
-  return Unlock(
-    json['version'] as int,
-    json['reference'],
-    (json['signed_args'] as List)?.map((e) => e as String)?.toList(),
-    (json['args'] as List)?.map((e) => e as int)?.toList(),
-    json['binary'] as String,
-  );
-}
-
-Map<String, dynamic> _$UnlockToJson(Unlock instance) => <String, dynamic>{
-      'args': instance.args,
-      'binary': instance.binary,
-      'reference': instance.reference,
-      'signed_args': instance.signedArgs,
-      'version': instance.version
-    };
