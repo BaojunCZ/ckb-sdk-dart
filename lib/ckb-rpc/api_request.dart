@@ -6,16 +6,13 @@
  * @Description: api request
  */
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 
-import 'package:dio/dio.dart';
 import '../ckb_error/ckb_error.dart';
 
 class ApiRequest {
   int id = 0;
   final jsonrpc = "2.0";
-  Dio dio;
   String _nodeUrl;
 
   ApiRequest(String nodeUrl) {

@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 import '../../lib/ckb-utils/crypto.dart' as crypto;
 import 'dart:typed_data';
-import 'dart:convert';
 import 'package:convert/convert.dart';
 import '../../lib/ckb-utils/number.dart' as number;
 

@@ -1,9 +1,7 @@
 import 'dart:convert';
 import '../../lib/ckb-utils/sha3.dart';
 import 'package:test/test.dart';
-import 'dart:typed_data';
 import 'package:convert/convert.dart';
-import '../../lib/ckb-utils/number.dart' as number;
 
 void main() {
   test("sh3", () {

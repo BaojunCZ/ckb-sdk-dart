@@ -11,7 +11,6 @@ import '../ckb-types/res_export.dart';
 import '../ckb_error/ckb_error.dart';
 import '../ckb-utils/sha3.dart';
 import 'package:convert/convert.dart';
-import 'dart:convert';
 
 export './api_request.dart';
 export '../ckb-types/res_export.dart';

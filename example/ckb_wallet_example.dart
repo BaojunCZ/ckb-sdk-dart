@@ -15,11 +15,11 @@ main() async {
     Credential aliceCredential =
         Credential.fromPrivateKeyHex("76e853efa8245389e33f6fe49dcbd359eb56be2f6c3594e12521d2a806d32156");
 
-//    AlwaysSuccessWallet minerWallet = AlwaysSuccessWallet(apiClient);
-//    Unlock minerUnlock = await minerWallet.getUnlockScript();
-//    String minerAddress = minerUnlock.getTypeHash();
-//    int minerBalance = await minerWallet.getBalance(minerAddress);
-//    print("miner`s address is ${minerAddress} and balance is ${minerBalance}");
+    AlwaysSuccessWallet minerWallet = AlwaysSuccessWallet(apiClient);
+    Unlock minerUnlock = await minerWallet.getUnlockScript();
+    String minerAddress = minerUnlock.getTypeHash();
+    int minerBalance = await minerWallet.getBalance(minerAddress);
+    print("miner`s address is ${minerAddress} and balance is ${minerBalance}");
 
     CkbWallet bobWallet = CkbWallet(apiClient, bobCredential);
     bobWallet.setMRUBY_OUT_POINT_HASH(_MRUBY_OUT_POINT_HASH);
@@ -35,24 +35,24 @@ main() async {
     int aliceBalance = await aliceWallet.getBalance(aliceAddress);
     print("alice`s address is ${aliceAddress} and balance is ${aliceBalance}");
 
-//    print("Miner send 1000 capacity to Bob...");
-//    String minerHash = await minerWallet.sendCapacity(minerUnlock, bobAddress, 1000);
-//    print(minerHash);
-//    Transaction transaction = await apiClient.getTransaction(minerHash);
-//    while (transaction == null) {
-//      print("The transaction are packaging into blockchain");
-//      transaction = await apiClient.getTransaction(minerHash);
-//      sleep(const Duration(seconds: 6));
-//    }
-//    bobBalance = await bobWallet.getBalance(bobAddress);
-//    print("Miner's transaction: ${jsonEncode(transaction)}");
-//    print("Bob's signed wallet address: " + bobAddress + " and balance: ${bobBalance}");
+    print("Miner send 1000 capacity to Bob...");
+    String minerHash = await minerWallet.sendCapacity(minerUnlock, bobAddress, 1000);
+    print(minerHash);
+    Transaction transaction = await apiClient.getTransaction(minerHash);
+    while (transaction == null) {
+      print("The transaction are packaging into blockchain");
+      transaction = await apiClient.getTransaction(minerHash);
+      sleep(const Duration(seconds: 6));
+    }
+    bobBalance = await bobWallet.getBalance(bobAddress);
+    print("Miner's transaction: ${jsonEncode(transaction)}");
+    print("Bob's signed wallet address: " + bobAddress + " and balance: ${bobBalance}");
 
     print("Bob send 100 capacity to Alice...");
     String bobHash = await bobWallet.sendCapacity(bobUnlock, aliceAddress, 100);
     print(bobHash);
-    Transaction transaction = await apiClient.getTransaction(bobHash);
-    while (transaction == null) {
+    Transaction bobTransaction = await apiClient.getTransaction(bobHash);
+    while (bobTransaction == null) {
       print("The transaction are packaging into blockchain");
       transaction = await apiClient.getTransaction(bobHash);
       sleep(const Duration(seconds: 6));
