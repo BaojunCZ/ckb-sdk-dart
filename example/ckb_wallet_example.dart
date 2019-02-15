@@ -54,7 +54,7 @@ main() async {
     Transaction bobTransaction = await apiClient.getTransaction(bobHash);
     while (bobTransaction == null) {
       print("The transaction are packaging into blockchain");
-      transaction = await apiClient.getTransaction(bobHash);
+      bobTransaction = await apiClient.getTransaction(bobHash);
       sleep(const Duration(seconds: 6));
     }
     bobBalance = await bobWallet.getBalance(bobAddress);
