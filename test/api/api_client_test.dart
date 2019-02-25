@@ -41,7 +41,7 @@ void main() {
     test("with right params", () async {
       try {
         String hash =
-            "0x223f827f968ef09066e593a7c22282fe6fddfa465693410f6466ac811061aabd";
+            "0x1b5519596b17b8b88321b4bc8cb88e88ced3cc3a19c1300612ad8d021d45aa4a";
         Transaction transaction = await apiClient.getTransaction(hash);
         print(jsonEncode(transaction));
         expect(transaction.hash, hash);

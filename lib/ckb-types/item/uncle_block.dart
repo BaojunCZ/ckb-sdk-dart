@@ -7,14 +7,11 @@
  */
 import './header.dart';
 import './transaction.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'uncle_block.g.dart';
 
-@JsonSerializable()
 class UncleBlock {
   Header header;
   Transaction cellbase;
-  @JsonKey(name: 'proposal_transactions')
   List<int> proposalTransactions;
 
   UncleBlock(this.header, this.cellbase, this.proposalTransactions);

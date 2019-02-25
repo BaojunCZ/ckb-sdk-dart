@@ -5,15 +5,11 @@
  * @LastEditTime: 2019-02-02 17:41:17
  * @Description: file content
  */
-import 'package:json_annotation/json_annotation.dart';
-
 import 'unlock.dart';
 
 part 'cell_input.g.dart';
 
-@JsonSerializable()
 class CellInput {
-  @JsonKey(name: 'previous_output')
   PreviousOutput previousOutput;
   Unlock unlock;
 
@@ -24,7 +20,6 @@ class CellInput {
   Map<String, dynamic> toJson() => _$CellInputToJson(this);
 }
 
-@JsonSerializable()
 class PreviousOutput {
   String hash;
   int index;

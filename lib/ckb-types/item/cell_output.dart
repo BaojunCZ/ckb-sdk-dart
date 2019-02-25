@@ -5,11 +5,9 @@
  * @LastEditTime: 2019-01-11 15:39:22
  * @Description: file content
  */
-import 'package:json_annotation/json_annotation.dart';
 import 'unlock.dart';
 part 'cell_output.g.dart';
 
-@JsonSerializable()
 class CellOutput {
   int capacity;
   String data;

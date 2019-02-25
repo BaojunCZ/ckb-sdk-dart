@@ -5,13 +5,11 @@
  * @LastEditTime: 2019-01-11 16:33:49
  * @Description: file content
  */
-import 'package:json_annotation/json_annotation.dart';
 import "./out_point.dart";
 import './cell_input.dart';
 import './cell_output.dart';
 part 'transaction.g.dart';
 
-@JsonSerializable()
 class Transaction {
   String hash;
   List<OutPoint> deps;

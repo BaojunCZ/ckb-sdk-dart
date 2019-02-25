@@ -8,10 +8,8 @@
 import './cell_input.dart';
 import './cell_output.dart';
 import './out_point.dart';
-import 'package:json_annotation/json_annotation.dart';
 part 'send_transaction.g.dart';
 
-@JsonSerializable()
 class SendTransaction {
   List<OutPoint> deps;
   List<CellInput> inputs;

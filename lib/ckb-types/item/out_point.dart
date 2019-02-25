@@ -5,10 +5,8 @@
  * @LastEditTime: 2019-01-11 15:39:37
  * @Description: file content
  */
-import 'package:json_annotation/json_annotation.dart';
 part 'out_point.g.dart';
 
-@JsonSerializable()
 class OutPoint {
   String hash;
   int index;

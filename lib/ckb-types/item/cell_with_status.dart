@@ -5,12 +5,10 @@
  * @LastEditTime: 2019-01-11 15:39:24
  * @Description: file content
  */
-import 'package:json_annotation/json_annotation.dart';
 import './cell_output.dart';
 
 part 'cell_with_status.g.dart';
 
-@JsonSerializable()
 class CellWithStatus {
   CellOutput cell;
   String status;
