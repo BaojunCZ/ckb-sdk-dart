@@ -18,6 +18,7 @@ void main() {
   test("genesisBlock", () async {
     try {
       Block blockRes = await apiClient.genesisBlock();
+      print(jsonEncode(blockRes));
       expect(blockRes != null, true);
     } catch (error) {
       print(error.message);
@@ -115,13 +116,13 @@ void main() {
     }
   });
 
-  test("get local node id", () async {
+  test("get local node info", () async {
     try {
-      String localNodeId = await apiClient.getLocalNodeId();
-      print(localNodeId);
+      NodeInfo localNodeId = await apiClient.getLocalNodeInfo();
+      print(jsonEncode(localNodeId));
       expect(localNodeId != null, true);
     } catch (error) {
-      print(error.message);
+      print(error);
       expect(error.code, -1);
     }
   });

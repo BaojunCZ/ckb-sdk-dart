@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-02-04 12:54:00
+ * @LastEditTime: 2019-02-19 11:38:47
  * @Description: json rpc api client
  */
 import './api_request.dart';
@@ -67,8 +67,8 @@ class ApiClient {
     return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, [])).result;
   }
 
-  Future<String> getLocalNodeId() async {
-    return LocalNodeIdRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeId, [])).result;
+  Future<NodeInfo> getLocalNodeInfo() async {
+    return LocalNodeInfoRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeInfo, [])).result;
   }
 
   Future<Block> getBlock(String blockHash) async {

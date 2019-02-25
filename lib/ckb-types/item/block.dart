@@ -9,16 +9,12 @@ import './header.dart';
 import './uncle_block.dart';
 import './transaction.dart';
 
-import 'package:json_annotation/json_annotation.dart';
 part 'block.g.dart';
 
-@JsonSerializable()
 class Block {
   Header header;
   List<UncleBlock> uncles;
-  @JsonKey(name: 'proposal_transactions')
   List<int> proposalTransactions;
-  @JsonKey(name: 'commit_transactions')
   List<Transaction> commitTransactions;
 
   Block(this.header, this.uncles, this.proposalTransactions,

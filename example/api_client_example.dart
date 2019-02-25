@@ -31,8 +31,8 @@ main() async {
   int tipBlockNumber = await apiClient.getTipBlockNumber();
   print(tipBlockNumber);
 
-  String localNodeId = await apiClient.getLocalNodeId();
-  print(localNodeId);
+  NodeInfo localNodeInfo = await apiClient.getLocalNodeInfo();
+  print(jsonEncode(localNodeInfo));
 
   Block block = await apiClient.getBlock(
       '0xdc3b61fe382b3a6297453a712ca2d2581b254f62baab509c35e50b2d09c25702');
