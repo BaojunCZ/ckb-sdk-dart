@@ -1,26 +1,41 @@
+import 'dart:typed_data';
+import 'dart:math';
 import "package:pointycastle/ecc/api.dart";
 import "package:pointycastle/ecc/curves/secp256k1.dart";
-import "./number.dart";
-import 'dart:typed_data';
 import 'package:pointycastle/api.dart';
 import "package:pointycastle/digests/sha256.dart";
 import "package:pointycastle/macs/hmac.dart";
 import "package:pointycastle/signers/ecdsa_signer.dart";
-import "number.dart" as number;
+import 'package:pointycastle/key_generators/api.dart';
+import "package:pointycastle/key_generators/ec_key_generator.dart";
+import 'package:ckb_dart_sdk/ckb-utils/dartrandom.dart';
+import "package:ckb_dart_sdk/ckb-utils/number.dart" as number;
 
 final ECDomainParameters params = new ECCurve_secp256k1();
 final BigInt _halfCurveOrder = params.n ~/ BigInt.two;
 
 List<int> publicKeyFromPrivate(List<int> privateKey, bool compress) {
-  var privateKeyNum = bytesToInt(privateKey);
+  var privateKeyNum = number.bytesToInt(privateKey);
   var p = params.G * privateKeyNum;
   return p.getEncoded(compress).sublist(0);
 }
 
 List<int> publicKeyFromPrivateSign(List<int> privateKey) {
-  var privateKeyNum = bytesToInt(privateKey);
+  var privateKeyNum = number.bytesToInt(privateKey);
   var p = params.G * privateKeyNum;
   return p.getEncoded(false).sublist(1);
+}
+
+BigInt generateNewPrivateKey(Random random) {
+  var generator = new ECKeyGenerator();
+
+  var keyParams = new ECKeyGeneratorParameters(params);
+
+  generator.init(new ParametersWithRandom(keyParams, new DartRandom(random)));
+
+  var key = generator.generateKeyPair();
+  ECPrivateKey privateKey = key.privateKey;
+  return privateKey.d;
 }
 
 class MsgSignature {
@@ -87,19 +102,23 @@ MsgSignature sign(Uint8List messageHash, Uint8List privateKey) {
   }
 
   if (recId == -1) {
-    throw new Exception("Could not construct a recoverable key. This should never happen");
+    throw new Exception(
+        "Could not construct a recoverable key. This should never happen");
   }
 
-  return new MsgSignature(
-      Uint8List.fromList(number.toBytesPadded(sig.r, 32)), Uint8List.fromList(number.toBytesPadded(sig.s, 32)), recId);
+  return new MsgSignature(Uint8List.fromList(number.toBytesPadded(sig.r, 32)),
+      Uint8List.fromList(number.toBytesPadded(sig.s, 32)), recId);
 }
 
-BigInt _recoverFromSignature(int recId, ECSignature sig, Uint8List msg, ECDomainParameters params) {
+BigInt _recoverFromSignature(
+    int recId, ECSignature sig, Uint8List msg, ECDomainParameters params) {
   var n = params.n;
   var i = new BigInt.from(recId ~/ 2);
   var x = sig.r + (i * n);
 
-  var prime = BigInt.parse("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16);
+  var prime = BigInt.parse(
+      "fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
+      radix: 16);
   if (x.compareTo(prime) >= 0) return null;
 
   var R = _decompressKey(x, (recId & 1) == 1, params.curve);

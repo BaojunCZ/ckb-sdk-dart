@@ -1,7 +1,7 @@
-import '../lib/ckb-wallet/always_success_wallet.dart';
-import '../lib/ckb-wallet/ckb_wallet.dart';
-import '../lib/ckb-rpc/api_client.dart';
-import '../lib/ckb-wallet/credential.dart';
+import 'package:ckb_dart_sdk/ckb-wallet/always_success_wallet.dart';
+import 'package:ckb_dart_sdk/ckb-wallet/ckb_wallet.dart';
+import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
 import 'dart:io';
 import 'dart:convert';
 
