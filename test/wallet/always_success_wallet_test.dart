@@ -5,7 +5,6 @@ import 'dart:convert';
 
 main() {
   test("test address", () async {
-    ApiClient apiClient = ApiClient(nodeUrl: "http://192.168.2.203:8114/");
     AlwaysSuccessWallet minerWallet = AlwaysSuccessWallet();
     Unlock minerUnlock = await minerWallet.getUnlockScript();
     print(jsonEncode(minerUnlock));

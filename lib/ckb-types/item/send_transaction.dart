@@ -2,13 +2,12 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 12:49:23
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:34:20
+ * @LastEditTime: 2019-03-01 14:32:49
  * @Description: file content
  */
 import 'package:ckb_dart_sdk/ckb-types/item/cell_input.dart';
 import 'package:ckb_dart_sdk/ckb-types/item/cell_output.dart';
 import 'package:ckb_dart_sdk/ckb-types/item/out_point.dart';
-part 'send_transaction.g.dart';
 
 class SendTransaction {
   List<OutPoint> deps;
@@ -19,6 +18,28 @@ class SendTransaction {
   SendTransaction(this.deps, this.inputs, this.outputs, this.version);
 
   factory SendTransaction.fromJson(Map<String, dynamic> json) =>
-      _$SendTransactionFromJson(json);
-  Map<String, dynamic> toJson() => _$SendTransactionToJson(this);
+      SendTransaction(
+          (json['deps'] as List)
+              ?.map((e) => e == null
+                  ? null
+                  : OutPoint.fromJson(e as Map<String, dynamic>))
+              ?.toList(),
+          (json['inputs'] as List)
+              ?.map((e) => e == null
+                  ? null
+                  : CellInput.fromJson(e as Map<String, dynamic>))
+              ?.toList(),
+          (json['outputs'] as List)
+              ?.map((e) => e == null
+                  ? null
+                  : CellOutput.fromJson(e as Map<String, dynamic>))
+              ?.toList(),
+          json['version'] as int);
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'deps': deps,
+        'inputs': inputs,
+        'outputs': outputs,
+        'version': version
+      };
 }

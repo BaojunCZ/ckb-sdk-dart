@@ -2,12 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 11:41:43
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:33:45
+ * @LastEditTime: 2019-03-01 14:29:19
  * @Description: file content
  */
 import 'package:ckb_dart_sdk/ckb-types/item/cell_output.dart';
 
-part 'cell_with_status.g.dart';
 
 class CellWithStatus {
   CellOutput cell;
@@ -15,8 +14,12 @@ class CellWithStatus {
 
   CellWithStatus(this.cell, this.status);
 
-  factory CellWithStatus.fromJson(Map<String, dynamic> json) =>
-      _$CellWithStatusFromJson(json);
+  factory CellWithStatus.fromJson(Map<String, dynamic> json) => CellWithStatus(
+      json['cell'] == null
+          ? null
+          : CellOutput.fromJson(json['cell'] as Map<String, dynamic>),
+      json['status'] as String);
 
-  Map<String, dynamic> toJson() => _$CellWithStatusToJson(this);
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'cell': cell, 'status': status};
 }

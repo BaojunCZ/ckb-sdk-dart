@@ -35,7 +35,8 @@ class Unlock {
 
   String getTypeHash() {
     SHA3Digest sha3 = SHA3Digest(256);
-    _update(sha3, hex.decode(number.remove0x(reference)));
+    if (reference != null)
+      _update(sha3, hex.decode(number.remove0x(reference)));
     _update(sha3, utf8.encode("|"));
     if (binary != null) {
       _update(sha3, hex.decode(binary));

@@ -4,7 +4,7 @@ import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart' as constant;
 import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
 import 'dart:math';
 import 'package:ckb_dart_sdk/ckb-utils/sign_utils.dart' as sign;
-import 'package:ckb_dart_sdk/ckb-utils/TransactionUtils.dart';
+import 'package:ckb_dart_sdk/ckb-utils/transaction_utils.dart';
 import 'dart:convert';
 
 export 'package:ckb_dart_sdk/ckb-wallet/credential.dart';

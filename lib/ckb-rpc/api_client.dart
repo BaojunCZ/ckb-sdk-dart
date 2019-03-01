@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:55:22
+ * @LastEditTime: 2019-03-01 15:18:07
  * @Description: json rpc api client
  */
 import 'package:convert/convert.dart';
@@ -101,7 +101,7 @@ class ApiClient {
   Future<String> alwaysSuccessCellHash() async {
     Block block = await genesisBlock();
     List<CellOutput> outputs = block.commitTransactions[0].outputs;
-    if (outputs.length == 0 || outputs[0] == null) {
+    if (outputs.isEmpty || outputs[0] == null) {
       throw CkbError.genericError("Cannot find always success cell");
     }
     final SHA3Digest sha3digest = SHA3Digest(256);

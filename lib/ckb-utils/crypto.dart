@@ -1,15 +1,12 @@
 import 'dart:typed_data';
-import 'dart:math';
-import "package:pointycastle/ecc/api.dart";
-import "package:pointycastle/ecc/curves/secp256k1.dart";
+
+import "package:ckb_dart_sdk/ckb-utils/number.dart" as number;
 import 'package:pointycastle/api.dart';
 import "package:pointycastle/digests/sha256.dart";
+import "package:pointycastle/ecc/api.dart";
+import "package:pointycastle/ecc/curves/secp256k1.dart";
 import "package:pointycastle/macs/hmac.dart";
 import "package:pointycastle/signers/ecdsa_signer.dart";
-import 'package:pointycastle/key_generators/api.dart';
-import "package:pointycastle/key_generators/ec_key_generator.dart";
-import 'package:ckb_dart_sdk/ckb-utils/dartrandom.dart';
-import "package:ckb_dart_sdk/ckb-utils/number.dart" as number;
 
 final ECDomainParameters params = new ECCurve_secp256k1();
 final BigInt _halfCurveOrder = params.n ~/ BigInt.two;

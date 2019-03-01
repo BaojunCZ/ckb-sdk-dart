@@ -1,5 +1,4 @@
 import 'package:test/test.dart';
-import 'dart:math';
 import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
 import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
 

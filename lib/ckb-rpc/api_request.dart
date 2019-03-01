@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:54:55
+ * @LastEditTime: 2019-03-01 15:18:35
  * @Description: api request
  */
 import 'dart:convert';
@@ -35,7 +35,7 @@ class ApiRequest {
             "Request failed with status: ${response.statusCode}.");
       }
     } catch (error) {
-      throw error;
+      rethrow;
     }
   }
 
