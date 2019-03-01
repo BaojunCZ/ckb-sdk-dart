@@ -26,18 +26,6 @@ List<int> publicKeyFromPrivateSign(List<int> privateKey) {
   return p.getEncoded(false).sublist(1);
 }
 
-BigInt generateNewPrivateKey(Random random) {
-  var generator = new ECKeyGenerator();
-
-  var keyParams = new ECKeyGeneratorParameters(params);
-
-  generator.init(new ParametersWithRandom(keyParams, new DartRandom(random)));
-
-  var key = generator.generateKeyPair();
-  ECPrivateKey privateKey = key.privateKey;
-  return privateKey.d;
-}
-
 class MsgSignature {
   final Uint8List r;
   final Uint8List s;

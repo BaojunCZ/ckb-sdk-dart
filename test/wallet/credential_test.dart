@@ -14,14 +14,4 @@ void main() {
     print(credential.publicKey);
     print(pb);
   });
-
-  test('create', () {
-    Credential credential = Credential.createRandom(new Random());
-    String pb = number.toHex(credential.publicKey, forcePadLen: 66);
-    String privateKeyHex = number.toHex(credential.privateKey);
-    print(credential.privateKey);
-    print(privateKeyHex);
-    print(credential.publicKey);
-    print(pb);
-  });
 }

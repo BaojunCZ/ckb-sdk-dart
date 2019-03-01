@@ -11,11 +11,6 @@ class Credential {
 
   const Credential._(this.privateKey, this.publicKey);
 
-  static Credential createRandom(Random random) {
-    var privateKey = crypto.generateNewPrivateKey(random);
-    return fromPrivateKeyBigInt(privateKey);
-  }
-
   static Credential fromPrivateKeyBigInt(BigInt privateKey) {
     BigInt publicKey = _privateKeyToPulic(privateKey);
     return new Credential._(privateKey, publicKey);
