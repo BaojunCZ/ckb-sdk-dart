@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 11:50:01
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 17:12:28
+ * @LastEditTime: 2019-03-01 12:36:10
  * @Description: file content
  */
-import './response.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
 
 class TipBlockNumberRes extends RPCResponse<int> {
   TipBlockNumberRes(id, jsonrpc, result, error)

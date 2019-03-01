@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-02-02 17:41:17
+ * @LastEditTime: 2019-03-01 12:33:33
  * @Description: file content
  */
-import 'unlock.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/unlock.dart';
 
 part 'cell_input.g.dart';
 

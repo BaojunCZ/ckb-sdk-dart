@@ -1,5 +1,5 @@
-import '../ckb-types/res_export.dart';
-import '../ckb_error/ckb_error.dart';
+import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
+import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
 
 ValidInputs gatherInputs(
     List<Cell> unSpentCells, int capacity, int minCapacity, Unlock unlock) {

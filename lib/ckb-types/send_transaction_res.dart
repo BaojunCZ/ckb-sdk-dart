@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-01-11 17:12:24
  * @Description: file content
  */
-import './response.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
 
 class SendTransactionRes extends RPCResponse<String> {
   SendTransactionRes(id, jsonrpc, result, error)

@@ -2,11 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 17:11:44
+ * @LastEditTime: 2019-03-01 12:35:42
  * @Description: file content
  */
-import './response.dart';
-import './item/header.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/header.dart';
 
 class HeaderRes extends RPCResponse<Header> {
   HeaderRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);

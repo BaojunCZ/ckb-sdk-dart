@@ -2,11 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-02-01 16:51:20
+ * @LastEditTime: 2019-03-01 12:36:14
  * @Description: file content
  */
-import './item/transaction.dart';
-import './response.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/transaction.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
 
 class TransactionRes extends RPCResponse<Transaction> {
   TransactionRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);

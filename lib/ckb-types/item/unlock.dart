@@ -1,8 +1,8 @@
 import 'dart:convert';
-import '../../ckb-utils/sha3.dart';
+import 'package:ckb_dart_sdk/ckb-utils/sha3.dart';
 import 'package:convert/convert.dart';
 import 'dart:typed_data';
-import '../../ckb-utils/number.dart' as number;
+import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
 
 class Unlock {
   List<String> args;

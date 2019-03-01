@@ -2,11 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 18:06:57
+ * @LastEditTime: 2019-03-01 12:35:59
  * @Description: file content
  */
-import './item/error.dart';
-export './item/error.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/error.dart';
+export 'package:ckb_dart_sdk/ckb-types/item/error.dart';
 
 class RPCResponse<T> {
   int id;

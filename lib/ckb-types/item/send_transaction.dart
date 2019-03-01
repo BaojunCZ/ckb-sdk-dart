@@ -2,12 +2,12 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 12:49:23
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 15:39:39
+ * @LastEditTime: 2019-03-01 12:34:20
  * @Description: file content
  */
-import './cell_input.dart';
-import './cell_output.dart';
-import './out_point.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/cell_input.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/cell_output.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/out_point.dart';
 part 'send_transaction.g.dart';
 
 class SendTransaction {

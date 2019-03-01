@@ -1,11 +1,13 @@
-import '../ckb-rpc/api_client.dart';
-import './wallet_utils.dart' as utils;
-import './wallet_constant.dart' as constant;
-import './credential.dart';
+import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_dart_sdk/ckb-wallet/wallet_utils.dart' as utils;
+import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart' as constant;
+import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
 import 'dart:math';
-import '../ckb-utils/sign_utils.dart' as sign;
-import '../ckb-utils/TransactionUtils.dart';
+import 'package:ckb_dart_sdk/ckb-utils/sign_utils.dart' as sign;
+import 'package:ckb_dart_sdk/ckb-utils/TransactionUtils.dart';
 import 'dart:convert';
+
+export 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
 
 class CkbWallet {
   Credential _credential;
@@ -36,7 +38,8 @@ class CkbWallet {
     int fromBlockNo = 1;
     while (fromBlockNo <= toBlockNo) {
       int currentToBlockNumber = min(fromBlockNo + 100, toBlockNo);
-      List<Cell> cells = await _apiClient.getCellsByTypeHash(address, fromBlockNo, currentToBlockNumber);
+      List<Cell> cells = await _apiClient.getCellsByTypeHash(
+          address, fromBlockNo, currentToBlockNumber);
       if (!cells.isEmpty) {
         results.addAll(cells);
       }
@@ -54,7 +57,8 @@ class CkbWallet {
     return balance;
   }
 
-  Future<String> sendCapacity(Unlock unlock, String toAddress, int capacity) async {
+  Future<String> sendCapacity(
+      Unlock unlock, String toAddress, int capacity) async {
     Transaction tx = await generateTx(unlock, toAddress, capacity);
     tx = formatTx(tx);
     print(jsonEncode(tx));
@@ -62,16 +66,25 @@ class CkbWallet {
     return hash;
   }
 
-  Future<Transaction> generateTx(Unlock unlock, String toAddress, int capacity) async {
+  Future<Transaction> generateTx(
+      Unlock unlock, String toAddress, int capacity) async {
     String address = unlock.getTypeHash();
     unlock.typeHash = address;
-    utils.ValidInputs validInputs =
-        utils.gatherInputs(await getUnspentCells(address), capacity, constant.MIN_CELL_CAPACITY, unlock);
+    utils.ValidInputs validInputs = utils.gatherInputs(
+        await getUnspentCells(address),
+        capacity,
+        constant.MIN_CELL_CAPACITY,
+        unlock);
     List<CellOutput> outputs = [];
     outputs.add(CellOutput(capacity, "", toAddress, null));
     outputs.add(CellOutput(validInputs.capacity - capacity, "", address, null));
     var outpoints = [OutPoint(_MRUBY_OUT_POINT_HASH, 0)];
-    return Transaction(outpoints, "", sign.signSigHashAllInputs(validInputs.inputs, outputs, _credential.privateKey),
-        outputs, constant.VERSION);
+    return Transaction(
+        outpoints,
+        "",
+        sign.signSigHashAllInputs(
+            validInputs.inputs, outputs, _credential.privateKey),
+        outputs,
+        constant.VERSION);
   }
 }

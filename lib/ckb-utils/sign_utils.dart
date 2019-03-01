@@ -1,4 +1,4 @@
-import '../ckb-types/res_export.dart';
+import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
 import 'sha3.dart';
 import 'dart:typed_data';
 import 'dart:convert';

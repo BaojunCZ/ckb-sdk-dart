@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 15:39:27
+ * @LastEditTime: 2019-03-01 12:33:50
  * @Description: file content
  */
-import './out_point.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/out_point.dart';
 
 part 'cell.g.dart';
 

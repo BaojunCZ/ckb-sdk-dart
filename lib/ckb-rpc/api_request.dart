@@ -2,13 +2,13 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-02-04 12:54:33
+ * @LastEditTime: 2019-03-01 12:32:28
  * @Description: api request
  */
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import '../ckb_error/ckb_error.dart';
+import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
 
 class ApiRequest {
   int id = 0;

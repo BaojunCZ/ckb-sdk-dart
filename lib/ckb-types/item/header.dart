@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 15:39:34
+ * @LastEditTime: 2019-03-01 12:34:01
  * @Description: file content
  */
-part 'header.g.dart';
+part 'package:ckb_dart_sdk/ckb-types/item/header.g.dart';
 
 class Header {
   String cellbaseId;

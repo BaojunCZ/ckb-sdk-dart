@@ -2,11 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 15:06:00
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 17:08:41
+ * @LastEditTime: 2019-03-01 12:35:30
  * @Description: file content
  */
-import './response.dart';
-import './item/block.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/block.dart';
 
 class BlockRes extends RPCResponse<Block> {
   BlockRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);

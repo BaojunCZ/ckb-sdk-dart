@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:33:47
  * @LastEditors: your name
- * @LastEditTime: 2019-02-04 12:54:03
+ * @LastEditTime: 2019-03-01 12:29:44
  * @Description: api error
  */
-import '../ckb-types/item/error.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/error.dart';
 
 class CkbError {
   static var genericErrorCode = -1;

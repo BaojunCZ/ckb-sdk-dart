@@ -2,11 +2,11 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-10 21:18:58
  * @LastEditors: your name
- * @LastEditTime: 2019-02-01 16:04:12
+ * @LastEditTime: 2019-03-01 12:35:39
  * @Description: file content
  */
-import './response.dart';
-import './item/cell.dart';
+import 'package:ckb_dart_sdk/ckb-types/response.dart';
+import 'package:ckb_dart_sdk/ckb-types/item/cell.dart';
 
 class CellsByTypeHashRes extends RPCResponse<List<Cell>> {
   CellsByTypeHashRes(id, jsonrpc, result, error)

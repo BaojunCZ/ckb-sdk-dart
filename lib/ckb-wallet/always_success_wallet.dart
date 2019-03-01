@@ -1,9 +1,9 @@
-import '../ckb-rpc/api_client.dart';
-import './wallet_utils.dart' as utils;
-import './wallet_constant.dart' as constant;
+import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_dart_sdk/ckb-wallet/wallet_utils.dart' as utils;
+import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart' as constant;
 import 'dart:math';
-import '../ckb-utils/number.dart' as number;
-import '../ckb-utils/TransactionUtils.dart';
+import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_dart_sdk/ckb-utils/TransactionUtils.dart';
 
 class AlwaysSuccessWallet {
   ApiClient _apiClient;
@@ -35,7 +35,8 @@ class AlwaysSuccessWallet {
     int fromBlockNo = 1;
     while (fromBlockNo <= toBlockNo) {
       int currentToBlockNumber = min(fromBlockNo + 100, toBlockNo);
-      List<Cell> cells = await _apiClient.getCellsByTypeHash(address, fromBlockNo, currentToBlockNumber);
+      List<Cell> cells = await _apiClient.getCellsByTypeHash(
+          address, fromBlockNo, currentToBlockNumber);
       if (!cells.isEmpty) {
         results.addAll(cells);
       }
@@ -53,7 +54,8 @@ class AlwaysSuccessWallet {
     return balance;
   }
 
-  Future<String> sendCapacity(Unlock unlock, String toAddress, int capacity) async {
+  Future<String> sendCapacity(
+      Unlock unlock, String toAddress, int capacity) async {
     Transaction tx = await generateTx(unlock, toAddress, capacity);
     tx = formatTx(tx);
     String hash = await _apiClient.sendTransaction(tx);
@@ -63,12 +65,16 @@ class AlwaysSuccessWallet {
   generateTx(Unlock unlock, String toAddress, int capacity) async {
     String address = unlock.getTypeHash();
     unlock.typeHash = address;
-    utils.ValidInputs validInputs =
-        utils.gatherInputs(await getUnspentCells(address), capacity, constant.MIN_CELL_CAPACITY, unlock);
+    utils.ValidInputs validInputs = utils.gatherInputs(
+        await getUnspentCells(address),
+        capacity,
+        constant.MIN_CELL_CAPACITY,
+        unlock);
     List<CellOutput> outputs = [];
     outputs.add(CellOutput(capacity, "", toAddress, null));
     outputs.add(CellOutput(validInputs.capacity - capacity, "", address, null));
     OutPoint outpoints = await _apiClient.alwaysSuccessScriptOutPoint();
-    return Transaction([outpoints], null, validInputs.inputs, outputs, constant.VERSION);
+    return Transaction(
+        [outpoints], null, validInputs.inputs, outputs, constant.VERSION);
   }
 }
