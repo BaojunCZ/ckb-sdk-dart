@@ -8,8 +8,8 @@ import 'package:ckb_dart_sdk/ckb-utils/TransactionUtils.dart';
 class AlwaysSuccessWallet {
   ApiClient _apiClient;
 
-  AlwaysSuccessWallet(ApiClient apiClient) {
-    _apiClient = apiClient;
+  AlwaysSuccessWallet( {String nodeUrl = 'http://192.168.2.203:8114/'}) {
+    _apiClient = ApiClient(nodeUrl: nodeUrl);
   }
 
   Future<String> getAddress() async {

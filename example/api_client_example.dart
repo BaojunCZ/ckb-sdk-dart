@@ -2,7 +2,7 @@ import '../lib/ckb_sdk_dart.dart';
 import 'dart:convert';
 
 main() async {
-  final apiClient = new ApiClient("http://192.168.2.203:8114/");
+  final apiClient = new ApiClient();
   String blockHash = await apiClient.getBlockHash(1);
   // print(blockHash.error.message);
   print(blockHash);

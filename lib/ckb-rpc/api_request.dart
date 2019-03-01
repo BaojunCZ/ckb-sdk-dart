@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 15:01:26
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:32:28
+ * @LastEditTime: 2019-03-01 12:54:55
  * @Description: api request
  */
 import 'dart:convert';
@@ -16,10 +16,6 @@ class ApiRequest {
   String _nodeUrl;
 
   ApiRequest(String nodeUrl) {
-    setNodeUrl(nodeUrl);
-  }
-
-  setNodeUrl(String nodeUrl) {
     _nodeUrl = nodeUrl;
   }
 
@@ -28,12 +24,15 @@ class ApiRequest {
       var body = {"jsonrpc": jsonrpc, "id": id};
       body["method"] = url;
       body["params"] = params;
-      var response = await http.post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body));
+      var response = await http.post(_nodeUrl,
+          headers: {'Content-type': 'application/json'},
+          body: jsonEncode(body));
       id = id + 1;
       if (response.statusCode == 200) {
         return handlerResult(body, response.body);
       } else {
-        throw CkbError.genericError("Request failed with status: ${response.statusCode}.");
+        throw CkbError.genericError(
+            "Request failed with status: ${response.statusCode}.");
       }
     } catch (error) {
       throw error;

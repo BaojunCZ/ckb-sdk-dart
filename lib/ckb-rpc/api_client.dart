@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 12:32:13
+ * @LastEditTime: 2019-03-01 12:55:22
  * @Description: json rpc api client
  */
 import 'package:convert/convert.dart';
@@ -18,12 +18,8 @@ export 'package:ckb_dart_sdk/ckb-types/res_export.dart';
 class ApiClient {
   ApiRequest _request;
 
-  ApiClient(String nodeUrl) {
+  ApiClient({String nodeUrl = 'http://192.168.2.203:8114/'}) {
     _request = ApiRequest(nodeUrl);
-  }
-
-  setNodeUrl(String url) {
-    _request.setNodeUrl(url);
   }
 
   Future<String> genesisBlockHash() async {

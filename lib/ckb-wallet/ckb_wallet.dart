@@ -15,9 +15,10 @@ class CkbWallet {
 
   String _MRUBY_OUT_POINT_HASH = "";
 
-  CkbWallet(ApiClient apiClient, Credential credential) {
+  CkbWallet(Credential credential,
+      {String nodeUrl = 'http://192.168.2.203:8114/'}) {
     _credential = credential;
-    _apiClient = apiClient;
+    _apiClient = ApiClient(nodeUrl: nodeUrl);
   }
 
   Credential getCredential() {

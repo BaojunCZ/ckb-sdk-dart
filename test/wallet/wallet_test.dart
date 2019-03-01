@@ -7,8 +7,7 @@ import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
 void main() async {
   Credential credential = Credential.fromPrivateKeyHex(
       "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3");
-  CkbWallet wallet =
-      CkbWallet(ApiClient("http://192.168.2.203:8114/"), credential);
+  CkbWallet wallet = CkbWallet(credential);
 
   test('get address', () {
     try {

@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../../lib/ckb-rpc/api_client.dart';
 
 void main() {
-  final apiClient = new ApiClient("http://192.168.2.203:8114/");
+  final apiClient = new ApiClient(nodeUrl: "http://192.168.2.203:8114/");
 
   test("genesisBlockHash", () async {
     try {
