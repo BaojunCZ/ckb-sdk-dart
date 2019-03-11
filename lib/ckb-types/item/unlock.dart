@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:convert/convert.dart';
 import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
 import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
