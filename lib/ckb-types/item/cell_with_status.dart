@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-03-01 14:29:19
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/item/cell_output.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 
 
 class CellWithStatus {

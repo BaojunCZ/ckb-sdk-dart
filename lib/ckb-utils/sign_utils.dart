@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'number.dart' as number;
 import 'crypto.dart' as crypto;
-import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
-import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb-utils/blake2b.dart';
 
 List<CellInput> signSigHashAllInputs(List<CellInput> cellInputs,
     List<CellOutput> cellOutputs, BigInt privateKey) {

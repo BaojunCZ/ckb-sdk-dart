@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-03-01 12:35:42
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/response.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/header.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
+import 'package:ckb_sdk/ckb-types/item/header.dart';
 
 class HeaderRes extends RPCResponse<Header> {
   HeaderRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);

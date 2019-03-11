@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-03-08 14:36:08
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/response.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/trace_transaction.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
+import 'package:ckb_sdk/ckb-types/item/trace_transaction.dart';
 
 class TraceTransactionRes extends RPCResponse<List<TraceTransaction>> {
   TraceTransactionRes(id, jsonrpc, result, error)

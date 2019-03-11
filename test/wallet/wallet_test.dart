@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:test/test.dart';
-import 'package:ckb_dart_sdk/ckb-wallet/ckb_wallet.dart';
-import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
-import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_sdk/ckb-wallet/ckb_wallet.dart';
+import 'package:ckb_sdk/ckb-wallet/credential.dart';
+import 'package:ckb_sdk/ckb-rpc/api_client.dart';
 
 void main() async {
   Credential credential = Credential.fromPrivateKeyHex(

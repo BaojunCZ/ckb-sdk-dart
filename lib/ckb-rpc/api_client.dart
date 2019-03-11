@@ -6,14 +6,14 @@
  * @Description: json rpc api client
  */
 import 'package:convert/convert.dart';
-import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
-import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
-import 'package:ckb_dart_sdk/ckb-rpc/api_request.dart';
-import 'package:ckb_dart_sdk/ckb-rpc/service_url.dart';
-import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb_error/ckb_error.dart';
+import 'package:ckb_sdk/ckb-rpc/api_request.dart';
+import 'package:ckb_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_sdk/ckb-utils/blake2b.dart';
 
-export 'package:ckb_dart_sdk/ckb-rpc/api_request.dart';
-export 'package:ckb_dart_sdk/ckb-types/res_export.dart';
+export 'package:ckb_sdk/ckb-rpc/api_request.dart';
+export 'package:ckb_sdk/ckb-types/res_export.dart';
 
 class ApiClient {
   ApiRequest _request;

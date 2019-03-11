@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-03-01 14:26:44
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/item/unlock.dart';
+import 'package:ckb_sdk/ckb-types/item/unlock.dart';
 
 class CellInput {
   PreviousOutput previousOutput;

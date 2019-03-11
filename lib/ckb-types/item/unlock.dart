@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:convert/convert.dart';
-import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
-import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 
 class Unlock {
   List<String> args;

@@ -8,7 +8,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
+import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
 class ApiRequest {
   int id = 0;

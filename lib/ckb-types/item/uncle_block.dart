@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-03-01 14:34:11
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/item/header.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/transaction.dart';
+import 'package:ckb_sdk/ckb-types/item/header.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction.dart';
 
 class UncleBlock {
   Header header;

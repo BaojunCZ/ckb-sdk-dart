@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:pointycastle/api.dart';
 
-import 'package:ckb_dart_sdk/ckb-utils/number.dart' as numbers;
+import 'package:ckb_sdk/ckb-utils/number.dart' as numbers;
 
 class DartRandom implements SecureRandom {
   Random dartRandom;

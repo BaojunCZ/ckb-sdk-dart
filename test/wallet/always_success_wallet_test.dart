@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
-import 'package:ckb_dart_sdk/ckb-wallet/always_success_wallet.dart';
+import 'package:ckb_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
 import 'dart:convert';
 
 main() {

@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/unlock.dart';
+import 'package:ckb_sdk/ckb-types/item/unlock.dart';
 
 main() {
   test('test empty type script', () {

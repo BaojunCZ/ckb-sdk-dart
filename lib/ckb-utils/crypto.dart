@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import "package:ckb_dart_sdk/ckb-utils/number.dart" as number;
+import "package:ckb_sdk/ckb-utils/number.dart" as number;
 import 'package:pointycastle/api.dart';
 import "package:pointycastle/digests/sha256.dart";
 import "package:pointycastle/ecc/api.dart";

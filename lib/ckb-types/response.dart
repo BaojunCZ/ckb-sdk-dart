@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-03-01 12:35:59
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/item/error.dart';
-export 'package:ckb_dart_sdk/ckb-types/item/error.dart';
+import 'package:ckb_sdk/ckb-types/item/error.dart';
+export 'package:ckb_sdk/ckb-types/item/error.dart';
 
 class RPCResponse<T> {
   int id;

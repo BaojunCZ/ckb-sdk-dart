@@ -1,4 +1,4 @@
-import 'package:ckb_dart_sdk/ckb-types/response.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
 
 class BlockHashRes extends RPCResponse<String> {
   BlockHashRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);

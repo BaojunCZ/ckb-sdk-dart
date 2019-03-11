@@ -2,10 +2,10 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 11:56:20
  * @LastEditors: your name
- * @LastEditTime: 2019-01-11 17:12:24
+ * @LastEditTime: 2019-03-11 17:54:23
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/response.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
 
 class SendTransactionRes extends RPCResponse<String> {
   SendTransactionRes(id, jsonrpc, result, error)

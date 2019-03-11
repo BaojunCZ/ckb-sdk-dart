@@ -1,13 +1,13 @@
-import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
-import 'package:ckb_dart_sdk/ckb-wallet/wallet_utils.dart' as utils;
-import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart' as constant;
-import 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
+import 'package:ckb_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_sdk/ckb-wallet/wallet_utils.dart' as utils;
+import 'package:ckb_sdk/ckb-wallet/wallet_constant.dart' as constant;
+import 'package:ckb_sdk/ckb-wallet/credential.dart';
 import 'dart:math';
-import 'package:ckb_dart_sdk/ckb-utils/sign_utils.dart' as sign;
-import 'package:ckb_dart_sdk/ckb-utils/transaction_utils.dart';
+import 'package:ckb_sdk/ckb-utils/sign_utils.dart' as sign;
+import 'package:ckb_sdk/ckb-utils/transaction_utils.dart';
 import 'dart:convert';
 
-export 'package:ckb_dart_sdk/ckb-wallet/credential.dart';
+export 'package:ckb_sdk/ckb-wallet/credential.dart';
 
 class CkbWallet {
   Credential _credential;

@@ -5,9 +5,9 @@
  * @LastEditTime: 2019-03-01 14:33:42
  * @Description: file content
  */
-import "package:ckb_dart_sdk/ckb-types/item/out_point.dart";
-import 'package:ckb_dart_sdk/ckb-types/item/cell_input.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/cell_output.dart';
+import "package:ckb_sdk/ckb-types/item/out_point.dart";
+import 'package:ckb_sdk/ckb-types/item/cell_input.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 
 class Transaction {
   String hash;

@@ -1,9 +1,9 @@
-import 'package:ckb_dart_sdk/ckb-rpc/api_client.dart';
-import 'package:ckb_dart_sdk/ckb-wallet/wallet_utils.dart' as utils;
-import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart' as constant;
+import 'package:ckb_sdk/ckb-rpc/api_client.dart';
+import 'package:ckb_sdk/ckb-wallet/wallet_utils.dart' as utils;
+import 'package:ckb_sdk/ckb-wallet/wallet_constant.dart' as constant;
 import 'dart:math';
-import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
-import 'package:ckb_dart_sdk/ckb-utils/transaction_utils.dart';
+import 'package:ckb_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_sdk/ckb-utils/transaction_utils.dart';
 
 class AlwaysSuccessWallet {
   ApiClient _apiClient;

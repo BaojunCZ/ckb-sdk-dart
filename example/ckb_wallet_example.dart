@@ -1,5 +1,5 @@
-import 'package:ckb_dart_sdk/ckb-wallet/always_success_wallet.dart';
-import 'package:ckb_dart_sdk/ckb_sdk_dart.dart';
+import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
+import 'package:ckb_sdk/ckb_sdk_dart.dart';
 import 'dart:io';
 import 'dart:convert';
 

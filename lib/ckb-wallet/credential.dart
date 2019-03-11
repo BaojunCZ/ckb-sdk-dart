@@ -1,8 +1,8 @@
-import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
-import 'package:ckb_dart_sdk/ckb-utils/crypto.dart' as crypto;
-import 'package:ckb_dart_sdk/ckb-utils/file.dart' as fileUtils;
-import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
-import 'package:ckb_dart_sdk/ckb-wallet/wallet_constant.dart';
+import 'package:ckb_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb-utils/crypto.dart' as crypto;
+import 'package:ckb_sdk/ckb-utils/file.dart' as fileUtils;
+import 'package:ckb_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_sdk/ckb-wallet/wallet_constant.dart';
 
 class Credential {
   final BigInt privateKey;

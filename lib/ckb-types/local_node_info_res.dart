@@ -5,8 +5,8 @@
  * @LastEditTime: 2019-03-01 12:35:54
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/response.dart';
-import 'package:ckb_dart_sdk/ckb-types/item/node_info.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
+import 'package:ckb_sdk/ckb-types/item/node_info.dart';
 
 class LocalNodeInfoRes extends RPCResponse<NodeInfo> {
   LocalNodeInfoRes(id, jsonrpc, result, error)

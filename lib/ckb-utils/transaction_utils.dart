@@ -1,6 +1,6 @@
-import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'dart:convert';
-import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 
 formatTx(Transaction transaction) {
   for (final input in transaction.inputs) {

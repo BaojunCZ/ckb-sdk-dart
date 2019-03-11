@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-03-01 12:29:44
  * @Description: api error
  */
-import 'package:ckb_dart_sdk/ckb-types/item/error.dart';
+import 'package:ckb_sdk/ckb-types/item/error.dart';
 
 class CkbError {
   static var genericErrorCode = -1;

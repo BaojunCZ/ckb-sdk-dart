@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'dart:convert';
-import 'package:ckb_dart_sdk/ckb-utils/sha3.dart';
+import 'package:ckb_sdk/ckb-utils/sha3.dart';
 import 'package:pointycastle/digests/blake2b.dart';
 import 'package:convert/convert.dart';
 

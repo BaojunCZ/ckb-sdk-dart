@@ -5,7 +5,7 @@
  * @LastEditTime: 2019-03-01 14:30:28
  * @Description: file content
  */
-import 'package:ckb_dart_sdk/ckb-types/item/out_point.dart';
+import 'package:ckb_sdk/ckb-types/item/out_point.dart';
 
 class Cell {
   int capacity;

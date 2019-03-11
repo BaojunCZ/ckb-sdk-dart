@@ -1,6 +1,6 @@
 import 'package:pointycastle/src/utils.dart' as pcUtils;
 import 'package:convert/convert.dart';
-import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
+import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
 BigInt bytesToInt(List<int> bytes) => pcUtils.decodeBigInt(bytes);
 
