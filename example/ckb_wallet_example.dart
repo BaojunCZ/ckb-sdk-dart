@@ -8,7 +8,7 @@ main() async {
     String _MRUBY_CELL_HASH =
         "0x2165b10c4f6c55302158a17049b9dad4fef0acaf1065c63c02ddeccbce97ac47";
     String _MRUBY_OUT_POINT_HASH =
-        "0xff50745e53c9af867763834dda3a94fbe833e9318ddb3570a2e914630fcaea17";
+        "0x9679863e2b02f466f491ac8c0196137150c2fec4e68165f6dd2bbeb08c14ae2d";
     ApiClient apiClient = ApiClient();
     Credential bobCredential = Credential.fromPrivateKeyHex(
         "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3");

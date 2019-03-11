@@ -2,7 +2,7 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-09 16:22:23
  * @LastEditors: your name
- * @LastEditTime: 2019-02-19 11:38:46
+ * @LastEditTime: 2019-03-08 15:29:01
  * @Description: RPC url
  */
 class ServiceUrl {
@@ -15,4 +15,6 @@ class ServiceUrl {
   static final tipBlockNumber = "get_tip_block_number";
   static final localNodeInfo = "local_node_info";
   static final sendTransaction = "send_transaction";
+  static final traceTransaction = "trace_transaction";
+  static final getTransactionTrace = "get_transaction_trace";
 }

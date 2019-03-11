@@ -2,15 +2,15 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-03-01 15:18:07
+ * @LastEditTime: 2019-03-11 15:07:32
  * @Description: json rpc api client
  */
 import 'package:convert/convert.dart';
 import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
 import 'package:ckb_dart_sdk/ckb_error/ckb_error.dart';
-import 'package:ckb_dart_sdk/ckb-utils/sha3.dart';
 import 'package:ckb_dart_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_dart_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
 
 export 'package:ckb_dart_sdk/ckb-rpc/api_request.dart';
 export 'package:ckb_dart_sdk/ckb-types/res_export.dart';
@@ -98,17 +98,30 @@ class ApiClient {
         .result;
   }
 
+  Future<String> traceTransaction(transaction) async {
+    return SendTransactionRes.fromJson(await _request
+            .requestRpc(ServiceUrl.traceTransaction, [transaction]))
+        .result;
+  }
+
+  Future<List<TraceTransaction>> getTraceTransaction(
+      String transationHash) async {
+    return TraceTransactionRes.fromJson(await _request
+            .requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
+        .result;
+  }
+
   Future<String> alwaysSuccessCellHash() async {
     Block block = await genesisBlock();
     List<CellOutput> outputs = block.commitTransactions[0].outputs;
     if (outputs.isEmpty || outputs[0] == null) {
       throw CkbError.genericError("Cannot find always success cell");
     }
-    final SHA3Digest sha3digest = SHA3Digest(256);
+    final Blake2b blake2b = new Blake2b(digestSize: 32);
     var data = outputs[0].data.startsWith("0x")
         ? outputs[0].data.replaceFirst("0x", "")
         : outputs[0].data;
-    var result = sha3digest.process(hex.decode(data));
+    var result = blake2b.process(hex.decode(data));
     return hex.encode(result);
   }
 

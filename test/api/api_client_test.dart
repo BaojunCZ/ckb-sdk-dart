@@ -139,6 +139,17 @@ void main() {
     }
   });
 
+  test('get trace transaction', () async {
+    try {
+      List<TraceTransaction> trasactions = await apiClient.getTraceTransaction(
+          '0x90d49497a35d5fc90c3558d8690b6fc0a8cb32a95bc89a962b28296b70b3f90a');
+      print(trasactions);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
   test("alwaysSuccessCellHash", () async {
     try {
       String cellHash = await apiClient.alwaysSuccessCellHash();

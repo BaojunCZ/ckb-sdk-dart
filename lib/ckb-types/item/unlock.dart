@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:ckb_dart_sdk/ckb-utils/sha3.dart';
-import 'package:convert/convert.dart';
 import 'dart:typed_data';
+import 'package:convert/convert.dart';
+import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
 import 'package:ckb_dart_sdk/ckb-utils/number.dart' as number;
 
 class Unlock {
@@ -34,23 +34,17 @@ class Unlock {
       };
 
   String getTypeHash() {
-    SHA3Digest sha3 = SHA3Digest(256);
+    final Blake2b blake2b = new Blake2b(digestSize: 32);
     if (reference != null)
-      _update(sha3, hex.decode(number.remove0x(reference)));
-    _update(sha3, utf8.encode("|"));
+      blake2b.update(hex.decode(number.remove0x(reference)));
+    blake2b.update(utf8.encode("|"));
     if (binary != null) {
-      _update(sha3, hex.decode(binary));
+      blake2b.update(hex.decode(number.remove0x(binary)));
     }
     signedArgs.forEach((signedArg) {
-      _update(sha3, utf8.encode(signedArg));
+      blake2b.update(hex.decode(number.remove0x(signedArg)));
     });
-    var out = new Uint8List(sha3.digestSize);
-    var len = sha3.doFinal(out, 0);
-    var hash_bytes = out.sublist(0, len);
+    var hash_bytes = blake2b.doFinal();
     return number.bytesToHex(hash_bytes, include0x: true, forcePadLen: 64);
-  }
-
-  _update(SHA3Digest sha3, Uint8List input) {
-    return sha3.update(input, 0, input.length);
   }
 }

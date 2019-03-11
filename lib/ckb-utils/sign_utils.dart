@@ -1,29 +1,28 @@
-import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
-import 'sha3.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:convert/convert.dart';
 import 'number.dart' as number;
 import 'crypto.dart' as crypto;
+import 'package:ckb_dart_sdk/ckb-types/res_export.dart';
+import 'package:ckb_dart_sdk/ckb-utils/blake2b.dart';
 
-List<CellInput> signSigHashAllInputs(List<CellInput> cellInputs, List<CellOutput> cellOutputs, BigInt privateKey) {
-  SHA3Digest sha3 = SHA3Digest(256);
-  _update(sha3, utf8.encode("1"));
+List<CellInput> signSigHashAllInputs(List<CellInput> cellInputs,
+    List<CellOutput> cellOutputs, BigInt privateKey) {
+  final Blake2b blake2b = new Blake2b(digestSize: 32);
+  blake2b.update(utf8.encode("1"));
   for (final input in cellInputs) {
-    _update(sha3, hex.decode(number.remove0x(input.previousOutput.hash)));
-    _update(sha3, utf8.encode(input.previousOutput.index.toString()));
-    _update(sha3, hex.decode(number.remove0x(input.unlock.getTypeHash())));
+    blake2b.update(hex.decode(number.remove0x(input.previousOutput.hash)));
+    blake2b.update(utf8.encode(input.previousOutput.index.toString()));
+    blake2b.update(hex.decode(number.remove0x(input.unlock.getTypeHash())));
   }
   for (final output in cellOutputs) {
-    _update(sha3, utf8.encode(output.capacity.toString()));
-    _update(sha3, hex.decode(number.remove0x(output.lock)));
+    blake2b.update(utf8.encode(output.capacity.toString()));
+    blake2b.update(hex.decode(number.remove0x(output.lock)));
     if (output.type != null) {
-      _update(sha3, hex.decode(number.remove0x(output.type.getTypeHash())));
+      blake2b.update(hex.decode(number.remove0x(output.type.getTypeHash())));
     }
   }
-  var out = new Uint8List(sha3.digestSize);
-  var len = sha3.doFinal(out, 0);
-  var hash_bytes = out.sublist(0, len);
+  var hash_bytes = blake2b.doFinal();
   for (final input in cellInputs) {
     List<String> args = [];
     args.add(_signMessageForHexString(hash_bytes, privateKey));
@@ -33,11 +32,8 @@ List<CellInput> signSigHashAllInputs(List<CellInput> cellInputs, List<CellOutput
   return cellInputs;
 }
 
- _update(SHA3Digest sha3, Uint8List input) {
-  return sha3.update(input, 0, input.length);
-}
-
 String _signMessageForHexString(Uint8List message, BigInt privateKey) {
-  Uint8List signature = crypto.sign(message, number.intToBytes(privateKey)).getDerSignature();
+  Uint8List signature =
+      crypto.sign(message, number.intToBytes(privateKey)).getDerSignature();
   return number.bytesToHex(signature);
 }
