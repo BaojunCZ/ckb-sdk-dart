@@ -1,7 +1,8 @@
-import 'package:test/test.dart';
-import 'package:ckb_sdk/ckb-rpc/api_client.dart';
-import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
 import 'dart:convert';
+
+import 'package:test/test.dart';
+import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
+import 'package:ckb_sdk/ckb-types/item/unlock.dart';
 
 main() {
   test("test address", () async {

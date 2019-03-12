@@ -1,7 +1,8 @@
-import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
-import 'package:ckb_sdk/ckb_sdk_dart.dart';
 import 'dart:io';
 import 'dart:convert';
+
+import 'package:ckb_sdk/ckb_sdk.dart';
+import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
 
 main() async {
   try {

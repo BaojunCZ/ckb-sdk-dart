@@ -1,6 +1,7 @@
-import 'package:test/test.dart';
 import 'dart:convert';
-import '../../lib/ckb-rpc/api_client.dart';
+
+import 'package:test/test.dart';
+import 'package:ckb_sdk/ckb_sdk.dart';
 
 void main() {
   final apiClient = new ApiClient(nodeUrl: "http://192.168.2.203:8114/");

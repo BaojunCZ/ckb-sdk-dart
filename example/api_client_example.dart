@@ -1,5 +1,6 @@
-import '../lib/ckb_sdk_dart.dart';
 import 'dart:convert';
+
+import 'package:ckb_sdk/ckb_sdk.dart';
 
 main() async {
   final apiClient = new ApiClient();

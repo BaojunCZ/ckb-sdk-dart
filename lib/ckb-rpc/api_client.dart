@@ -2,18 +2,17 @@
  * @Author: BaojunCZ
  * @Date: 2019-01-11 13:10:13
  * @LastEditors: your name
- * @LastEditTime: 2019-03-11 15:07:32
+ * @LastEditTime: 2019-03-12 13:24:40
  * @Description: json rpc api client
  */
+library ckb_client;
+
 import 'package:convert/convert.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
 import 'package:ckb_sdk/ckb-utils/blake2b.dart';
-
-export 'package:ckb_sdk/ckb-rpc/api_request.dart';
-export 'package:ckb_sdk/ckb-types/res_export.dart';
 
 class ApiClient {
   ApiRequest _request;
