@@ -1,7 +1,7 @@
 name: ckb_sdk
-version: 0.6.2
+version: 0.7.0
 author: "BaojunCZ<baojun.cz@gmail.com>"
-homepage: https://github.com/BaojunCZ/ckb-sdk-dart
+homepage: https://github.com/CKBalance/ckb-sdk-dart.git
 description: Dart SDK for CKB.Nervos test network has not been released yet，so it is very early stage.Be careful when using this library.
 publish_to: https://pub.dartlang.org/
 

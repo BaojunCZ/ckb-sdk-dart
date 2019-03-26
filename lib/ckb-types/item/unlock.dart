@@ -41,7 +41,7 @@ class Unlock {
       blake2b.update(hex.decode(number.remove0x(binary)));
     }
     signedArgs.forEach((signedArg) {
-      blake2b.update(hex.decode(number.remove0x(signedArg)));
+      blake2b.update(utf8.encode(signedArg));
     });
     var hash_bytes = blake2b.doFinal();
     return number.bytesToHex(hash_bytes, include0x: true, forcePadLen: 64);

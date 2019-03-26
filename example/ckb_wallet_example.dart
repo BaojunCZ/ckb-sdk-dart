@@ -7,9 +7,9 @@ import 'package:ckb_sdk/ckb-wallet/always_success_wallet.dart';
 main() async {
   try {
     String _MRUBY_CELL_HASH =
-        "0x2165b10c4f6c55302158a17049b9dad4fef0acaf1065c63c02ddeccbce97ac47";
+        "0x2175f028e470cb26f0c40cfcf3cb4b602a24719798ed5feca4db867f1d847d4a";
     String _MRUBY_OUT_POINT_HASH =
-        "0x9679863e2b02f466f491ac8c0196137150c2fec4e68165f6dd2bbeb08c14ae2d";
+        "0xb2114e4817bf74d4e1326745c9d9e74755e73ea4340cba633480075acdff7195";
     ApiClient apiClient = ApiClient();
     Credential bobCredential = Credential.fromPrivateKeyHex(
         "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3");

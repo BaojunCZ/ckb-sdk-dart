@@ -13,7 +13,7 @@ void main() async {
       Unlock unlock = wallet.getCredential().getUnlockScript(
           'res/bitcoin_unlock.rb',
           reference:
-              "0x2165b10c4f6c55302158a17049b9dad4fef0acaf1065c63c02ddeccbce97ac47");
+              "0x2175f028e470cb26f0c40cfcf3cb4b602a24719798ed5feca4db867f1d847d4a");
       print(jsonEncode(unlock));
       String address = wallet.getCredential().getAddress(unlock);
       print(address);
