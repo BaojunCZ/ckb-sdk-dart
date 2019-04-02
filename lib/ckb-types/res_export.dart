@@ -6,7 +6,7 @@
  * @Description: file content
  */
 export 'package:ckb_sdk/ckb-types/blockhash_res.dart';
-export 'package:ckb_sdk/ckb-types/cells_by_type_hash_res.dart';
+export 'package:ckb_sdk/ckb-types/cells_by_lock_hash_res.dart';
 export 'package:ckb_sdk/ckb-types/header_res.dart';
 export 'package:ckb_sdk/ckb-types/res_export.dart';
 export 'package:ckb_sdk/ckb-types/response.dart';
@@ -29,6 +29,6 @@ export 'package:ckb_sdk/ckb-types/item/send_transaction.dart';
 export 'package:ckb_sdk/ckb-types/item/error.dart';
 export 'package:ckb_sdk/ckb-types/item/uncle_block.dart';
 export 'package:ckb_sdk/ckb-types/item/block.dart';
-export 'package:ckb_sdk/ckb-types/item/unlock.dart';
+export 'package:ckb_sdk/ckb-types/item/script.dart';
 export 'package:ckb_sdk/ckb-types/item/node_info.dart';
 export 'package:ckb_sdk/ckb-types/item/trace_transaction.dart';

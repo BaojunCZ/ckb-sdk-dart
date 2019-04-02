@@ -22,17 +22,13 @@ class ApiClient {
   }
 
   Future<String> genesisBlockHash() async {
-    return BlockHashRes.fromJson(
-            await _request.requestRpc(ServiceUrl.blockHash, [0]))
-        .result;
+    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [0])).result;
   }
 
   Future<Block> genesisBlock() async {
     String blockHash = await genesisBlockHash();
     if (blockHash != null) {
-      return BlockRes.fromJson(
-              await _request.requestRpc(ServiceUrl.block, [blockHash]))
-          .result;
+      return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
     } else {
       return null;
     }
@@ -41,72 +37,60 @@ class ApiClient {
   //==============================Chain RPC Methods================================
 
   Future<String> getBlockHash(int blockNumber) async {
-    return BlockHashRes.fromJson(
-            await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]))
+    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]))
         .result;
   }
 
   Future<Transaction> getTransaction(String hash) async {
-    return TransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.transaction, [hash]))
+    return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
         .result;
   }
 
   Future<Header> getTipHeader() async {
-    return HeaderRes.fromJson(
-            await _request.requestRpc(ServiceUrl.tipHeader, []))
-        .result;
+    return HeaderRes.fromJson(await _request.requestRpc(ServiceUrl.tipHeader, [])).result;
   }
 
-  Future<List<Cell>> getCellsByTypeHash(
-      String hash, int fromBlockNumber, int toBlockNumber) async {
-    return CellsByTypeHashRes.fromJson(await _request.requestRpc(
-            ServiceUrl.cellsByTypeHash, [hash, fromBlockNumber, toBlockNumber]))
+  Future<List<Cell>> getCellsByLockHash(String hash, int fromBlockNumber, int toBlockNumber) async {
+    return CellsByLockHashRes.fromJson(await _request
+            .requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]))
         .result;
   }
 
   Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
-    return LiveCellRes.fromJson(
-            await _request.requestRpc(ServiceUrl.liveCell, [outPoint]))
-        .result;
+    return LiveCellRes.fromJson(await _request.requestRpc(ServiceUrl.liveCell, [outPoint])).result;
   }
 
   Future<int> getTipBlockNumber() async {
-    return TipBlockNumberRes.fromJson(
-            await _request.requestRpc(ServiceUrl.tipBlockNumber, []))
+    return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, []))
         .result;
   }
 
   Future<NodeInfo> getLocalNodeInfo() async {
-    return LocalNodeInfoRes.fromJson(
-            await _request.requestRpc(ServiceUrl.localNodeInfo, []))
+    return LocalNodeInfoRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeInfo, []))
         .result;
   }
 
   Future<Block> getBlock(String blockHash) async {
-    return BlockRes.fromJson(
-            await _request.requestRpc(ServiceUrl.block, [blockHash]))
-        .result;
+    return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
   }
 
   //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(transaction) async {
-    return SendTransactionRes.fromJson(await _request
-            .requestRpc(ServiceUrl.sendTransaction, [transaction]))
+    return SendTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;
   }
 
   Future<String> traceTransaction(transaction) async {
-    return SendTransactionRes.fromJson(await _request
-            .requestRpc(ServiceUrl.traceTransaction, [transaction]))
+    return SendTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.traceTransaction, [transaction]))
         .result;
   }
 
-  Future<List<TraceTransaction>> getTraceTransaction(
-      String transationHash) async {
-    return TraceTransactionRes.fromJson(await _request
-            .requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
+  Future<List<TraceTransaction>> getTraceTransaction(String transationHash) async {
+    return TraceTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
         .result;
   }
 
@@ -117,9 +101,8 @@ class ApiClient {
       throw CkbError.genericError("Cannot find always success cell");
     }
     final Blake2b blake2b = new Blake2b(digestSize: 32);
-    var data = outputs[0].data.startsWith("0x")
-        ? outputs[0].data.replaceFirst("0x", "")
-        : outputs[0].data;
+    var data =
+        outputs[0].data.startsWith("0x") ? outputs[0].data.replaceFirst("0x", "") : outputs[0].data;
     var result = blake2b.process(hex.decode(data));
     return hex.encode(result);
   }

@@ -1,8 +1,5 @@
-import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'package:ckb_sdk/ckb-utils/crypto.dart' as crypto;
-import 'package:ckb_sdk/ckb-utils/file.dart' as fileUtils;
 import 'package:ckb_sdk/ckb-utils/number.dart' as number;
-import 'package:ckb_sdk/ckb-wallet/wallet_constant.dart';
 
 class Credential {
   final BigInt privateKey;
@@ -24,26 +21,5 @@ class Credential {
     var list = number.numberToBytes(privateKey);
     var pkBigInt = number.bytesToInt(crypto.publicKeyFromPrivate(list, true));
     return pkBigInt;
-  }
-
-  String getAddress(Unlock unlock) {
-    return unlock.getTypeHash();
-  }
-
-  Unlock getUnlockScript(String path,
-      {int version = VERSION,
-      String binary,
-      String reference,
-      List<String> args}) {
-    List<String> signedArgs = [];
-    signedArgs.add(fileUtils.getScriptFromFile(path));
-    signedArgs.add(number.toHex(publicKey, forcePadLen: 66));
-    return Unlock(
-      version,
-      reference,
-      signedArgs,
-      args == null ? [] : args,
-      binary,
-    );
   }
 }

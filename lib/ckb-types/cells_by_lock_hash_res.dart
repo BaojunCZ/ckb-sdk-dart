@@ -8,19 +8,17 @@
 import 'package:ckb_sdk/ckb-types/response.dart';
 import 'package:ckb_sdk/ckb-types/item/cell.dart';
 
-class CellsByTypeHashRes extends RPCResponse<List<Cell>> {
-  CellsByTypeHashRes(id, jsonrpc, result, error)
-      : super(id, jsonrpc, result, error);
+class CellsByLockHashRes extends RPCResponse<List<Cell>> {
+  CellsByLockHashRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
 
-  factory CellsByTypeHashRes.fromJson(Map<String, dynamic> json) {
-    return CellsByTypeHashRes(
+  factory CellsByLockHashRes.fromJson(Map<String, dynamic> json) {
+    return CellsByLockHashRes(
         json['id'],
         json['jsonrpc'],
         json['result'] == null
             ? null
             : (json['result'] as List)
-                ?.map((e) =>
-                    e == null ? null : Cell.fromJson(e as Map<String, dynamic>))
+                ?.map((e) => e == null ? null : Cell.fromJson(e as Map<String, dynamic>))
                 ?.toList(),
         json['error'] == null ? null : RPCError.fromJson(json['error']));
   }

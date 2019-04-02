@@ -10,7 +10,7 @@ class ServiceUrl {
   static final transaction = "get_transaction";
   static final blockHash = "get_block_hash";
   static final tipHeader = "get_tip_header";
-  static final cellsByTypeHash = "get_cells_by_type_hash";
+  static final cellsByLockHash = "get_cells_by_lock_hash";
   static final liveCell = "get_live_cell";
   static final tipBlockNumber = "get_tip_block_number";
   static final localNodeInfo = "local_node_info";
