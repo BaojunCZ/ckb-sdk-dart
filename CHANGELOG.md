@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.7.0+2
+## 0.7.1
 
 Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.7.0)
 
