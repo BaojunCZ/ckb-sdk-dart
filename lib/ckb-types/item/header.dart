@@ -5,6 +5,8 @@
  * @LastEditTime: 2019-03-01 14:31:46
  * @Description: file content
  */
+import 'package:ckb_sdk/ckb-types/item/witness.dart';
+
 class Header {
   String cellbaseId;
   String difficulty;
@@ -15,6 +17,7 @@ class Header {
   int timestamp;
   String txsCommit;
   String txsProposal;
+  Witness witness;
   int unclesCount;
   String unclesHash;
   int version;
@@ -29,6 +32,7 @@ class Header {
       this.timestamp,
       this.txsCommit,
       this.txsProposal,
+      this.witness,
       this.unclesCount,
       this.unclesHash,
       this.version);
@@ -39,12 +43,13 @@ class Header {
       json['hash'] as String,
       json['number'] as int,
       json['parent_hash'] as String,
-      json['seal'] == null
-          ? null
-          : Seal.fromJson(json['seal'] as Map<String, dynamic>),
+      json['seal'] == null ? null : Seal.fromJson(json['seal'] as Map<String, dynamic>),
       json['timestamp'] as int,
       json['txs_commit'] as String,
       json['txs_proposal'] as String,
+      json['witnesses_root'] == null
+          ? null
+          : Witness.fromJson(json['witnesses_root'] as Map<String, dynamic>),
       json['uncles_count'] as int,
       json['uncles_hash'] as String,
       json['version'] as int);
@@ -59,6 +64,7 @@ class Header {
         'timestamp': timestamp,
         'txs_commit': txsCommit,
         'txs_proposal': txsProposal,
+        'witnesses_root': witness,
         'uncles_count': unclesCount,
         'uncles_hash': unclesHash,
         'version': version
@@ -73,6 +79,5 @@ class Seal {
 
   factory Seal.fromJson(Map<String, dynamic> json) =>
       Seal(json['nonce'] as int, json['proof'] as String);
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'nonce': nonce, 'proof': proof};
+  Map<String, dynamic> toJson() => <String, dynamic>{'nonce': nonce, 'proof': proof};
 }
