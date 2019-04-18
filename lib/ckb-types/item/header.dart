@@ -5,19 +5,17 @@
  * @LastEditTime: 2019-03-01 14:31:46
  * @Description: file content
  */
-import 'package:ckb_sdk/ckb-types/item/witness.dart';
-
 class Header {
   String cellbaseId;
   String difficulty;
   String hash;
-  int number;
+  String number;
   String parentHash;
   Seal seal;
-  int timestamp;
+  String timestamp;
   String txsCommit;
   String txsProposal;
-  Witness witness;
+  String witnessesRoot;
   int unclesCount;
   String unclesHash;
   int version;
@@ -32,7 +30,7 @@ class Header {
       this.timestamp,
       this.txsCommit,
       this.txsProposal,
-      this.witness,
+      this.witnessesRoot,
       this.unclesCount,
       this.unclesHash,
       this.version);
@@ -41,15 +39,15 @@ class Header {
       json['cellbase_id'] as String,
       json['difficulty'] as String,
       json['hash'] as String,
-      json['number'] as int,
+      json['number'] as String,
       json['parent_hash'] as String,
-      json['seal'] == null ? null : Seal.fromJson(json['seal'] as Map<String, dynamic>),
-      json['timestamp'] as int,
+      json['seal'] == null
+          ? null
+          : Seal.fromJson(json['seal'] as Map<String, dynamic>),
+      json['timestamp'] as String,
       json['txs_commit'] as String,
       json['txs_proposal'] as String,
-      json['witnesses_root'] == null
-          ? null
-          : Witness.fromJson(json['witnesses_root'] as Map<String, dynamic>),
+      json['witnesses_root'] as String,
       json['uncles_count'] as int,
       json['uncles_hash'] as String,
       json['version'] as int);
@@ -64,7 +62,7 @@ class Header {
         'timestamp': timestamp,
         'txs_commit': txsCommit,
         'txs_proposal': txsProposal,
-        'witnesses_root': witness,
+        'witnesses_root': witnessesRoot,
         'uncles_count': unclesCount,
         'uncles_hash': unclesHash,
         'version': version
@@ -72,12 +70,13 @@ class Header {
 }
 
 class Seal {
-  int nonce;
+  String nonce;
   String proof;
 
   Seal(this.nonce, this.proof);
 
   factory Seal.fromJson(Map<String, dynamic> json) =>
-      Seal(json['nonce'] as int, json['proof'] as String);
-  Map<String, dynamic> toJson() => <String, dynamic>{'nonce': nonce, 'proof': proof};
+      Seal(json['nonce'] as String, json['proof'] as String);
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'nonce': nonce, 'proof': proof};
 }
