@@ -20,7 +20,7 @@ void main() {
   test("genesisBlock", () async {
     try {
       Block blockRes = await apiClient.genesisBlock();
-      print(jsonEncode(blockRes.header));
+      print(jsonEncode(blockRes));
       print(blockRes.commitTransactions[0].hash);
       expect(blockRes != null, true);
     } catch (error) {
@@ -46,6 +46,7 @@ void main() {
         String hash =
             "0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a";
         Transaction transaction = await apiClient.getTransaction(hash);
+        print(jsonEncode(transaction));
         expect(transaction.hash, hash);
       } catch (error) {
         print(error.message);
@@ -68,7 +69,7 @@ void main() {
   test("get tip header", () async {
     try {
       Header header = await apiClient.getTipHeader();
-      print(header.hash);
+      print(jsonEncode(header));
       expect(header.hash != null, true);
     } catch (error) {
       print(error.message);
@@ -98,7 +99,7 @@ void main() {
       CellWithStatus liveCellRes = await apiClient.getLiveCell(new OutPoint(
           "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
           0));
-      print(liveCellRes.cell.lock);
+      print(jsonEncode(liveCellRes));
       expect(liveCellRes != null, true);
     } catch (error) {
       print(error.message);
@@ -132,7 +133,7 @@ void main() {
     try {
       Block block =
           await apiClient.getBlock(await apiClient.getBlockHash("20"));
-      print(jsonEncode(block.header));
+      print(jsonEncode(block));
       expect(block != null, true);
     } catch (error) {
       print(error.message);
@@ -143,7 +144,7 @@ void main() {
   test('get trace transaction', () async {
     try {
       List<TraceTransaction> trasactions = await apiClient.getTraceTransaction(
-          '0x90d49497a35d5fc90c3558d8690b6fc0a8cb32a95bc89a962b28296b70b3f90a');
+          '0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
       print(trasactions);
     } catch (error) {
       print(error.message);
@@ -166,7 +167,7 @@ void main() {
   test("alwaysSuccessScriptOutPoint", () async {
     try {
       OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
-      print(outPoint.hash);
+      print(jsonEncode(outPoint));
       expect(
           "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
           outPoint.hash);

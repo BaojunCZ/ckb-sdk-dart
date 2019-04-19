@@ -23,7 +23,7 @@ class CellOutput {
           : Script.fromJson(json['lock'] as Map<String, dynamic>),
       json['type'] == null
           ? null
-          : Script.fromJson(json['unlock'] as Map<String, dynamic>));
+          : Script.fromJson(json['type'] as Map<String, dynamic>));
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'capacity': capacity,

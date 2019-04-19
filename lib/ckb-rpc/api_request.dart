@@ -40,7 +40,6 @@ class ApiRequest {
   }
 
   handlerResult(body, data) {
-    // print(data);
     if (null == data) {
       throw CkbError.emptyResponse;
     }

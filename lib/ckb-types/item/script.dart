@@ -15,7 +15,8 @@ class Script {
 
   String getTypeHash() {
     final Blake2b blake2b = new Blake2b(digestSize: 32);
-    if (binaryHash != null) blake2b.update(hex.decode(number.remove0x(binaryHash)));
+    if (binaryHash != null)
+      blake2b.update(hex.decode(number.remove0x(binaryHash)));
     args.forEach((arg) {
       blake2b.update(number.hexStringToByteArray(arg));
     });
@@ -27,4 +28,9 @@ class Script {
         json['binary_hash'] as String,
         (json['args'] as List)?.map((e) => e as String)?.toList(),
       );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'binaryHash': binaryHash,
+        'args': args,
+      };
 }
