@@ -1,15 +1,15 @@
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:pointycastle/digests/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/hash.dart' show CKB_HASH_PERSONALIZATION;
 
 class Blake2b {
-  static const CKB_HASH_PERSONALIZATION = "ckb-default-hash";
   Blake2bDigest blake2bDigest;
 
   Blake2b({int digestSize = 32}) {
     blake2bDigest = Blake2bDigest(
         digestSize: digestSize,
-        personalization: utf8.encode("ckb-default-hash"));
+        personalization: utf8.encode(CKB_HASH_PERSONALIZATION));
   }
 
   Uint8List process(Uint8List data) {
