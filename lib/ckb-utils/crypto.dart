@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:ckb_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/hash.dart';
 import "package:ckb_sdk/ckb-utils/number.dart" as number;
 import 'package:pointycastle/api.dart';
 import "package:pointycastle/digests/sha256.dart";
@@ -8,7 +8,6 @@ import "package:pointycastle/ecc/api.dart";
 import "package:pointycastle/ecc/curves/secp256k1.dart";
 import "package:pointycastle/macs/hmac.dart";
 import "package:pointycastle/signers/ecdsa_signer.dart";
-import 'package:ckb_sdk/ckb-utils/hash.dart' as hash;
 
 final ECDomainParameters params = new ECCurve_secp256k1();
 final BigInt _halfCurveOrder = params.n ~/ BigInt.two;
@@ -150,5 +149,5 @@ ECPoint _decompressKey(BigInt xBN, bool yBit, ECCurve c) {
 }
 
 String blake160(String value) {
-  return hash.blake2bHexString(value).substring(0, 40);
+  return number.remove0x(blake2bHexString(value)).substring(0, 40);
 }
