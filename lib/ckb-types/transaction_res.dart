@@ -9,7 +9,8 @@ import 'package:ckb_sdk/ckb-types/item/transaction.dart';
 import 'package:ckb_sdk/ckb-types/response.dart';
 
 class TransactionRes extends RPCResponse<Transaction> {
-  TransactionRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
+  TransactionRes(id, jsonrpc, result, error)
+      : super(id, jsonrpc, result, error);
 
   factory TransactionRes.fromJson(Map<String, dynamic> json) {
     return TransactionRes(
@@ -22,6 +23,6 @@ class TransactionRes extends RPCResponse<Transaction> {
         'id': this.id,
         'jsonrpc': this.jsonrpc,
         'result': this.result,
-        'error': this.error.toJson()
+        'error': this.error
       };
 }

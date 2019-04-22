@@ -7,7 +7,7 @@
  */
 import 'package:ckb_sdk/ckb-types/response.dart';
 
-class TipBlockNumberRes extends RPCResponse<int> {
+class TipBlockNumberRes extends RPCResponse<String> {
   TipBlockNumberRes(id, jsonrpc, result, error)
       : super(id, jsonrpc, result, error);
 
