@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.9.0
+
+Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.9.0)
+
+- add segregated witness structure
+- refactor rpc types
+- add Bech32
+- format address
+- fix hexStringToByteArray
+
 ## 0.8.0
 
 Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.8.0)
