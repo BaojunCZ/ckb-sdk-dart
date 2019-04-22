@@ -13,9 +13,11 @@ Uint8List blake2b(Uint8List input) {
 }
 
 String blake2bHexString(String hexInput) {
-  return number.bytesToHex(blake2b(number.hexStringToByteArray(hexInput)));
+  Uint8List bytes = number.hexStringToByteArray(hexInput);
+  Uint8List blake2bBytes = blake2b(bytes);
+  return number.bytesToHex(blake2bBytes, include0x: true);
 }
 
 String blake2bUtf8String(String utf8Input) {
-  return number.bytesToHex(blake2b(utf8.encode(utf8Input)));
+  return number.bytesToHex(blake2b(utf8.encode(utf8Input)), include0x: true);
 }
