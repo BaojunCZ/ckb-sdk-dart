@@ -1,4 +1,6 @@
 language: dart
+
 dart:
   - stable
-- dartfmt
+dart_task:
+  - test: --exclude-tags no-xvfb
