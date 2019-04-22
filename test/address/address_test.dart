@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb-utils/crypto.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb_address/ckb_address.dart';
 import 'package:test/test.dart';

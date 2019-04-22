@@ -10,7 +10,7 @@ library ckb_client;
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
-import 'package:ckb_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/blake2b.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 import 'package:convert/convert.dart';
 
@@ -104,25 +104,5 @@ class ApiClient {
     return TraceTransactionRes.fromJson(await _request
             .requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
         .result;
-  }
-
-  Future<String> alwaysSuccessCellHash() async {
-    Block block = await genesisBlock();
-    List<CellOutput> outputs = block.commitTransactions[0].outputs;
-    if (outputs.isEmpty || outputs[0] == null) {
-      throw CkbError.genericError("Cannot find always success cell");
-    }
-    final Blake2b blake2b = new Blake2b(digestSize: 32);
-    var data = outputs[0].data.startsWith("0x")
-        ? outputs[0].data.replaceFirst("0x", "")
-        : outputs[0].data;
-    var result = blake2b.process(hex.decode(data));
-    return hex.encode(result);
-  }
-
-  Future<OutPoint> alwaysSuccessScriptOutPoint() async {
-    Block block = await genesisBlock();
-    String hash = block.commitTransactions[0].hash;
-    return OutPoint(hash, 0);
   }
 }

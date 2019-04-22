@@ -1,28 +1,15 @@
 import 'dart:typed_data';
-
-import 'package:ckb_sdk/ckb-utils/hash.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import "package:ckb_sdk/ckb-utils/number.dart" as number;
 import 'package:pointycastle/api.dart';
-import "package:pointycastle/digests/sha256.dart";
-import "package:pointycastle/ecc/api.dart";
-import "package:pointycastle/ecc/curves/secp256k1.dart";
-import "package:pointycastle/macs/hmac.dart";
-import "package:pointycastle/signers/ecdsa_signer.dart";
+import 'package:pointycastle/digests/sha256.dart';
+import 'package:pointycastle/ecc/api.dart';
+import 'package:pointycastle/ecc/curves/secp256k1.dart';
+import 'package:pointycastle/macs/hmac.dart';
+import 'package:pointycastle/signers/ecdsa_signer.dart';
 
 final ECDomainParameters params = new ECCurve_secp256k1();
 final BigInt _halfCurveOrder = params.n ~/ BigInt.two;
-
-List<int> publicKeyFromPrivate(List<int> privateKey, bool compress) {
-  var privateKeyNum = number.bytesToInt(privateKey);
-  var p = params.G * privateKeyNum;
-  return p.getEncoded(compress).sublist(0);
-}
-
-List<int> publicKeyFromPrivateSign(List<int> privateKey) {
-  var privateKeyNum = number.bytesToInt(privateKey);
-  var p = params.G * privateKeyNum;
-  return p.getEncoded(false).sublist(1);
-}
 
 class MsgSignature {
   final Uint8List r;
@@ -146,8 +133,4 @@ ECPoint _decompressKey(BigInt xBN, bool yBit, ECCurve c) {
   var compEnc = x9IntegerToBytes(xBN, 1 + ((c.fieldSize + 7) ~/ 8));
   compEnc[0] = yBit ? 0x03 : 0x02;
   return c.decodePoint(compEnc);
-}
-
-String blake160(String value) {
-  return number.remove0x(blake2bHexString(value)).substring(0, 40);
 }

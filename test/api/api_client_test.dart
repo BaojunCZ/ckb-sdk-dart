@@ -149,28 +149,4 @@ void main() {
   //     expect(error.code, -1);
   //   }
   // });
-
-  test("alwaysSuccessCellHash", () async {
-    try {
-      String cellHash = await apiClient.alwaysSuccessCellHash();
-      expect("8bddddc3ae2e09c13106634d012525aa32fc47736456dba11514d352845e561d",
-          cellHash);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
-
-  test("alwaysSuccessScriptOutPoint", () async {
-    try {
-      OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
-      jsonEncode(outPoint);
-      expect(
-          "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
-          outPoint.hash);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
 }

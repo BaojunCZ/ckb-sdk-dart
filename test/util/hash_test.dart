@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb-utils/hash.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/hash.dart';
 import 'package:test/test.dart';
 
 main() {

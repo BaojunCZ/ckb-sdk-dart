@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:ckb_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/blake2b.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 
 const CKB_HASH_PERSONALIZATION = "ckb-default-hash";

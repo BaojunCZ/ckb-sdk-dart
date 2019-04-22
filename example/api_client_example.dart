@@ -42,10 +42,4 @@ main() async {
   String transationHash =
       await apiClient.sendTransaction(new SendTransaction([], [], [], 2));
   print(transationHash);
-
-  String cellHash = await apiClient.alwaysSuccessCellHash();
-  print(cellHash);
-
-  OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
-  print(outPoint.toJson());
 }
