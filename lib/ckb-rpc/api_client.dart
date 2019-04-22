@@ -10,7 +10,7 @@ library ckb_client;
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
-import 'package:ckb_sdk/ckb-utils/blake2b.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/blake2b.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 import 'package:convert/convert.dart';
 

@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb-utils/crypto.dart' as crypto;
+import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 
 class Credential {
@@ -19,7 +19,7 @@ class Credential {
 
   static BigInt _privateKeyToPulic(BigInt privateKey) {
     var list = number.numberToBytes(privateKey);
-    var pkBigInt = number.bytesToInt(crypto.publicKeyFromPrivate(list, true));
+    var pkBigInt = number.bytesToInt(publicKeyFromPrivate(list, true));
     return pkBigInt;
   }
 }
