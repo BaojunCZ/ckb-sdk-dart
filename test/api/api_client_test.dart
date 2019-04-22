@@ -9,7 +9,6 @@ void main() {
   test("genesisBlockHash", () async {
     try {
       String blockHash = await apiClient.genesisBlockHash();
-      print(blockHash);
       expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
@@ -20,7 +19,7 @@ void main() {
   test("genesisBlock", () async {
     try {
       Block blockRes = await apiClient.genesisBlock();
-      print(jsonEncode(blockRes));
+      jsonEncode(blockRes);
       print(blockRes.commitTransactions[0].hash);
       expect(blockRes != null, true);
     } catch (error) {
@@ -32,7 +31,6 @@ void main() {
   test("get block hash", () async {
     try {
       String blockHash = await apiClient.getBlockHash("1");
-      print(blockHash);
       expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
@@ -46,7 +44,7 @@ void main() {
         String hash =
             "0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a";
         Transaction transaction = await apiClient.getTransaction(hash);
-        print(jsonEncode(transaction));
+        jsonEncode(transaction);
         expect(transaction.hash, hash);
       } catch (error) {
         print(error.message);
@@ -69,7 +67,7 @@ void main() {
   test("get tip header", () async {
     try {
       Header header = await apiClient.getTipHeader();
-      print(jsonEncode(header));
+      jsonEncode(header);
       expect(header.hash != null, true);
     } catch (error) {
       print(error.message);
@@ -77,29 +75,29 @@ void main() {
     }
   });
 
-  test("get cell by lock hash", () async {
-    try {
-      List<Cell> cells = await apiClient.getCellsByLockHash(
-          '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
-          "1",
-          "20");
-      print(jsonEncode(cells));
-      expect(
-          cells[0].lock ==
-              '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
-          true);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
+  // test("get cell by lock hash", () async {
+  //   try {
+  //     List<Cell> cells = await apiClient.getCellsByLockHash(
+  //         '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
+  //         "1",
+  //         "20");
+  //     jsonEncode(cells);
+  //     expect(
+  //         cells[0].lock ==
+  //             '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674',
+  //         true);
+  //   } catch (error) {
+  //     print(error.message);
+  //     expect(error.code, -1);
+  //   }
+  // });
 
   test("get live cell", () async {
     try {
       CellWithStatus liveCellRes = await apiClient.getLiveCell(new OutPoint(
           "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
           0));
-      print(jsonEncode(liveCellRes));
+      jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
       print(error.message);
@@ -110,7 +108,6 @@ void main() {
   test("get tip block number", () async {
     try {
       String tipBlockNumber = await apiClient.getTipBlockNumber();
-      print(tipBlockNumber);
       expect(tipBlockNumber != null, true);
     } catch (error) {
       print(error.message);
@@ -121,7 +118,7 @@ void main() {
   test("get local node info", () async {
     try {
       NodeInfo localNodeId = await apiClient.getLocalNodeInfo();
-      print(jsonEncode(localNodeId));
+      jsonEncode(localNodeId);
       expect(localNodeId != null, true);
     } catch (error) {
       print(error);
@@ -133,7 +130,7 @@ void main() {
     try {
       Block block =
           await apiClient.getBlock(await apiClient.getBlockHash("20"));
-      print(jsonEncode(block));
+      jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
       print(error.message);
@@ -141,21 +138,21 @@ void main() {
     }
   });
 
-  test('get trace transaction', () async {
-    try {
-      List<TraceTransaction> trasactions = await apiClient.getTraceTransaction(
-          '0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
-      print(trasactions);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
+  // test('get trace transaction', () async {
+  //   try {
+  //     List<TraceTransaction> transactions = await apiClient.getTraceTransaction(
+  //         '0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
+  //     print(transactions);
+  //     expect(transactions.length, 0);
+  //   } catch (error) {
+  //     print(error.message);
+  //     expect(error.code, -1);
+  //   }
+  // });
 
   test("alwaysSuccessCellHash", () async {
     try {
       String cellHash = await apiClient.alwaysSuccessCellHash();
-      print(cellHash);
       expect("8bddddc3ae2e09c13106634d012525aa32fc47736456dba11514d352845e561d",
           cellHash);
     } catch (error) {
@@ -167,7 +164,7 @@ void main() {
   test("alwaysSuccessScriptOutPoint", () async {
     try {
       OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
-      print(jsonEncode(outPoint));
+      jsonEncode(outPoint);
       expect(
           "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
           outPoint.hash);
