@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:ckb_sdk/ckb-utils/hash.dart';
 import "package:ckb_sdk/ckb-utils/number.dart" as number;
 import 'package:pointycastle/api.dart';
 import "package:pointycastle/digests/sha256.dart";
@@ -145,4 +146,8 @@ ECPoint _decompressKey(BigInt xBN, bool yBit, ECCurve c) {
   var compEnc = x9IntegerToBytes(xBN, 1 + ((c.fieldSize + 7) ~/ 8));
   compEnc[0] = yBit ? 0x03 : 0x02;
   return c.decodePoint(compEnc);
+}
+
+String blake160(String value) {
+  return number.remove0x(blake2bHexString(value)).substring(0, 40);
 }

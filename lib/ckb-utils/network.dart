@@ -1,0 +1,1 @@
+enum Network { MainNet, TestNet }
