@@ -117,7 +117,7 @@ ECPoint _decompressKey(BigInt xBN, bool yBit, ECCurve c) {
     if (qLength < bytes.length) {
       return bytes.sublist(0, bytes.length - qLength);
     } else if (qLength > bytes.length) {
-      var tmp = new List<int>.filled(qLength, 0);
+      var tmp = List<int>.filled(qLength, 0);
 
       var offset = qLength - bytes.length;
       for (var i = 0; i < bytes.length; i++) {
