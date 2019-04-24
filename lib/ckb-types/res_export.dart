@@ -18,7 +18,7 @@ export 'package:ckb_sdk/ckb-types/send_transaction_res.dart';
 export 'package:ckb_sdk/ckb-types/block_res.dart';
 export 'package:ckb_sdk/ckb-types/trace_transaction.dart';
 
-export 'package:ckb_sdk/ckb-types/item/cell.dart';
+export 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
 export 'package:ckb_sdk/ckb-types/item/cell_input.dart';
 export 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 export 'package:ckb_sdk/ckb-types/item/header.dart';

@@ -6,13 +6,11 @@
  * @Description: file content
  */
 class OutPoint {
-  String hash;
+  String txHash;
   int index;
 
-  OutPoint(this.hash, this.index);
+  OutPoint(this.txHash, this.index);
 
-  factory OutPoint.fromJson(Map<String, dynamic> json) =>
-      OutPoint(json['hash'] as String, json['index'] as int);
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'hash': hash, 'index': index};
+  factory OutPoint.fromJson(Map<String, dynamic> json) => OutPoint(json['tx_hash'] as String, json['index'] as int);
+  Map<String, dynamic> toJson() => <String, dynamic>{'tx_hash': txHash, 'index': index};
 }
