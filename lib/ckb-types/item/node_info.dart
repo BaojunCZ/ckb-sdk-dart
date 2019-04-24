@@ -1,16 +1,16 @@
 class NodeInfo {
   List<Address> addresses;
-  String node_id;
+  String nodeId;
   String version;
 
-  NodeInfo(this.addresses, this.node_id, this.version);
+  NodeInfo(this.addresses, this.nodeId, this.version);
 
   factory NodeInfo.fromJson(Map<String, dynamic> json) => NodeInfo(
       (json['addresses'] as List)?.map((e) => e == null ? null : Address.fromJson(e as Map<String, dynamic>))?.toList(),
       json['node_id'] as String,
       json['version'] as String);
 
-  Map<String, dynamic> toJson() => {'addresses': this.addresses, 'node_id': this.node_id, 'version': this.version};
+  Map<String, dynamic> toJson() => {'addresses': this.addresses, 'node_id': this.nodeId, 'version': this.version};
 }
 
 class Address {

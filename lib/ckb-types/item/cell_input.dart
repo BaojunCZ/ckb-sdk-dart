@@ -7,29 +7,15 @@
  */
 
 class CellInput {
-  PreviousOutput previousOutput;
-  List<String> args;
-
-  CellInput(this.previousOutput, this.args);
-
-  factory CellInput.fromJson(Map<String, dynamic> json) => CellInput(
-      json['previous_output'] == null
-          ? null
-          : PreviousOutput.fromJson(json['previous_output'] as Map<String, dynamic>),
-      (json['args'] as List)?.map((e) => e as String)?.toList());
-
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'previous_output': previousOutput, 'args': args};
-}
-
-class PreviousOutput {
-  String hash;
+  String txHash;
   int index;
+  List<String> args;
+  String since;
 
-  PreviousOutput(this.hash, this.index);
+  CellInput(this.txHash, this.index, this.args, this.since);
 
-  factory PreviousOutput.fromJson(Map<String, dynamic> json) =>
-      PreviousOutput(json['hash'] as String, json['index'] as int);
+  factory CellInput.fromJson(Map<String, dynamic> json) => CellInput(json['tx_hash'] as String, json['index'] as int,
+      (json['args'] as List)?.map((e) => e as String)?.toList(), json['since'] as String);
 
-  Map<String, dynamic> toJson() => <String, dynamic>{'hash': hash, 'index': index};
+  Map<String, dynamic> toJson() => <String, dynamic>{'tx_hash': txHash, 'index': index, 'args': args, 'since': since};
 }

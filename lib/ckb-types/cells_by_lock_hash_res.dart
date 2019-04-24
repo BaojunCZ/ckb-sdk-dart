@@ -5,10 +5,10 @@
  * @LastEditTime: 2019-03-01 12:35:39
  * @Description: file content
  */
+import 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
 import 'package:ckb_sdk/ckb-types/response.dart';
-import 'package:ckb_sdk/ckb-types/item/cell.dart';
 
-class CellsByLockHashRes extends RPCResponse<List<Cell>> {
+class CellsByLockHashRes extends RPCResponse<List<CellWithOutPoint>> {
   CellsByLockHashRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
 
   factory CellsByLockHashRes.fromJson(Map<String, dynamic> json) {
@@ -18,7 +18,7 @@ class CellsByLockHashRes extends RPCResponse<List<Cell>> {
         json['result'] == null
             ? null
             : (json['result'] as List)
-                ?.map((e) => e == null ? null : Cell.fromJson(e as Map<String, dynamic>))
+                ?.map((e) => e == null ? null : CellWithOutPoint.fromJson(e as Map<String, dynamic>))
                 ?.toList(),
         json['error'] == null ? null : RPCError.fromJson(json['error']));
   }

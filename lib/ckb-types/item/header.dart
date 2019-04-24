@@ -13,27 +13,15 @@ class Header {
   String parentHash;
   Seal seal;
   String timestamp;
-  String txsCommit;
-  String txsProposal;
+  String transactionsRoot;
+  String proposalsRoot;
   String witnessesRoot;
   int unclesCount;
   String unclesHash;
   int version;
 
-  Header(
-      this.cellbaseId,
-      this.difficulty,
-      this.hash,
-      this.number,
-      this.parentHash,
-      this.seal,
-      this.timestamp,
-      this.txsCommit,
-      this.txsProposal,
-      this.witnessesRoot,
-      this.unclesCount,
-      this.unclesHash,
-      this.version);
+  Header(this.cellbaseId, this.difficulty, this.hash, this.number, this.parentHash, this.seal, this.timestamp,
+      this.transactionsRoot, this.proposalsRoot, this.witnessesRoot, this.unclesCount, this.unclesHash, this.version);
 
   factory Header.fromJson(Map<String, dynamic> json) => Header(
       json['cellbase_id'] as String,
@@ -41,12 +29,10 @@ class Header {
       json['hash'] as String,
       json['number'] as String,
       json['parent_hash'] as String,
-      json['seal'] == null
-          ? null
-          : Seal.fromJson(json['seal'] as Map<String, dynamic>),
+      json['seal'] == null ? null : Seal.fromJson(json['seal'] as Map<String, dynamic>),
       json['timestamp'] as String,
-      json['txs_commit'] as String,
-      json['txs_proposal'] as String,
+      json['transactions_root'] as String,
+      json['proposals_root'] as String,
       json['witnesses_root'] as String,
       json['uncles_count'] as int,
       json['uncles_hash'] as String,
@@ -60,8 +46,8 @@ class Header {
         'parent_hash': parentHash,
         'seal': seal,
         'timestamp': timestamp,
-        'txs_commit': txsCommit,
-        'txs_proposal': txsProposal,
+        'transactions_root': transactionsRoot,
+        'proposals_root': proposalsRoot,
         'witnesses_root': witnessesRoot,
         'uncles_count': unclesCount,
         'uncles_hash': unclesHash,
@@ -75,8 +61,6 @@ class Seal {
 
   Seal(this.nonce, this.proof);
 
-  factory Seal.fromJson(Map<String, dynamic> json) =>
-      Seal(json['nonce'] as String, json['proof'] as String);
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'nonce': nonce, 'proof': proof};
+  factory Seal.fromJson(Map<String, dynamic> json) => Seal(json['nonce'] as String, json['proof'] as String);
+  Map<String, dynamic> toJson() => <String, dynamic>{'nonce': nonce, 'proof': proof};
 }
