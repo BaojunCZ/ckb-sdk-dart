@@ -4,7 +4,7 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new ApiClient(nodeUrl: "http://47.111.175.189:8123/");
+  final apiClient = new ApiClient(nodeUrl: "http://47.245.29.58:8121/");
 
   test("genesisBlockHash", () async {
     try {
