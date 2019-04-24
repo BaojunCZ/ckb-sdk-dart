@@ -1,14 +1,16 @@
+import 'dart:typed_data';
+
 import 'package:ckb_sdk/ckb-utils/crypto/hash.dart';
 import "package:ckb_sdk/ckb-utils/number.dart" as number;
 import "package:pointycastle/ecc/curves/secp256k1.dart";
 
-List<int> publicKeyFromPrivate(List<int> privateKey, {bool compress = true}) {
+Uint8List publicKeyFromPrivate(Uint8List privateKey, {bool compress = true}) {
   var privateKeyNum = number.bytesToInt(privateKey);
   var p = ECCurve_secp256k1().G * privateKeyNum;
   return p.getEncoded(compress).sublist(0);
 }
 
-List<int> publicKeyFromPrivateSign(List<int> privateKey) {
+Uint8List publicKeyFromPrivateSign(Uint8List privateKey) {
   var privateKeyNum = number.bytesToInt(privateKey);
   var p = ECCurve_secp256k1().G * privateKeyNum;
   return p.getEncoded(false).sublist(1);

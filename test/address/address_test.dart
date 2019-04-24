@@ -2,7 +2,6 @@ import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
 import 'package:ckb_sdk/ckb_address/ckb_address.dart';
-import 'dart:convert';
 import 'package:test/test.dart';
 
 main() {
