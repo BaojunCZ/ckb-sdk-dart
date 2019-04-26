@@ -6,26 +6,15 @@
  * @Description: file content
  */
 import 'package:ckb_sdk/ckb-types/item/header.dart';
-import 'package:ckb_sdk/ckb-types/item/transaction.dart';
 
 class UncleBlock {
   Header header;
-  Transaction cellbase;
-  List<int> proposalTransactions;
+  List<String> proposals;
 
-  UncleBlock(this.header, this.cellbase, this.proposalTransactions);
+  UncleBlock(this.header, this.proposals);
   factory UncleBlock.fromJson(Map<String, dynamic> json) => UncleBlock(
-      json['header'] == null
-          ? null
-          : Header.fromJson(json['header'] as Map<String, dynamic>),
-      json['cellbase'] == null
-          ? null
-          : Transaction.fromJson(json['cellbase'] as Map<String, dynamic>),
-      (json['proposal_transactions'] as List)?.map((e) => e as int)?.toList());
+      json['header'] == null ? null : Header.fromJson(json['header'] as Map<String, dynamic>),
+      (json['proposals'] as List)?.map((e) => e as String)?.toList());
 
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'header': header,
-        'cellbase': cellbase,
-        'proposal_transactions': proposalTransactions
-      };
+  Map<String, dynamic> toJson() => <String, dynamic>{'header': header, 'proposals': proposals};
 }

@@ -1,7 +1,8 @@
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:pointycastle/digests/blake2b.dart';
-import 'package:ckb_sdk/ckb-utils/hash.dart' show CKB_HASH_PERSONALIZATION;
+import 'package:ckb_sdk/ckb-utils/crypto/hash.dart'
+    show CKB_HASH_PERSONALIZATION;
 
 class Blake2b {
   Blake2bDigest blake2bDigest;

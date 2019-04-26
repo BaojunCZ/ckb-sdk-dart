@@ -4,7 +4,7 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new ApiClient(nodeUrl: "http://47.111.175.189:8123/");
+  final apiClient = new ApiClient(nodeUrl: "http://47.245.29.58:8121/");
 
   test("genesisBlockHash", () async {
     try {
@@ -20,7 +20,7 @@ void main() {
     try {
       Block blockRes = await apiClient.genesisBlock();
       jsonEncode(blockRes);
-      print(blockRes.commitTransactions[0].hash);
+      print(blockRes.transactions[0].hash);
       expect(blockRes != null, true);
     } catch (error) {
       print(error.message);
@@ -41,8 +41,7 @@ void main() {
   group("get transaction", () {
     test("with right params", () async {
       try {
-        String hash =
-            "0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a";
+        String hash = "0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a";
         Transaction transaction = await apiClient.getTransaction(hash);
         jsonEncode(transaction);
         expect(transaction.hash, hash);
@@ -94,9 +93,8 @@ void main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCellRes = await apiClient.getLiveCell(new OutPoint(
-          "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
-          0));
+      CellWithStatus liveCellRes = await apiClient
+          .getLiveCell(new OutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0));
       jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
@@ -128,8 +126,7 @@ void main() {
 
   test("get block", () async {
     try {
-      Block block =
-          await apiClient.getBlock(await apiClient.getBlockHash("20"));
+      Block block = await apiClient.getBlock(await apiClient.getBlockHash("20"));
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
@@ -149,28 +146,4 @@ void main() {
   //     expect(error.code, -1);
   //   }
   // });
-
-  test("alwaysSuccessCellHash", () async {
-    try {
-      String cellHash = await apiClient.alwaysSuccessCellHash();
-      expect("8bddddc3ae2e09c13106634d012525aa32fc47736456dba11514d352845e561d",
-          cellHash);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
-
-  test("alwaysSuccessScriptOutPoint", () async {
-    try {
-      OutPoint outPoint = await apiClient.alwaysSuccessScriptOutPoint();
-      jsonEncode(outPoint);
-      expect(
-          "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
-          outPoint.hash);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
 }
