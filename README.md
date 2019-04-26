@@ -19,4 +19,4 @@ Dart SDK for [CKB](https://github.com/nervosnetwork/ckb).Nervos test network has
 
 ## License
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCKBalance%2Fckb-sdk-dart.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCKBalance%2Fckb-sdk-dart?ref=badge_large)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FOrangeWallet%2Forange-wallet?ref=badge_large)
