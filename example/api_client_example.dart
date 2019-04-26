@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
 
 main() async {
-  final apiClient = new ApiClient();
+  final apiClient = new CKBApiClient();
   String blockHash = await apiClient.getBlockHash("1");
   // print(blockHash.error.message);
   print(blockHash);

@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
-import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 
 void main() {
   final String ZERO_HASH = "0000000000000000000000000000000000000000000000000000000000000000";
