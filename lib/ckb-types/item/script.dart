@@ -12,7 +12,7 @@ class Script {
 
   Script alwaysSuccess() => Script(ALWAYS_SUCCESS_HASH, []);
 
-  String getScriptHash() {
+  String get scriptHash {
     final Blake2b blake2b = new Blake2b(digestSize: 32);
     if (codeHash != null) blake2b.update(hex.decode(remove0x(codeHash)));
     args.forEach((arg) {
