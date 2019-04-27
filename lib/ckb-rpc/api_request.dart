@@ -24,15 +24,12 @@ class ApiRequest {
       var body = {"jsonrpc": jsonrpc, "id": id};
       body["method"] = url;
       body["params"] = params;
-      var response = await http.post(_nodeUrl,
-          headers: {'Content-type': 'application/json'},
-          body: jsonEncode(body));
+      var response = await http.post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body));
       id = id + 1;
       if (response.statusCode == 200) {
         return handlerResult(body, response.body);
       } else {
-        throw CkbError.genericError(
-            "Request failed with status: ${response.statusCode}.");
+        throw CkbError.genericError("Request failed with status: ${response.statusCode}.");
       }
     } catch (error) {
       rethrow;
@@ -46,6 +43,9 @@ class ApiRequest {
     var json = jsonDecode(data);
     if (null == json) {
       throw CkbError.emptyResponse;
+    }
+    if (null == json['result']) {
+      throw CkbError.nullResult;
     }
     if (null != json["error"]) {
       var error = json["error"];
