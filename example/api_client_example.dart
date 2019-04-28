@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
 
 main() async {
@@ -9,9 +10,9 @@ main() async {
   // print(blockHash.error.message);
   print(blockHash);
 
-  Transaction transaction =
+  TransactionWithStatus transactionWithStatus =
       await apiClient.getTransaction("0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324");
-  List<CellOutput> cellOutputs = transaction.outputs;
+  List<CellOutput> cellOutputs = transactionWithStatus.transaction.outputs;
   print(jsonEncode(cellOutputs));
 
   Header header = await apiClient.getTipHeader();

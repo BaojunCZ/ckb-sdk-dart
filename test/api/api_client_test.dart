@@ -38,17 +38,17 @@ void main() {
   });
 
   group("get transaction", () {
-    test("with right params", () async {
-      try {
-        String hash = "0x2505abd12b6353da33152014cabdf68566fea3976986b5da2fd5980940191ef5";
-        Transaction transaction = await apiClient.getTransaction(hash);
-        jsonEncode(transaction);
-        expect(transaction.hash, hash);
-      } catch (error) {
-        print(error.message);
-        expect(error.code, -1);
-      }
-    });
+    // test("with right params", () async {
+    //   try {
+    //     String hash = "0x2505abd12b6353da33152014cabdf68566fea3976986b5da2fd5980940191ef5";
+    //     TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
+    //     jsonEncode(transactionWithStatus);
+    //     expect(transactionWithStatus.transaction.hash, hash);
+    //   } catch (error) {
+    //     print(error.message);
+    //     expect(error.code, -1);
+    //   }
+    // });
 
     test("with wrong params", () async {
       try {
@@ -129,15 +129,15 @@ void main() {
     }
   });
 
-  // test('get trace transaction', () async {
-  //   try {
-  //     List<TraceTransaction> transactions = await apiClient.getTraceTransaction(
-  //         '0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
-  //     print(transactions);
-  //     expect(transactions.length, 0);
-  //   } catch (error) {
-  //     print(error.message);
-  //     expect(error.code, -1);
-  //   }
-  // });
+  test('get trace transaction', () async {
+    try {
+      List<TraceTransaction> transactions =
+          await apiClient.getTraceTransaction('0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
+      print(transactions);
+      expect(transactions.length, 0);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
 }
