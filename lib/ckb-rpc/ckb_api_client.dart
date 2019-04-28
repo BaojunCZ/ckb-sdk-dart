@@ -7,6 +7,7 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 
 class CKBApiClient {
@@ -35,7 +36,7 @@ class CKBApiClient {
     return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber])).result;
   }
 
-  Future<Transaction> getTransaction(String hash) async {
+  Future<TransactionWithStatus> getTransaction(String hash) async {
     return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
   }
 
