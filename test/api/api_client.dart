@@ -4,7 +4,7 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new CKBApiClient(nodeUrl: "http://47.245.29.58:8121/");
+  final apiClient = new CKBApiClient(nodeUrl: "http://47.111.175.189:8121");
 
   test("genesisBlockHash", () async {
     try {
@@ -72,18 +72,18 @@ void main() {
     }
   });
 
-  // test("get cell by lock hash", () async {
-  //   try {
-  //     List<CellWithOutPoint> cells = await apiClient.getCellsByLockHash(
-  //         '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', '0', '2');
-  //     // jsonEncode(cells);
-  //     if (cells.length > 0)
-  //       expect(cells[0].lock == '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', true);
-  //   } catch (error) {
-  //     print(error.message);
-  //     expect(error.code, -1);
-  //   }
-  // });
+  test("get cell by lock hash", () async {
+    try {
+      List<CellWithOutPoint> cells = await apiClient.getCellsByLockHash(
+          '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', '0', '2');
+      // jsonEncode(cells);
+      if (cells.length > 0)
+        expect(cells[0].lock.scriptHash == '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', true);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
 
   test("get live cell", () async {
     try {
