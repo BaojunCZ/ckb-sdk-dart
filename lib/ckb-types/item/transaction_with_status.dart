@@ -10,6 +10,11 @@ class TransactionWithStatus {
         json['tx_status'] == null ? null : TxStatus.fromJson(json['tx_status']),
         json['transaction'] == null ? null : Transaction.fromJson(json['transaction']),
       );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'tx_status': txStatus.toJson(),
+        'transaction': transaction.toJson(),
+      };
 }
 
 class TxStatus {
