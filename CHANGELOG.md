@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## 0.10.0
+
+Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.10.0)
+
+- add since to cell input
+
 ## 0.9.0
 
-Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.9.0)
+Support [ ckb release v0.9.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.9.0)
 
 - add segregated witness structure
 - refactor rpc types
@@ -12,7 +18,7 @@ Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/
 
 ## 0.8.0
 
-Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.8.0)
+Support [ ckb release v0.8.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.8.0)
 
 - adapt CKB v0.8.0
 
