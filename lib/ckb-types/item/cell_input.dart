@@ -6,16 +6,20 @@
  * @Description: file content
  */
 
+import 'package:ckb_sdk/ckb-types/item/out_point.dart';
+
 class CellInput {
-  String txHash;
-  int index;
+  OutPoint previousOutput;
   List<String> args;
   String since;
 
-  CellInput(this.txHash, this.index, this.args, this.since);
+  CellInput(this.previousOutput, this.args, this.since);
 
-  factory CellInput.fromJson(Map<String, dynamic> json) => CellInput(json['tx_hash'] as String, json['index'] as int,
-      (json['args'] as List)?.map((e) => e as String)?.toList(), json['since'] as String);
+  factory CellInput.fromJson(Map<String, dynamic> json) => CellInput(
+      json['previous_output'] == null ? null : OutPoint.fromJson(json['previous_output'] as Map<String, dynamic>),
+      (json['args'] as List)?.map((e) => e as String)?.toList(),
+      json['since'] as String);
 
-  Map<String, dynamic> toJson() => <String, dynamic>{'tx_hash': txHash, 'index': index, 'args': args, 'since': since};
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'previous_output': previousOutput.toJson(), 'args': args, 'since': since};
 }
