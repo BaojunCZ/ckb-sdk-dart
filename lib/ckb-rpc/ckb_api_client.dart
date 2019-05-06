@@ -7,12 +7,13 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 
-class ApiClient {
+class CKBApiClient {
   ApiRequest _request;
 
-  ApiClient({String nodeUrl = 'http://47.111.175.18:8123/'}) {
+  CKBApiClient({String nodeUrl = 'http://47.111.175.18:8123/'}) {
     _request = ApiRequest(nodeUrl);
   }
 
@@ -35,7 +36,7 @@ class ApiClient {
     return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber])).result;
   }
 
-  Future<Transaction> getTransaction(String hash) async {
+  Future<TransactionWithStatus> getTransaction(String hash) async {
     return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
   }
 

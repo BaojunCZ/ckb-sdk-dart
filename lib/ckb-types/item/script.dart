@@ -1,5 +1,5 @@
 import 'package:ckb_sdk/ckb-utils/crypto/blake2b.dart';
-import 'package:ckb_sdk/ckb-utils/number.dart' as number;
+import 'package:ckb_sdk/ckb-utils/number.dart';
 import 'package:convert/convert.dart';
 
 class Script {
@@ -12,14 +12,14 @@ class Script {
 
   Script alwaysSuccess() => Script(ALWAYS_SUCCESS_HASH, []);
 
-  String getTypeHash() {
+  String get scriptHash {
     final Blake2b blake2b = new Blake2b(digestSize: 32);
-    if (codeHash != null) blake2b.update(hex.decode(number.remove0x(codeHash)));
+    if (codeHash != null) blake2b.update(hex.decode(remove0x(codeHash)));
     args.forEach((arg) {
-      blake2b.update(number.hexStringToByteArray(arg));
+      blake2b.update(hexStringToByteArray(arg));
     });
     var hash_bytes = blake2b.doFinal();
-    return number.bytesToHex(hash_bytes, include0x: true, forcePadLen: 64);
+    return bytesToHex(hash_bytes, include0x: true, forcePadLen: 64);
   }
 
   factory Script.fromJson(Map<String, dynamic> json) => Script(
