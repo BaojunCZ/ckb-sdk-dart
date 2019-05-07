@@ -13,7 +13,7 @@ import 'package:ckb_sdk/ckb-types/res_export.dart';
 class CKBApiClient {
   ApiRequest _request;
 
-  CKBApiClient({String nodeUrl = 'http://47.111.175.18:8123/'}) {
+  CKBApiClient({String nodeUrl = 'http://192.168.2.78:8114'}) {
     _request = ApiRequest(nodeUrl);
   }
 
