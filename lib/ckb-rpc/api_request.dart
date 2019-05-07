@@ -6,9 +6,9 @@
  * @Description: api request
  */
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
+import 'package:http/http.dart' as http;
 
 class ApiRequest {
   int id = 0;
@@ -29,27 +29,28 @@ class ApiRequest {
       if (response.statusCode == 200) {
         return handlerResult(body, response.body);
       } else {
-        throw CkbError.genericError("Request failed with status: ${response.statusCode}.");
+        throw genericError("Request failed with status: ${response.statusCode}.");
       }
-    } catch (error) {
+    } catch (e) {
       rethrow;
     }
   }
 
   handlerResult(body, data) {
+    print(data);
     if (null == data) {
-      throw CkbError.emptyResponse;
+      throw emptyResponse;
     }
     var json = jsonDecode(data);
     if (null == json) {
-      throw CkbError.emptyResponse;
+      throw emptyResponse;
     }
     if (null == json['result']) {
-      throw CkbError.nullResult;
+      throw nullResult;
     }
     if (null != json["error"]) {
       var error = json["error"];
-      throw CkbError.getError(error["code"], error["message"]);
+      throw getError(error["code"], error["message"]);
     }
     return json;
   }

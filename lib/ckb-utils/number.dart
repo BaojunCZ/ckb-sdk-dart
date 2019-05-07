@@ -9,8 +9,7 @@ String remove0x(String hex) => hex.startsWith("0x") ? hex.substring(2) : hex;
 
 BigInt toBigInt(String hex) => BigInt.parse(hex, radix: 16);
 
-String toHex(dynamic number,
-    {bool pad = false, bool include0x = false, int forcePadLen}) {
+String toHex(dynamic number, {bool pad = false, bool include0x = false, int forcePadLen}) {
   String toHexSimple() {
     if (number is int)
       return number.toRadixString(16);
@@ -28,9 +27,8 @@ String toHex(dynamic number,
   return hexString;
 }
 
-List<int> numberToBytes(dynamic number) => number is BigInt
-    ? pcUtils.encodeBigInt(number)
-    : hex.decode(toHex(number, pad: true));
+List<int> numberToBytes(dynamic number) =>
+    number is BigInt ? pcUtils.encodeBigInt(number) : hex.decode(toHex(number, pad: true));
 
 String bytesToHex(List<int> bytes, {bool include0x = false, int forcePadLen}) =>
     toHex(bytesToInt(bytes), include0x: include0x, forcePadLen: forcePadLen);
@@ -59,8 +57,7 @@ Uint8List hexStringToByteArray(String input) {
   }
 
   for (int i = startIdx; i < len; i += 2) {
-    data[(i + 1) ~/ 2] =
-        (digitHex(cleanInput[i]) << 4) + digitHex(cleanInput[i + 1]);
+    data[(i + 1) ~/ 2] = (digitHex(cleanInput[i]) << 4) + digitHex(cleanInput[i + 1]);
   }
   return data;
 }
@@ -90,8 +87,7 @@ List<int> toBytesPadded(BigInt value, int length) {
   }
 
   if (bytesLength > length) {
-    throw CkbError.genericError(
-        "Input is too large to put in byte array of size " + length.toString());
+    throw genericError("Input is too large to put in byte array of size " + length.toString());
   }
 
   int destOffset = length - bytesLength;
