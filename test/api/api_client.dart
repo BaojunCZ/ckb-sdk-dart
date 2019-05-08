@@ -38,17 +38,21 @@ void main() {
   });
 
   group("get transaction", () {
-    // test("with right params", () async {
-    //   try {
-    //     String hash = "0x2505abd12b6353da33152014cabdf68566fea3976986b5da2fd5980940191ef5";
-    //     TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
-    //     jsonEncode(transactionWithStatus);
-    //     expect(transactionWithStatus.transaction.hash, hash);
-    //   } catch (error) {
-    //     print(error.message);
-    //     expect(error.code, -1);
-    //   }
-    // });
+    test("with right params", () async {
+      try {
+        String hash = "0x0000000000000000000000000000000000000000000000000000000000000000";
+        TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
+        if (transactionWithStatus == null) {
+          print('This is no transaction');
+        } else {
+          jsonEncode(transactionWithStatus);
+          expect(transactionWithStatus.transaction.hash, hash);
+        }
+      } catch (error) {
+        print(error.message);
+        expect(error.code, -1);
+      }
+    });
 
     test("with wrong params", () async {
       try {

@@ -9,6 +9,7 @@ import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
 import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
 class CKBApiClient {
   ApiRequest _request;
@@ -37,7 +38,17 @@ class CKBApiClient {
   }
 
   Future<TransactionWithStatus> getTransaction(String hash) async {
-    return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
+    try {
+      return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
+    } on RPCError catch (error) {
+      if (error.code == nullResultCode) {
+        return null;
+      } else {
+        rethrow;
+      }
+    } catch (error) {
+      rethrow;
+    }
   }
 
   Future<Header> getTipHeader() async {
