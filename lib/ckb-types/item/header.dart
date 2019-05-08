@@ -14,14 +14,14 @@ class Header {
   Seal seal;
   String timestamp;
   String transactionsRoot;
-  String proposalsRoot;
+  String proposalsHash;
   String witnessesRoot;
   int unclesCount;
   String unclesHash;
   int version;
 
   Header(this.cellbaseId, this.difficulty, this.hash, this.number, this.parentHash, this.seal, this.timestamp,
-      this.transactionsRoot, this.proposalsRoot, this.witnessesRoot, this.unclesCount, this.unclesHash, this.version);
+      this.transactionsRoot, this.proposalsHash, this.witnessesRoot, this.unclesCount, this.unclesHash, this.version);
 
   factory Header.fromJson(Map<String, dynamic> json) => Header(
       json['cellbase_id'] as String,
@@ -32,7 +32,7 @@ class Header {
       json['seal'] == null ? null : Seal.fromJson(json['seal'] as Map<String, dynamic>),
       json['timestamp'] as String,
       json['transactions_root'] as String,
-      json['proposals_root'] as String,
+      json['proposals_hash'] as String,
       json['witnesses_root'] as String,
       json['uncles_count'] as int,
       json['uncles_hash'] as String,
@@ -47,7 +47,7 @@ class Header {
         'seal': seal,
         'timestamp': timestamp,
         'transactions_root': transactionsRoot,
-        'proposals_root': proposalsRoot,
+        'proposals_hash': proposalsHash,
         'witnesses_root': witnessesRoot,
         'uncles_count': unclesCount,
         'uncles_hash': unclesHash,
