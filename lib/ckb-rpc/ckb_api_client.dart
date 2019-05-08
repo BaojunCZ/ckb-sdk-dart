@@ -77,6 +77,10 @@ class CKBApiClient {
     return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
   }
 
+  Future<Block> getBlockByBlockNumber(String blockNumber) async {
+    return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber])).result;
+  }
+
   //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(transaction) async {

@@ -29,7 +29,7 @@ void main() {
 
   test("get block hash", () async {
     try {
-      String blockHash = await apiClient.getBlockHash("1");
+      String blockHash = await apiClient.getBlockHash("20");
       expect(blockHash != null, true);
     } catch (error) {
       print(error.message);
@@ -125,6 +125,17 @@ void main() {
   test("get block", () async {
     try {
       Block block = await apiClient.getBlock(await apiClient.getBlockHash("20"));
+      jsonEncode(block);
+      expect(block != null, true);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
+  test('get block by block number', () async {
+    try {
+      Block block = await apiClient.getBlockByBlockNumber("20");
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
