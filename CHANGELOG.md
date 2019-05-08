@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## 0.10.1
+
+Support [ ckb release v0.10.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.10.0)
+
+- refactor RPCError
+
 ## 0.10.0
 
-Support [ ckb release v0.7.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.10.0)
+Support [ ckb release v0.10.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.10.0)
 
 - add since to cell input
 
