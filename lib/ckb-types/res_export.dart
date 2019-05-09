@@ -38,3 +38,4 @@ export 'package:ckb_sdk/ckb-types/item/trace_transaction.dart';
 export 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 export 'package:ckb_sdk/ckb-types/item/epoch.dart';
 export 'package:ckb_sdk/ckb-types/item/tx_pool_info.dart';
+export 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';

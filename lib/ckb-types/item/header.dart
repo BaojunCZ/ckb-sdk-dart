@@ -45,7 +45,7 @@ class Header {
         'number': number,
         'epoch': epoch,
         'parent_hash': parentHash,
-        'seal': seal,
+        'seal': seal.toJson(),
         'timestamp': timestamp,
         'transactions_root': transactionsRoot,
         'proposals_hash': proposalsHash,

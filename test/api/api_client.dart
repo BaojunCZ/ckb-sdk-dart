@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
@@ -91,13 +92,13 @@ void main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCellRes = await apiClient
-          .getLiveCell(new OutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0));
+      CellWithStatus liveCellRes = await apiClient.getLiveCell(
+          OutPoint('', CellOutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0)));
       jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
       print(error.message);
-      expect(error.code, -1);
+      expect(error.code, -2);
     }
   });
 
@@ -122,7 +123,7 @@ void main() {
     }
   });
 
-  test("get block", () async {
+  test("get block by block hash", () async {
     try {
       Block block = await apiClient.getBlock(await apiClient.getBlockHash("20"));
       jsonEncode(block);
@@ -139,7 +140,7 @@ void main() {
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
-      print(error.message);
+      print(error.toString());
       expect(error.code, -1);
     }
   });
@@ -168,11 +169,11 @@ void main() {
 
   test('getEpochByNumber', () async {
     try {
-      Epoch epoch = await apiClient.getEpochByNumber('10');
+      Epoch epoch = await apiClient.getEpochByNumber('0');
       jsonEncode(epoch);
     } catch (error) {
       print(error.message);
-      expect(error.code, -1);
+      expect(error.code, -2);
     }
   });
 
