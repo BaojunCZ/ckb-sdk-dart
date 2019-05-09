@@ -14,7 +14,7 @@ import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 class CKBApiClient {
   ApiRequest _request;
 
-  CKBApiClient({String nodeUrl = 'http://192.168.2.78:8114'}) {
+  CKBApiClient(String nodeUrl) {
     _request = ApiRequest(nodeUrl);
   }
 
