@@ -18,4 +18,6 @@ class ServiceUrl {
   static final traceTransaction = "trace_transaction";
   static final getTransactionTrace = "get_transaction_trace";
   static final getBlockByBlockNumber = "get_block_by_number";
+  static final getCurrentEpoch = 'get_current_epoch';
+  static final getEpochByNumber = 'get_epoch_by_number';
 }

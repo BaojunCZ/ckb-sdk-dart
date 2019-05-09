@@ -81,6 +81,14 @@ class CKBApiClient {
     return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber])).result;
   }
 
+  Future<Epoch> getCurrentEpoch() async {
+    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [])).result;
+  }
+
+  Future<Epoch> getEpochByNumber(String epochNumber) async {
+    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber])).result;
+  }
+
   //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(transaction) async {
