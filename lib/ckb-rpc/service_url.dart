@@ -22,4 +22,6 @@ class ServiceUrl {
   static final getEpochByNumber = 'get_epoch_by_number';
   static final getPeers = 'get_peers';
   static final txPoolInfo = 'tx_pool_info';
+  static final getBlockchainInfo = 'get_blockchain_info';
+  static final getPeersState = 'get_peers_state';
 }

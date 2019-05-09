@@ -7,7 +7,6 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
-import 'package:ckb_sdk/ckb-types/peers_res.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
@@ -95,6 +94,14 @@ class CKBApiClient {
 
   Future<List<NodeInfo>> getPeers() async {
     return PeersRes.fromJson(await _request.requestRpc(ServiceUrl.getPeers, [])).result;
+  }
+
+  Future<BlockchainInfo> getBlockchainInfo() async {
+    return BlockchainIfnoRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockchainInfo, [])).result;
+  }
+
+  Future<List<PeerState>> getPeersState() async {
+    return PeerStateRes.fromJson(await _request.requestRpc(ServiceUrl.getPeersState, [])).result;
   }
 
   //================================Pool RPC Methods===============================
