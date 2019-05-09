@@ -20,6 +20,8 @@ export 'package:ckb_sdk/ckb-types/trace_transaction.dart';
 export 'package:ckb_sdk/ckb-types/epoch_res.dart';
 export 'package:ckb_sdk/ckb-types/peers_res.dart';
 export 'package:ckb_sdk/ckb-types/tx_pool_info_res.dart';
+export 'package:ckb_sdk/ckb-types/blockchain_info_res.dart';
+export 'package:ckb_sdk/ckb-types/peer_state_res.dart';
 
 export 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
 export 'package:ckb_sdk/ckb-types/item/cell_input.dart';
@@ -39,3 +41,5 @@ export 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 export 'package:ckb_sdk/ckb-types/item/epoch.dart';
 export 'package:ckb_sdk/ckb-types/item/tx_pool_info.dart';
 export 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';
+export 'package:ckb_sdk/ckb-types/item/blockchain_info.dart';
+export 'package:ckb_sdk/ckb-types/item/peer_state.dart';

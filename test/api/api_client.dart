@@ -196,4 +196,25 @@ void main() {
       expect(error.code, -1);
     }
   });
+
+  test('getBlockchainInfo', () async {
+    try {
+      BlockchainInfo blockchainInfo = await apiClient.getBlockchainInfo();
+      jsonEncode(blockchainInfo);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
+  test('getPeersState', () async {
+    try {
+      List<PeerState> peersState = await apiClient.getPeersState();
+      jsonEncode(peersState);
+      print(jsonEncode(peersState));
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
 }
