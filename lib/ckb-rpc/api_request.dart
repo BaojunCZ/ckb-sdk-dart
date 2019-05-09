@@ -24,7 +24,11 @@ class ApiRequest {
       var body = {"jsonrpc": jsonrpc, "id": id};
       body["method"] = url;
       body["params"] = params;
-      var response = await http.post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body));
+      var response = await http
+          .post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body))
+          .timeout(Duration(seconds: 20), onTimeout: () {
+        throw reqTimeOut;
+      });
       id = id + 1;
       if (response.statusCode == 200) {
         return handlerResult(body, response.body);

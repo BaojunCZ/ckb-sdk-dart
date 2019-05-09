@@ -9,9 +9,11 @@ import 'package:ckb_sdk/ckb-types/item/error.dart';
 
 final genericErrorCode = -1;
 final nullResultCode = -2;
+final reqTimeOutCode = -3;
 final invalidParameters = RPCError(genericErrorCode, "Invalid parameters");
 final emptyResponse = RPCError(genericErrorCode, "Empty response");
 final nullResult = RPCError(nullResultCode, "Null result");
+final reqTimeOut = RPCError(reqTimeOutCode, "TimeOut");
 
 genericError(String message) {
   return RPCError(genericErrorCode, message);
