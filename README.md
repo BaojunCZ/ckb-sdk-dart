@@ -1,22 +1,42 @@
-# ckb-sdk-dart
+# CKB SDK Dart
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCKBalance%2Fckb-sdk-dart.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCKBalance%2Fckb-sdk-dart?ref=badge_shield)
 [![pub package](https://img.shields.io/pub/v/ckb_sdk.svg)](https://pub.dartlang.org/packages/ckb_sdk)
 
 Dart SDK for [CKB](https://github.com/nervosnetwork/ckb).Nervos test network has not been released yet，so it is very early stage.Be careful when using this library.
 
-## Feature
+## Prerequisites
 
-- Connect to a JSON-RPC Api, call common methods
+To build CKB SDK, you'll need:
 
-## TODO
-
-- fellow Nervos test network
+* Dart sdk: ">=2.1.0 <3.0.0"
 
 ## Usage
 
-[api_client_example](https://github.com/BaojunCZ/ckb-sdk-dart/blob/master/example/api_client_example.dart)
+### JSON-RPC
 
-## License
+```dart
+final apiClient = CKBApiClient(nodeUrl: NodeUrl);
+String blockHash = await apiClient.getBlockHash("1");
+```
+
+### Address
+
+```dart
+ var ckbAddress = CKBAddress(Network.TestNet);
+ var address = ckbAddress.generate(PublicKey);
+```
+
+You can find more in here.
+
+[api_client_example](example/api_client_example.dart)
+
+[test](test/)
+
+## [License](LICENSE)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBaojunCZ%2Fckb-sdk-dart.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FBaojunCZ%2Fckb-sdk-dart?ref=badge_large)
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) file.
