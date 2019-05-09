@@ -18,6 +18,10 @@ class TransactionWithStatus {
 }
 
 class TxStatus {
+  final String PENDING = 'pending';
+  final String PROPOSED = 'proposed';
+  final String COMMITTED = 'committed';
+
   String status;
   String blockHash;
 
