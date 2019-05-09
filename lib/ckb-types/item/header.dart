@@ -5,11 +5,12 @@
  * @LastEditTime: 2019-03-01 14:31:46
  * @Description: file content
  */
+
 class Header {
-  String cellbaseId;
   String difficulty;
   String hash;
   String number;
+  String epoch;
   String parentHash;
   Seal seal;
   String timestamp;
@@ -20,14 +21,14 @@ class Header {
   String unclesHash;
   int version;
 
-  Header(this.cellbaseId, this.difficulty, this.hash, this.number, this.parentHash, this.seal, this.timestamp,
+  Header(this.difficulty, this.hash, this.number, this.epoch, this.parentHash, this.seal, this.timestamp,
       this.transactionsRoot, this.proposalsHash, this.witnessesRoot, this.unclesCount, this.unclesHash, this.version);
 
   factory Header.fromJson(Map<String, dynamic> json) => Header(
-      json['cellbase_id'] as String,
       json['difficulty'] as String,
       json['hash'] as String,
       json['number'] as String,
+      json['epoch'] as String,
       json['parent_hash'] as String,
       json['seal'] == null ? null : Seal.fromJson(json['seal'] as Map<String, dynamic>),
       json['timestamp'] as String,
@@ -39,10 +40,10 @@ class Header {
       json['version'] as int);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'cellbase_id': cellbaseId,
         'difficulty': difficulty,
         'hash': hash,
         'number': number,
+        'epoch': epoch,
         'parent_hash': parentHash,
         'seal': seal,
         'timestamp': timestamp,
