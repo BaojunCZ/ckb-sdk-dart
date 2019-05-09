@@ -18,27 +18,18 @@ class Transaction {
   List<CellOutput> outputs;
   List<Witness> witnesses;
 
-  Transaction(this.version, this.hash, this.deps, this.inputs, this.outputs,
-      this.witnesses);
+  Transaction(this.version, this.hash, this.deps, this.inputs, this.outputs, this.witnesses);
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
       json['version'] as int,
       json['hash'] as String,
-      (json['deps'] as List)
-          ?.map((e) =>
-              e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
-      (json['inputs'] as List)
-          ?.map((e) =>
-              e == null ? null : CellInput.fromJson(e as Map<String, dynamic>))
-          ?.toList(),
+      (json['deps'] as List)?.map((e) => e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))?.toList(),
+      (json['inputs'] as List)?.map((e) => e == null ? null : CellInput.fromJson(e as Map<String, dynamic>))?.toList(),
       (json['outputs'] as List)
-          ?.map((e) =>
-              e == null ? null : CellOutput.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null ? null : CellOutput.fromJson(e as Map<String, dynamic>))
           ?.toList(),
       (json['witnesses'] as List)
-          ?.map((e) =>
-              e == null ? null : Witness.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => e == null ? null : Witness.fromJson(e as Map<String, dynamic>))
           ?.toList());
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -47,6 +38,6 @@ class Transaction {
         'deps': deps,
         'inputs': inputs,
         'outputs': outputs,
-        'witnesses': witnesses
+        'witnesses': witnesses,
       };
 }
