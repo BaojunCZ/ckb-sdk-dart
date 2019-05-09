@@ -155,4 +155,44 @@ void main() {
       expect(error.code, -1);
     }
   });
+
+  test('get current epoch', () async {
+    try {
+      Epoch epoch = await apiClient.getCurrentEpoch();
+      jsonEncode(epoch);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
+  test('getEpochByNumber', () async {
+    try {
+      Epoch epoch = await apiClient.getEpochByNumber('10');
+      jsonEncode(epoch);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
+  test('txPoolInfo', () async {
+    try {
+      TxPoolInfo txPoolInfo = await apiClient.txPoolInfo();
+      jsonEncode(txPoolInfo);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
+
+  test('getPeers', () async {
+    try {
+      List<NodeInfo> peers = await apiClient.getPeers();
+      jsonEncode(peers);
+    } catch (error) {
+      print(error.message);
+      expect(error.code, -1);
+    }
+  });
 }

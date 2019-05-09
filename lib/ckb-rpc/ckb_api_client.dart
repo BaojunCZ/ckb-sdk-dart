@@ -7,7 +7,7 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
-import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
+import 'package:ckb_sdk/ckb-types/peers_res.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
@@ -87,6 +87,14 @@ class CKBApiClient {
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
     return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber])).result;
+  }
+
+  Future<TxPoolInfo> txPoolInfo() async {
+    return TxPoolInfoRes.fromJson(await _request.requestRpc(ServiceUrl.txPoolInfo, [])).result;
+  }
+
+  Future<List<NodeInfo>> getPeers() async {
+    return PeersRes.fromJson(await _request.requestRpc(ServiceUrl.getPeers, [])).result;
   }
 
   //================================Pool RPC Methods===============================
