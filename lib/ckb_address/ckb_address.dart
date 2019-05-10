@@ -11,19 +11,26 @@ class CKBAddress {
 
   CKBAddress(this.network);
 
-  generate(String publicKey) {
+  String generate(String publicKey) {
     // Payload: type(01) | bin-idx("P2PH") | pubkey blake160
     String payload = TYPE + _binIdx(BIN_IDX) + blake160(publicKey);
     Uint8List data = hexStringToByteArray(payload);
     Bech32Codec bech32codec = Bech32Codec();
-    return bech32codec
-        .encode(Bech32(_prefix(), _convertBits(data, 8, 5, true)));
+    return bech32codec.encode(Bech32(_prefix(), _convertBits(data, 8, 5, true)));
+  }
+
+  Bech32 parse(String address) {
+    Bech32Codec bech32codec = Bech32Codec();
+    Bech32 parsed = bech32codec.decode(address);
+    Uint8List data = _convertBits(parsed.data, 5, 8, false);
+    if (data.length == 0) {
+      return null;
+    }
+    return Bech32(parsed.hrp, data);
   }
 
   Uint8List _convertBits(Uint8List data, int fromBits, int toBits, bool pad) {
-    int length = pad
-        ? data.length * fromBits ~/ toBits
-        : (data.length * fromBits / toBits).ceil();
+    int length = pad ? data.length * fromBits ~/ toBits : (data.length * fromBits / toBits).ceil();
     int mask = ((1 << toBits) - 1) & 0xff;
     Uint8List result = Uint8List(length);
     int index = 0;
@@ -44,17 +51,14 @@ class CKBAddress {
         result[index] = (accumulator << (toBits - bits)) & mask;
       }
     } else {
-      if (!(bits < fromBits &&
-          ((accumulator << (toBits - bits)) & mask) == 0)) {
-        throw Exception(
-            "Strict mode was used but input couldn't be converted without padding");
+      if (!(bits < fromBits && ((accumulator << (toBits - bits)) & mask) == 0)) {
+        throw Exception("Strict mode was used but input couldn't be converted without padding");
       }
     }
     return result;
   }
 
-  String _prefix() =>
-      network == Network.MainNet ? MainNetPrefix : TestNetPrefix;
+  String _prefix() => network == Network.MainNet ? MainNetPrefix : TestNetPrefix;
 
   String _binIdx(String binIdx) {
     String result = "";
