@@ -16,7 +16,9 @@ class CellInput {
   CellInput(this.previousOutput, this.args, this.since);
 
   factory CellInput.fromJson(Map<String, dynamic> json) => CellInput(
-      json['previous_output'] == null ? null : OutPoint.fromJson(json['previous_output'] as Map<String, dynamic>),
+      json['previous_output'] == null
+          ? null
+          : OutPoint.fromJson(json['previous_output'] as Map<String, dynamic>),
       (json['args'] as List)?.map((e) => e as String)?.toList(),
       json['since'] as String);
 
