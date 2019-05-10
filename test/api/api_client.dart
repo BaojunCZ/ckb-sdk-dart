@@ -82,7 +82,10 @@ void main() {
           '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', '0', '2');
       // jsonEncode(cells);
       if (cells.length > 0)
-        expect(cells[0].lock.scriptHash == '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', true);
+        expect(
+            cells[0].lock.scriptHash ==
+                '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21',
+            true);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);
@@ -91,8 +94,8 @@ void main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCellRes = await apiClient
-          .getLiveCell(new OutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0));
+      CellWithStatus liveCellRes = await apiClient.getLiveCell(
+          new OutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0));
       jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
@@ -138,18 +141,6 @@ void main() {
       Block block = await apiClient.getBlockByBlockNumber("20");
       jsonEncode(block);
       expect(block != null, true);
-    } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
-    }
-  });
-
-  test('get trace transaction', () async {
-    try {
-      List<TraceTransaction> transactions =
-          await apiClient.getTraceTransaction('0x81cad3cb9b5b74a0b485f8ac2e6dc6c0747b728b8fb75393ce80e9487242a57a');
-      print(transactions);
-      expect(transactions.length, 0);
     } catch (error) {
       print(error.message);
       expect(error.code, -1);

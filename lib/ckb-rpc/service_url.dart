@@ -15,7 +15,5 @@ class ServiceUrl {
   static final tipBlockNumber = "get_tip_block_number";
   static final localNodeInfo = "local_node_info";
   static final sendTransaction = "send_transaction";
-  static final traceTransaction = "trace_transaction";
-  static final getTransactionTrace = "get_transaction_trace";
   static final getBlockByBlockNumber = "get_block_by_number";
 }
