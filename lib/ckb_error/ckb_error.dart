@@ -7,8 +7,9 @@
  */
 import 'package:ckb_sdk/ckb-types/item/error.dart';
 
-class RPCBaseException {
+class RPCBaseException implements Exception {
   final String url;
+
   RPCBaseException(this.url);
 }
 
