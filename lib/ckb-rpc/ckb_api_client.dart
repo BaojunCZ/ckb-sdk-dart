@@ -33,12 +33,14 @@ class CKBApiClient {
   //==============================Chain RPC Methods================================
 
   Future<String> getBlockHash(String blockNumber) async {
-    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber])).result;
+    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]))
+        .result;
   }
 
   Future<TransactionWithStatus> getTransaction(String hash) async {
     try {
-      return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash])).result;
+      return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
+          .result;
     } on RPCError catch (error) {
       if (error.code == nullResultCode) {
         return null;
@@ -54,9 +56,10 @@ class CKBApiClient {
     return HeaderRes.fromJson(await _request.requestRpc(ServiceUrl.tipHeader, [])).result;
   }
 
-  Future<List<CellWithOutPoint>> getCellsByLockHash(String hash, String fromBlockNumber, String toBlockNumber) async {
-    return CellsByLockHashRes.fromJson(
-            await _request.requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]))
+  Future<List<CellWithOutPoint>> getCellsByLockHash(
+      String hash, String fromBlockNumber, String toBlockNumber) async {
+    return CellsByLockHashRes.fromJson(await _request
+            .requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]))
         .result;
   }
 
@@ -65,11 +68,13 @@ class CKBApiClient {
   }
 
   Future<String> getTipBlockNumber() async {
-    return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, [])).result;
+    return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, []))
+        .result;
   }
 
   Future<NodeInfo> getLocalNodeInfo() async {
-    return LocalNodeInfoRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeInfo, [])).result;
+    return LocalNodeInfoRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeInfo, []))
+        .result;
   }
 
   Future<Block> getBlock(String blockHash) async {
@@ -77,7 +82,9 @@ class CKBApiClient {
   }
 
   Future<Block> getBlockByBlockNumber(String blockNumber) async {
-    return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber])).result;
+    return BlockRes.fromJson(
+            await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber]))
+        .result;
   }
 
   Future<Epoch> getCurrentEpoch() async {
@@ -85,7 +92,8 @@ class CKBApiClient {
   }
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
-    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber])).result;
+    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
+        .result;
   }
 
   Future<TxPoolInfo> txPoolInfo() async {
@@ -97,25 +105,37 @@ class CKBApiClient {
   }
 
   Future<BlockchainInfo> getBlockchainInfo() async {
-    return BlockchainIfnoRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockchainInfo, [])).result;
+    return BlockchainIfnoRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockchainInfo, []))
+        .result;
   }
 
   Future<List<PeerState>> getPeersState() async {
     return PeerStateRes.fromJson(await _request.requestRpc(ServiceUrl.getPeersState, [])).result;
   }
 
+  Future<Cycles> dryRunTransaction(SendTransaction transaction) async {
+    return DryRunTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
+        .result;
+  }
+
   //================================Pool RPC Methods===============================
 
-  Future<String> sendTransaction(transaction) async {
-    return SendTransactionRes.fromJson(await _request.requestRpc(ServiceUrl.sendTransaction, [transaction])).result;
+  Future<String> sendTransaction(SendTransaction transaction) async {
+    return SendTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
+        .result;
   }
 
   Future<String> traceTransaction(transaction) async {
-    return SendTransactionRes.fromJson(await _request.requestRpc(ServiceUrl.traceTransaction, [transaction])).result;
+    return SendTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.traceTransaction, [transaction]))
+        .result;
   }
 
   Future<List<TraceTransaction>> getTraceTransaction(String transationHash) async {
-    return TraceTransactionRes.fromJson(await _request.requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
+    return TraceTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
         .result;
   }
 }
