@@ -5,13 +5,13 @@
  * @LastEditTime: 2019-03-01 14:33:42
  * @Description: file content
  */
-import "package:ckb_sdk/ckb-types/item/out_point.dart";
 import 'package:ckb_sdk/ckb-types/item/cell_input.dart';
 import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
+import "package:ckb_sdk/ckb-types/item/out_point.dart";
 import 'package:ckb_sdk/ckb-types/item/witness.dart';
 
 class Transaction {
-  int version;
+  String version;
   String hash;
   List<OutPoint> deps;
   List<CellInput> inputs;
@@ -21,10 +21,14 @@ class Transaction {
   Transaction(this.version, this.hash, this.deps, this.inputs, this.outputs, this.witnesses);
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
-      json['version'] as int,
+      json['version'] as String,
       json['hash'] as String,
-      (json['deps'] as List)?.map((e) => e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))?.toList(),
-      (json['inputs'] as List)?.map((e) => e == null ? null : CellInput.fromJson(e as Map<String, dynamic>))?.toList(),
+      (json['deps'] as List)
+          ?.map((e) => e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
+      (json['inputs'] as List)
+          ?.map((e) => e == null ? null : CellInput.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
       (json['outputs'] as List)
           ?.map((e) => e == null ? null : CellOutput.fromJson(e as Map<String, dynamic>))
           ?.toList(),
