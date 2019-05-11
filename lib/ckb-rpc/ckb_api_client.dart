@@ -42,12 +42,8 @@ class CKBApiClient {
     try {
       return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
           .result;
-    } on RPCError catch (error) {
-      if (error.code == nullResultCode) {
-        return null;
-      } else {
-        rethrow;
-      }
+    } on NullResultException {
+      return null;
     } catch (error) {
       rethrow;
     }

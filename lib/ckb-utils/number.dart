@@ -87,7 +87,7 @@ List<int> toBytesPadded(BigInt value, int length) {
   }
 
   if (bytesLength > length) {
-    throw genericError("Input is too large to put in byte array of size " + length.toString());
+    throw CommonException("Input is too large to put in byte array of size " + length.toString());
   }
 
   int destOffset = length - bytesLength;

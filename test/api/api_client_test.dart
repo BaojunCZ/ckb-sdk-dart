@@ -4,15 +4,14 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new CKBApiClient("http://192.168.2.78:8114");
+  final apiClient = new CKBApiClient("http://192.168.99.123:8114");
 
   test("genesisBlockHash", () async {
     try {
       String blockHash = await apiClient.genesisBlockHash();
       expect(blockHash != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -22,8 +21,7 @@ void main() {
       jsonEncode(blockRes);
       expect(blockRes != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -32,8 +30,7 @@ void main() {
       String blockHash = await apiClient.getBlockHash("20");
       expect(blockHash != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -43,14 +40,13 @@ void main() {
         String hash = "0x0000000000000000000000000000000000000000000000000000000000000000";
         TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
         if (transactionWithStatus == null) {
-          print('This is no transaction');
+          print('There is no transaction');
         } else {
           jsonEncode(transactionWithStatus);
           expect(transactionWithStatus.transaction.hash, hash);
         }
       } catch (error) {
-        print(error.message);
-        expect(error.code, -1);
+        print(error.toString());
       }
     });
 
@@ -59,8 +55,7 @@ void main() {
         String hash = "0x3f292cbae324";
         await apiClient.getTransaction(hash);
       } catch (error) {
-        print(error.message);
-        expect(error.code, -1);
+        print(error.toString());
       }
     });
   });
@@ -71,8 +66,7 @@ void main() {
       jsonEncode(header);
       expect(header.hash != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -87,8 +81,7 @@ void main() {
                 '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21',
             true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -99,8 +92,7 @@ void main() {
       jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -109,8 +101,7 @@ void main() {
       String tipBlockNumber = await apiClient.getTipBlockNumber();
       expect(tipBlockNumber != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -120,8 +111,7 @@ void main() {
       jsonEncode(localNodeId);
       expect(localNodeId != null, true);
     } catch (error) {
-      print(error);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 
@@ -131,8 +121,7 @@ void main() {
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.message.toString());
     }
   });
 
@@ -142,8 +131,7 @@ void main() {
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
-      print(error.message);
-      expect(error.code, -1);
+      print(error.toString());
     }
   });
 }
