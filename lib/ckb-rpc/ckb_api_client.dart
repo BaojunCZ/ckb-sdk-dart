@@ -86,7 +86,7 @@ class CKBApiClient {
 
   //================================Pool RPC Methods===============================
 
-  Future<String> sendTransaction(transaction) async {
+  Future<String> sendTransaction(SendTransaction transaction) async {
     return SendTransactionRes.fromJson(
             await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;

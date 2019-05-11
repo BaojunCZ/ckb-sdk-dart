@@ -5,12 +5,13 @@
  * @LastEditTime: 2019-03-01 14:32:49
  * @Description: file content
  */
+import 'package:ckb_sdk/ckb-types/item/cell_input.dart';
 import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 import 'package:ckb_sdk/ckb-types/item/out_point.dart';
 
 class SendTransaction {
   List<OutPoint> deps;
-  List<SendCellInput> inputs;
+  List<CellInput> inputs;
   List<CellOutput> outputs;
   int version;
 
@@ -22,7 +23,7 @@ class SendTransaction {
             ?.map((e) => e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))
             ?.toList(),
         (json['inputs'] as List)
-            ?.map((e) => e == null ? null : SendCellInput.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null ? null : CellInput.fromJson(e as Map<String, dynamic>))
             ?.toList(),
         (json['outputs'] as List)
             ?.map((e) => e == null ? null : CellOutput.fromJson(e as Map<String, dynamic>))

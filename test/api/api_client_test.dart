@@ -134,4 +134,20 @@ void main() {
       print(error.toString());
     }
   });
+
+  test('send transaction', () async {
+    try {
+      var senTransaction = SendTransaction(2, [], [
+        CellInput(OutPoint('0xe080730192ad57002d647fedcdea78d844aa50c35d9238c482d011aab3d250e8', 0),
+            [], "0")
+      ], [
+        CellOutput('10000', '0x',
+            Script('0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5', []), null)
+      ]);
+      String hash = await apiClient.sendTransaction(senTransaction);
+      print(hash);
+    } catch (e) {
+      e.toString();
+    }
+  });
 }
