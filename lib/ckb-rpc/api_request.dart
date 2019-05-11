@@ -26,7 +26,7 @@ class ApiRequest {
     body["params"] = params;
     var response = await http
         .post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body))
-        .timeout(Duration(seconds: 20), onTimeout: () {
+        .timeout(Duration(seconds: 10), onTimeout: () {
       throw RPCTimeOutException(url);
     });
     id = id + 1;
