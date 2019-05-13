@@ -27,7 +27,7 @@ main() async {
   print(point.cell.index);
 
   CellWithStatus liveCellRes = await apiClient.getLiveCell(OutPoint(
-      '', CellOutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0)));
+      '', CellOutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")));
   print(liveCellRes.cell.capacity);
 
   String tipBlockNumber = await apiClient.getTipBlockNumber();

@@ -88,8 +88,14 @@ class CKBApiClient {
   }
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
-    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
-        .result;
+    try {
+      return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
+          .result;
+    } on NullResultException {
+      return null;
+    } catch (e) {
+      rethrow;
+    }
   }
 
   Future<TxPoolInfo> txPoolInfo() async {
@@ -112,14 +118,6 @@ class CKBApiClient {
   Future<Cycles> dryRunTransaction(SendTransaction transaction) async {
     return DryRunTransactionRes.fromJson(
             await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
-        .result;
-  }
-
-  //================================Pool RPC Methods===============================
-
-  Future<String> sendTransaction(SendTransaction transaction) async {
-    return SendTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;
   }
 
