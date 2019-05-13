@@ -30,8 +30,8 @@ String toHex(dynamic number, {bool pad = false, bool include0x = false, int forc
 List<int> numberToBytes(dynamic number) =>
     number is BigInt ? pcUtils.encodeBigInt(number) : hex.decode(toHex(number, pad: true));
 
-String bytesToHex(List<int> bytes, {bool include0x = false, int forcePadLen}) =>
-    toHex(bytesToInt(bytes), include0x: include0x, forcePadLen: forcePadLen);
+String bytesToHex(List<int> bytes, {bool pad = false, bool include0x = false, int forcePadLen}) =>
+    toHex(bytesToInt(bytes), pad: pad, include0x: include0x, forcePadLen: forcePadLen);
 
 String hexAdd0x(String hex) => hex.startsWith("0x") ? hex : "0x$hex";
 
@@ -87,7 +87,7 @@ List<int> toBytesPadded(BigInt value, int length) {
   }
 
   if (bytesLength > length) {
-    throw genericError("Input is too large to put in byte array of size " + length.toString());
+    throw CommonException("Input is too large to put in byte array of size " + length.toString());
   }
 
   int destOffset = length - bytesLength;

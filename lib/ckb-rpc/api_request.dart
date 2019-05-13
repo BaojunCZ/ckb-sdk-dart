@@ -7,6 +7,7 @@
  */
 import 'dart:convert';
 
+import 'package:ckb_sdk/ckb-types/item/error.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 import 'package:http/http.dart' as http;
 
@@ -20,36 +21,36 @@ class ApiRequest {
   }
 
   requestRpc(String url, params) async {
-    try {
-      var body = {"jsonrpc": jsonrpc, "id": id};
-      body["method"] = url;
-      body["params"] = params;
-      var response = await http.post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body));
-      id = id + 1;
-      if (response.statusCode == 200) {
-        return handlerResult(body, response.body);
-      } else {
-        throw genericError("Request failed with status: ${response.statusCode}.");
-      }
-    } catch (e) {
-      rethrow;
+    var body = {"jsonrpc": jsonrpc, "id": id};
+    body["method"] = url;
+    body["params"] = params;
+    var response = await http
+        .post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body))
+        .timeout(Duration(seconds: 10), onTimeout: () {
+      throw RPCTimeOutException(url);
+    });
+    id = id + 1;
+    if (response.statusCode == 200) {
+      return handlerResult(url, body, response.body);
+    } else {
+      throw RPCRequestException("Request failed with status: ${response.statusCode}.", url);
     }
   }
 
-  handlerResult(body, data) {
+  handlerResult(url, body, data) {
     if (null == data) {
-      throw emptyResponse;
+      throw EmptyResponseException(url);
     }
     var json = jsonDecode(data);
     if (null == json) {
-      throw emptyResponse;
+      throw EmptyResponseException(url);
     }
     if (null == json['result']) {
-      throw nullResult;
+      throw NullResultException(url);
     }
     if (null != json["error"]) {
       var error = json["error"];
-      throw getError(error["code"], error["message"]);
+      throw RPCErrorException(RPCError(error["code"], error["message"]), url);
     }
     return json;
   }

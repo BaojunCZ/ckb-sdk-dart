@@ -16,7 +16,6 @@ export 'package:ckb_sdk/ckb-types/tip_block_number_res.dart';
 export 'package:ckb_sdk/ckb-types/local_node_info_res.dart';
 export 'package:ckb_sdk/ckb-types/send_transaction_res.dart';
 export 'package:ckb_sdk/ckb-types/block_res.dart';
-export 'package:ckb_sdk/ckb-types/trace_transaction.dart';
 
 export 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
 export 'package:ckb_sdk/ckb-types/item/cell_input.dart';
@@ -31,5 +30,4 @@ export 'package:ckb_sdk/ckb-types/item/uncle_block.dart';
 export 'package:ckb_sdk/ckb-types/item/block.dart';
 export 'package:ckb_sdk/ckb-types/item/script.dart';
 export 'package:ckb_sdk/ckb-types/item/node_info.dart';
-export 'package:ckb_sdk/ckb-types/item/trace_transaction.dart';
 export 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
