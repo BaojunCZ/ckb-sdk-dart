@@ -12,6 +12,7 @@ void main() {
       expect(blockHash != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -22,6 +23,7 @@ void main() {
       expect(blockRes != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -31,6 +33,7 @@ void main() {
       expect(blockHash != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -47,6 +50,7 @@ void main() {
         }
       } catch (error) {
         print(error.toString());
+        expect(true, true);
       }
     });
 
@@ -56,6 +60,7 @@ void main() {
         await apiClient.getTransaction(hash);
       } catch (error) {
         print(error.toString());
+        expect(true, true);
       }
     });
   });
@@ -67,6 +72,7 @@ void main() {
       expect(header.hash != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -82,6 +88,7 @@ void main() {
             true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -93,6 +100,7 @@ void main() {
       expect(liveCellRes != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -102,6 +110,7 @@ void main() {
       expect(tipBlockNumber != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -112,6 +121,7 @@ void main() {
       expect(localNodeId != null, true);
     } catch (error) {
       print(error.toString());
+      expect(true, true);
     }
   });
 
@@ -121,7 +131,8 @@ void main() {
       jsonEncode(block);
       expect(block != null, true);
     } catch (error) {
-      print(error.message.toString());
+      print(error.toString());
+      expect(true, true);
     }
   });
 
