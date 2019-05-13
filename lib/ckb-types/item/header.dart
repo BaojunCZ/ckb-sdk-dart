@@ -17,12 +17,24 @@ class Header {
   String transactionsRoot;
   String proposalsHash;
   String witnessesRoot;
-  int unclesCount;
+  String unclesCount;
   String unclesHash;
-  int version;
+  String version;
 
-  Header(this.difficulty, this.hash, this.number, this.epoch, this.parentHash, this.seal, this.timestamp,
-      this.transactionsRoot, this.proposalsHash, this.witnessesRoot, this.unclesCount, this.unclesHash, this.version);
+  Header(
+      this.difficulty,
+      this.hash,
+      this.number,
+      this.epoch,
+      this.parentHash,
+      this.seal,
+      this.timestamp,
+      this.transactionsRoot,
+      this.proposalsHash,
+      this.witnessesRoot,
+      this.unclesCount,
+      this.unclesHash,
+      this.version);
 
   factory Header.fromJson(Map<String, dynamic> json) => Header(
       json['difficulty'] as String,
@@ -35,9 +47,9 @@ class Header {
       json['transactions_root'] as String,
       json['proposals_hash'] as String,
       json['witnesses_root'] as String,
-      json['uncles_count'] as int,
+      json['uncles_count'] as String,
       json['uncles_hash'] as String,
-      json['version'] as int);
+      json['version'] as String);
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'difficulty': difficulty,
@@ -62,6 +74,8 @@ class Seal {
 
   Seal(this.nonce, this.proof);
 
-  factory Seal.fromJson(Map<String, dynamic> json) => Seal(json['nonce'] as String, json['proof'] as String);
+  factory Seal.fromJson(Map<String, dynamic> json) =>
+      Seal(json['nonce'] as String, json['proof'] as String);
+
   Map<String, dynamic> toJson() => <String, dynamic>{'nonce': nonce, 'proof': proof};
 }

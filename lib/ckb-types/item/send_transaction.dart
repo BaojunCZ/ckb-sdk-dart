@@ -13,12 +13,12 @@ class SendTransaction {
   List<OutPoint> deps;
   List<CellInput> inputs;
   List<CellOutput> outputs;
-  int version;
+  String version;
 
   SendTransaction(this.version, this.deps, this.inputs, this.outputs);
 
   factory SendTransaction.fromJson(Map<String, dynamic> json) => SendTransaction(
-        json['version'] as int,
+        json['version'] as String,
         (json['deps'] as List)
             ?.map((e) => e == null ? null : OutPoint.fromJson(e as Map<String, dynamic>))
             ?.toList(),
