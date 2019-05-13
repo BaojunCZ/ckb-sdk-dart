@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.11.0
+
+Support [ ckb release v0.11.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.11.0)
+
+- add RPC getBlockByBlockNumber
+- add RPC request time out
+- add parse address
+
 ## 0.10.1
 
 Support [ ckb release v0.10.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.10.0)

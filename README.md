@@ -20,6 +20,8 @@ final apiClient = CKBApiClient(nodeUrl: NodeUrl);
 String blockHash = await apiClient.getBlockHash("1");
 ```
 
+You can see more JSON-RPC requests from [RPC Document](https://github.com/nervosnetwork/ckb/blob/develop/rpc/README.md)
+
 ### Address
 
 ```dart
