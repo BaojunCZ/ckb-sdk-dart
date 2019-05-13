@@ -13,7 +13,7 @@ import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 class CKBApiClient {
   ApiRequest _request;
 
-  CKBApiClient({String nodeUrl = 'http://192.168.2.78:8114'}) {
+  CKBApiClient(String nodeUrl) {
     _request = ApiRequest(nodeUrl);
   }
 
@@ -41,12 +41,8 @@ class CKBApiClient {
     try {
       return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
           .result;
-    } on RPCError catch (error) {
-      if (error.code == nullResultCode) {
-        return null;
-      } else {
-        rethrow;
-      }
+    } on NullResultException {
+      return null;
     } catch (error) {
       rethrow;
     }
@@ -127,15 +123,11 @@ class CKBApiClient {
         .result;
   }
 
-  Future<String> traceTransaction(transaction) async {
-    return SendTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.traceTransaction, [transaction]))
-        .result;
-  }
+  //================================Pool RPC Methods===============================
 
-  Future<List<TraceTransaction>> getTraceTransaction(String transationHash) async {
-    return TraceTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.getTransactionTrace, [transationHash]))
+  Future<String> sendTransaction(SendTransaction transaction) async {
+    return SendTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;
   }
 }

@@ -9,7 +9,7 @@ Dart SDK for [CKB](https://github.com/nervosnetwork/ckb).Nervos test network has
 
 To build CKB SDK, you'll need:
 
-* Dart sdk: ">=2.1.0 <3.0.0"
+- Dart sdk: ">=2.1.0 <3.0.0"
 
 ## Usage
 
@@ -20,16 +20,20 @@ final apiClient = CKBApiClient(nodeUrl: NodeUrl);
 String blockHash = await apiClient.getBlockHash("1");
 ```
 
+You can see more JSON-RPC requests from [RPC Document](https://github.com/nervosnetwork/ckb/blob/develop/rpc/README.md)
+
 ### Address
 
 ```dart
- var ckbAddress = CKBAddress(Network.TestNet);
- var address = ckbAddress.generate(PublicKey);
+ final ckbAddress = CKBAddress(Network.TestNet);
+ final address = ckbAddress.generate(PublicKey);
 ```
 
 You can find more in here.
 
 [api_client_example](example/api_client_example.dart)
+
+[address_example](example/address_example.dart)
 
 [test](test/)
 

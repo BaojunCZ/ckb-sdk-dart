@@ -7,16 +7,51 @@
  */
 import 'package:ckb_sdk/ckb-types/item/error.dart';
 
-final genericErrorCode = -1;
-final nullResultCode = -2;
-final invalidParameters = RPCError(genericErrorCode, "Invalid parameters");
-final emptyResponse = RPCError(genericErrorCode, "Empty response");
-final nullResult = RPCError(nullResultCode, "Null result");
+class RPCBaseException implements Exception {
+  final String url;
 
-genericError(String message) {
-  return RPCError(genericErrorCode, message);
+  RPCBaseException(this.url);
 }
 
-getError(code, message) {
-  return RPCError(code, message);
+class NullResultException extends RPCBaseException {
+  NullResultException(String url) : super(url);
+
+  String toString() => '"$url": Null result';
+}
+
+class RPCTimeOutException extends RPCBaseException {
+  RPCTimeOutException(String url) : super(url);
+
+  String toString() => '"$url": RPC TimeOut';
+}
+
+class EmptyResponseException extends RPCBaseException {
+  EmptyResponseException(String url) : super(url);
+
+  String toString() => '"$url": Empty response';
+}
+
+class RPCRequestException extends RPCBaseException {
+  final String message;
+  final String url;
+
+  RPCRequestException(this.message, this.url) : super(url);
+
+  String toString() => '"$url": ' + message;
+}
+
+class RPCErrorException extends RPCBaseException {
+  final RPCError error;
+  final String url;
+  RPCErrorException(this.error, this.url) : super(url);
+
+  String toString() => '"$url": RPC Error Code ${error.code}, Message: ${error.message}';
+}
+
+class CommonException {
+  final String message;
+
+  CommonException(this.message);
+
+  String toString() => message;
 }
