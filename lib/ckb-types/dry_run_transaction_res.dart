@@ -1,5 +1,5 @@
 import 'package:ckb_sdk/ckb-types/item/cycles.dart';
-import 'package:ckb_sdk/ckb_sdk.dart';
+import 'package:ckb_sdk/ckb-types/response.dart';
 
 class DryRunTransactionRes extends RPCResponse<Cycles> {
   DryRunTransactionRes(int id, String jsonrpc, Cycles result, RPCError error)
