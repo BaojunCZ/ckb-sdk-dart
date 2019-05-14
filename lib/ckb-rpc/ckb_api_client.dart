@@ -7,8 +7,35 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_sdk/ckb-types/block_res.dart';
+import 'package:ckb_sdk/ckb-types/blockchain_info_res.dart';
+import 'package:ckb_sdk/ckb-types/blockhash_res.dart';
+import 'package:ckb_sdk/ckb-types/cells_by_lock_hash_res.dart';
 import 'package:ckb_sdk/ckb-types/compute_transaction_hash_res.dart';
-import 'package:ckb_sdk/ckb-types/res_export.dart';
+import 'package:ckb_sdk/ckb-types/dry_run_transaction_res.dart';
+import 'package:ckb_sdk/ckb-types/epoch_res.dart';
+import 'package:ckb_sdk/ckb-types/header_res.dart';
+import 'package:ckb_sdk/ckb-types/item/block.dart';
+import 'package:ckb_sdk/ckb-types/item/blockchain_info.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_with_status.dart';
+import 'package:ckb_sdk/ckb-types/item/cycles.dart';
+import 'package:ckb_sdk/ckb-types/item/epoch.dart';
+import 'package:ckb_sdk/ckb-types/item/header.dart';
+import 'package:ckb_sdk/ckb-types/item/node_info.dart';
+import 'package:ckb_sdk/ckb-types/item/out_point.dart';
+import 'package:ckb_sdk/ckb-types/item/peer_state.dart';
+import 'package:ckb_sdk/ckb-types/item/send_transaction.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
+import 'package:ckb_sdk/ckb-types/item/tx_pool_info.dart';
+import 'package:ckb_sdk/ckb-types/live_cell_res.dart';
+import 'package:ckb_sdk/ckb-types/local_node_info_res.dart';
+import 'package:ckb_sdk/ckb-types/peer_state_res.dart';
+import 'package:ckb_sdk/ckb-types/peers_res.dart';
+import 'package:ckb_sdk/ckb-types/send_transaction_res.dart';
+import 'package:ckb_sdk/ckb-types/tip_block_number_res.dart';
+import 'package:ckb_sdk/ckb-types/transaction_res.dart';
+import 'package:ckb_sdk/ckb-types/tx_pool_info_res.dart';
 
 class CKBApiClient {
   ApiRequest _request;

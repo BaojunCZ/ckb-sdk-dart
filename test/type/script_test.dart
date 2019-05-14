@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb_sdk.dart';
+import 'package:ckb_sdk/ckb-types/item/script.dart';
 import 'package:test/test.dart';
 
 void main() {
