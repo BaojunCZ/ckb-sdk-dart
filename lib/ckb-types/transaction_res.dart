@@ -18,6 +18,10 @@ class TransactionRes extends RPCResponse<TransactionWithStatus> {
         json['result'] == null ? null : TransactionWithStatus.fromJson(json['result']),
         json['error'] == null ? null : RPCError.fromJson(json['error']));
   }
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'id': this.id, 'jsonrpc': this.jsonrpc, 'result': this.result, 'error': this.error};
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': this.id,
+        'jsonrpc': this.jsonrpc,
+        'result': this.result,
+        'error': this.error
+      };
 }

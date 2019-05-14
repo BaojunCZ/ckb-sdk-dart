@@ -45,9 +45,6 @@ class ApiRequest {
     if (null == json) {
       throw EmptyResponseException(url);
     }
-    if (null == json['result']) {
-      throw NullResultException(url);
-    }
     if (null != json["error"]) {
       var error = json["error"];
       throw RPCErrorException(RPCError(error["code"], error["message"]), url);
