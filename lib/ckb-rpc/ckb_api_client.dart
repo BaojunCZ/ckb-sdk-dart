@@ -7,6 +7,7 @@
  */
 import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
+import 'package:ckb_sdk/ckb-types/compute_transaction_hash_res.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
@@ -98,10 +99,6 @@ class CKBApiClient {
     }
   }
 
-  Future<TxPoolInfo> txPoolInfo() async {
-    return TxPoolInfoRes.fromJson(await _request.requestRpc(ServiceUrl.txPoolInfo, [])).result;
-  }
-
   Future<List<NodeInfo>> getPeers() async {
     return PeersRes.fromJson(await _request.requestRpc(ServiceUrl.getPeers, [])).result;
   }
@@ -115,17 +112,27 @@ class CKBApiClient {
     return PeerStateRes.fromJson(await _request.requestRpc(ServiceUrl.getPeersState, [])).result;
   }
 
-  Future<Cycles> dryRunTransaction(SendTransaction transaction) async {
-    return DryRunTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
-        .result;
-  }
-
   //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(SendTransaction transaction) async {
     return SendTransactionRes.fromJson(
             await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;
+  }
+
+  Future<Cycles> dryRunTransaction(SendTransaction transaction) async {
+    return DryRunTransactionRes.fromJson(
+            await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
+        .result;
+  }
+
+  Future<String> computeTransactionHash(SendTransaction transaction) async {
+    return ComputeTransactionHashRes.fromJson(
+            await _request.requestRpc(ServiceUrl.computeTransactionHash, transaction))
+        .result;
+  }
+
+  Future<TxPoolInfo> txPoolInfo() async {
+    return TxPoolInfoRes.fromJson(await _request.requestRpc(ServiceUrl.txPoolInfo, [])).result;
   }
 }

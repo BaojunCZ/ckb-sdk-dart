@@ -25,4 +25,5 @@ class ServiceUrl {
   static final getBlockchainInfo = 'get_blockchain_info';
   static final getPeersState = 'get_peers_state';
   static final dryRunTransaction = 'dry_run_transaction';
+  static final computeTransactionHash = '_compute_transaction_hash';
 }
