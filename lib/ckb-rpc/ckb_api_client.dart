@@ -9,7 +9,6 @@ import 'package:ckb_sdk/ckb-rpc/api_request.dart';
 import 'package:ckb_sdk/ckb-rpc/service_url.dart';
 import 'package:ckb_sdk/ckb-types/compute_transaction_hash_res.dart';
 import 'package:ckb_sdk/ckb-types/res_export.dart';
-import 'package:ckb_sdk/ckb_error/ckb_error.dart';
 
 class CKBApiClient {
   ApiRequest _request;
@@ -23,12 +22,7 @@ class CKBApiClient {
   }
 
   Future<Block> genesisBlock() async {
-    String blockHash = await genesisBlockHash();
-    if (blockHash != null) {
-      return await getBlock(blockHash);
-    } else {
-      return null;
-    }
+    return await getBlock(await genesisBlockHash());
   }
 
   //==============================Chain RPC Methods================================
@@ -39,14 +33,8 @@ class CKBApiClient {
   }
 
   Future<TransactionWithStatus> getTransaction(String hash) async {
-    try {
-      return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
-          .result;
-    } on NullResultException {
-      return null;
-    } catch (error) {
-      rethrow;
-    }
+    return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
+        .result;
   }
 
   Future<Header> getTipHeader() async {
@@ -89,14 +77,8 @@ class CKBApiClient {
   }
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
-    try {
-      return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
-          .result;
-    } on NullResultException {
-      return null;
-    } catch (e) {
-      rethrow;
-    }
+    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
+        .result;
   }
 
   Future<List<NodeInfo>> getPeers() async {
