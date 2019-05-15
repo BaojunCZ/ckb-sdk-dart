@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:ckb_sdk/ckb-types/item/block.dart';
 import 'package:ckb_sdk/ckb-types/item/blockchain_info.dart';
@@ -22,7 +21,7 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new CKBApiClient("http://47.97.171.140:8114");
+  final apiClient = new CKBApiClient("http://192.168.2.78:8114");
 
   test("genesisBlockHash", () async {
     try {
