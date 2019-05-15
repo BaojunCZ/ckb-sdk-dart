@@ -5,6 +5,7 @@ import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
 import 'package:ckb_sdk/ckb_address/address_config.dart';
+import 'package:convert/convert.dart';
 
 class CKBAddress {
   final Network network;
@@ -13,7 +14,7 @@ class CKBAddress {
 
   String generate(String publicKey) {
     // Payload: type(01) | bin-idx("P2PH") | pubkey blake160
-    String payload = TYPE + _binIdx(BIN_IDX) + blake160(publicKey);
+    String payload = TYPE1 + _binIdx(BIN_IDX1) + blake160(publicKey);
     Uint8List data = hexStringToByteArray(payload);
     Bech32Codec bech32codec = Bech32Codec();
     return bech32codec.encode(Bech32(_prefix(), _convertBits(data, 8, 5, true)));
@@ -27,6 +28,15 @@ class CKBAddress {
       return null;
     }
     return Bech32(parsed.hrp, data);
+  }
+
+  String blake160FromAddress(String address) {
+    Bech32 bech32 = parse(address);
+    String payload = hex.encode(bech32.data);
+    if (payload.startsWith(TYPE1)) {
+      return payload.replaceAll(TYPE1 + _binIdx(BIN_IDX1), "");
+    }
+    return null;
   }
 
   Uint8List _convertBits(Uint8List data, int fromBits, int toBits, bool pad) {

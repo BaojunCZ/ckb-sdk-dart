@@ -1,6 +1,6 @@
-const String TYPE = "01";
+const String TYPE1 = "01";
 
-const String BIN_IDX = "P2PH";
+const String BIN_IDX1 = "P2PH";
 
 const String MainNetPrefix = "ckb";
 const String TestNetPrefix = "ckt";
