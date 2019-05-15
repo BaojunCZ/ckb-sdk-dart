@@ -13,7 +13,7 @@ class OutPoint {
 
   OutPoint(this.blockHash, this.cell);
 
-  factory OutPoint.fromJson(Map<String, dynamic> json) =>
-      OutPoint(json['block_hash'] as String, json['cell'] == null ? null : CellOutPoint.fromJson(json['cell']));
+  factory OutPoint.fromJson(Map<String, dynamic> json) => OutPoint(json['block_hash'] as String,
+      json['cell'] == null ? null : CellOutPoint.fromJson(json['cell']));
   Map<String, dynamic> toJson() => <String, dynamic>{'block_hash': blockHash, 'cell': cell};
 }

@@ -25,7 +25,7 @@ import 'package:ckb_sdk/ckb-types/item/header.dart';
 import 'package:ckb_sdk/ckb-types/item/node_info.dart';
 import 'package:ckb_sdk/ckb-types/item/out_point.dart';
 import 'package:ckb_sdk/ckb-types/item/peer_state.dart';
-import 'package:ckb_sdk/ckb-types/item/send_transaction.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction.dart';
 import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb-types/item/tx_pool_info.dart';
 import 'package:ckb_sdk/ckb-types/live_cell_res.dart';
@@ -123,19 +123,19 @@ class CKBApiClient {
 
   //================================Pool RPC Methods===============================
 
-  Future<String> sendTransaction(SendTransaction transaction) async {
+  Future<String> sendTransaction(Transaction transaction) async {
     return SendTransactionRes.fromJson(
             await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
         .result;
   }
 
-  Future<Cycles> dryRunTransaction(SendTransaction transaction) async {
+  Future<Cycles> dryRunTransaction(Transaction transaction) async {
     return DryRunTransactionRes.fromJson(
             await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
         .result;
   }
 
-  Future<String> computeTransactionHash(SendTransaction transaction) async {
+  Future<String> computeTransactionHash(Transaction transaction) async {
     return ComputeTransactionHashRes.fromJson(
             await _request.requestRpc(ServiceUrl.computeTransactionHash, transaction))
         .result;

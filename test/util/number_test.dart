@@ -1,5 +1,5 @@
-import 'package:test/test.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
+import 'package:test/test.dart';
 
 main() {
   test('hex string to byte array', () {

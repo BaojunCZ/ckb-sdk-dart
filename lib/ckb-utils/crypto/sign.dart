@@ -75,23 +75,20 @@ MsgSignature sign(Uint8List messageHash, Uint8List privateKey) {
   }
 
   if (recId == -1) {
-    throw new Exception(
-        "Could not construct a recoverable key. This should never happen");
+    throw new Exception("Could not construct a recoverable key. This should never happen");
   }
 
   return new MsgSignature(Uint8List.fromList(number.toBytesPadded(sig.r, 32)),
       Uint8List.fromList(number.toBytesPadded(sig.s, 32)), recId);
 }
 
-BigInt _recoverFromSignature(
-    int recId, ECSignature sig, Uint8List msg, ECDomainParameters params) {
+BigInt _recoverFromSignature(int recId, ECSignature sig, Uint8List msg, ECDomainParameters params) {
   var n = params.n;
   var i = new BigInt.from(recId ~/ 2);
   var x = sig.r + (i * n);
 
-  var prime = BigInt.parse(
-      "fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
-      radix: 16);
+  var prime =
+      BigInt.parse("fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f", radix: 16);
   if (x.compareTo(prime) >= 0) return null;
 
   var R = _decompressKey(x, (recId & 1) == 1, params.curve);

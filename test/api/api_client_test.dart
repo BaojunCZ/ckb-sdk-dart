@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:ckb_sdk/ckb-types/item/block.dart';
 import 'package:ckb_sdk/ckb-types/item/blockchain_info.dart';
@@ -14,14 +15,14 @@ import 'package:ckb_sdk/ckb-types/item/node_info.dart';
 import 'package:ckb_sdk/ckb-types/item/out_point.dart';
 import 'package:ckb_sdk/ckb-types/item/peer_state.dart';
 import 'package:ckb_sdk/ckb-types/item/script.dart';
-import 'package:ckb_sdk/ckb-types/item/send_transaction.dart';
+import 'package:ckb_sdk/ckb-types/item/transaction.dart';
 import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb-types/item/tx_pool_info.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new CKBApiClient("http://192.168.2.78:8114");
+  final apiClient = new CKBApiClient("http://47.97.171.140:8114");
 
   test("genesisBlockHash", () async {
     try {
@@ -57,12 +58,12 @@ void main() {
   group("get transaction", () {
     test("with right params", () async {
       try {
-        String hash = "0x0000000000000000000000000000000000000000000000000000000000000000";
+        String hash = "0x64fa471337dc027c11f1adae9d2224f9c86541b26d8e1cb6df768b1bc1568b5b";
         TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
         if (transactionWithStatus == null) {
           print('There is no transaction');
         } else {
-          jsonEncode(transactionWithStatus);
+          print(jsonEncode(transactionWithStatus));
           expect(transactionWithStatus.transaction.hash, hash);
         }
       } catch (error) {
@@ -166,7 +167,7 @@ void main() {
 
   test('send transaction', () async {
     try {
-      var senTransaction = SendTransaction("0", [], [
+      var transaction = Transaction("0", "", [], [
         CellInput(
             OutPoint(
                 '',
@@ -177,8 +178,8 @@ void main() {
       ], [
         CellOutput('10000', '0x',
             Script('0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5', []), null)
-      ]);
-      String hash = await apiClient.sendTransaction(senTransaction);
+      ], []);
+      String hash = await apiClient.sendTransaction(transaction);
       print(hash);
     } catch (e) {
       e.toString();
@@ -257,7 +258,7 @@ void main() {
 
   test('compute transaction hash', () async {
     try {
-      var senTransaction = SendTransaction("0", [], [
+      var transaction = Transaction("0", "", [], [
         CellInput(
             OutPoint(
                 '',
@@ -268,8 +269,8 @@ void main() {
       ], [
         CellOutput('10000', '0x',
             Script('0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5', []), null)
-      ]);
-      String hash = await apiClient.computeTransactionHash(senTransaction);
+      ], []);
+      String hash = await apiClient.computeTransactionHash(transaction);
       print(hash);
     } catch (e) {
       print(e.toString());
@@ -279,7 +280,7 @@ void main() {
 
   test('dry run transaction', () async {
     try {
-      var senTransaction = SendTransaction("0", [], [
+      var senTransaction = Transaction("0", "", [], [
         CellInput(
             OutPoint(
                 '',
@@ -290,7 +291,7 @@ void main() {
       ], [
         CellOutput('10000', '0x',
             Script('0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5', []), null)
-      ]);
+      ], []);
       Cycles cycles = await apiClient.dryRunTransaction(senTransaction);
       print(cycles.cycles);
     } catch (e) {
