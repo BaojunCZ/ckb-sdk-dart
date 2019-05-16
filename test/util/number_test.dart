@@ -7,4 +7,8 @@ main() {
     expect(hexStringToByteArray("0"), [0]);
     expect(hexStringToByteArray("0x123"), [0x1, 0x23]);
   });
+
+  test('litlle endian', () {
+    expect(littleEndian(71), "0x4700000000000000");
+  });
 }
