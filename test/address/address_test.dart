@@ -41,4 +41,11 @@ main() {
     String hash = bytesToHex(bech32.data, include0x: true, pad: true);
     expect(hash, payload);
   });
+
+  test('public key from address', () {
+    var ckbAddress = CKBAddress(Network.TestNet);
+    String address = "ckt1q9gry5zgxmpjnmtrp4kww5r39frh2sm89tdt2l6v234ygf";
+    String publicKey = ckbAddress.blake160FromAddress(address);
+    expect(publicKey, "36c329ed630d6ce750712a477543672adab57f4c");
+  });
 }
