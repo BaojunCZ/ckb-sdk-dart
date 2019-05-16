@@ -131,13 +131,13 @@ class CKBApiClient {
 
   Future<Cycles> dryRunTransaction(Transaction transaction) async {
     return DryRunTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.dryRunTransaction, transaction))
+            await _request.requestRpc(ServiceUrl.dryRunTransaction, [transaction]))
         .result;
   }
 
   Future<String> computeTransactionHash(Transaction transaction) async {
     return ComputeTransactionHashRes.fromJson(
-            await _request.requestRpc(ServiceUrl.computeTransactionHash, transaction))
+            await _request.requestRpc(ServiceUrl.computeTransactionHash, [transaction]))
         .result;
   }
 
