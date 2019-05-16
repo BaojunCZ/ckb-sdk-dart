@@ -49,7 +49,7 @@ class CKBApiClient {
   }
 
   Future<Block> genesisBlock() async {
-    return await getBlock(await genesisBlockHash());
+    return await getBlockByBlockNumber("0");
   }
 
   //==============================Chain RPC Methods================================
