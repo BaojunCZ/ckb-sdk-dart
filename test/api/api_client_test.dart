@@ -57,7 +57,7 @@ void main() {
   group("get transaction", () {
     test("with right params", () async {
       try {
-        String hash = "0x64fa471337dc027c11f1adae9d2224f9c86541b26d8e1cb6df768b1bc1568b5b";
+        String hash = "0xd79b165d2b0062ed2b2f56938be56112a915df8a2dd6ec49c931e1fc5c9bfc93";
         TransactionWithStatus transactionWithStatus = await apiClient.getTransaction(hash);
         if (transactionWithStatus == null) {
           print('There is no transaction');
@@ -111,8 +111,8 @@ void main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCellRes = await apiClient.getLiveCell(OutPoint('',
-          CellOutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")));
+      CellWithStatus liveCellRes = await apiClient.getLiveCell(OutPoint(null,
+          CellOutPoint("0xa824b7338f72b4af93ce79d57cc257e7014b7c120eac43d3b002503d78971cda", "1")));
       jsonEncode(liveCellRes);
       expect(liveCellRes != null, true);
     } catch (error) {
@@ -144,8 +144,9 @@ void main() {
 
   test("get block by block hash", () async {
     try {
-      Block block = await apiClient.getBlock(await apiClient.getBlockHash("20"));
-      jsonEncode(block);
+      Block block = await apiClient
+          .getBlock("0xfe9c111a4149e553f8bfc93cbc518d59eb7f073ac74e1ffa1369d4c5a77cdb48");
+      print(block.header.number);
       expect(block != null, true);
     } catch (error) {
       print(error.toString());
@@ -155,8 +156,8 @@ void main() {
 
   test('get block by block number', () async {
     try {
-      Block block = await apiClient.getBlockByBlockNumber("20");
-      jsonEncode(block);
+      Block block = await apiClient.getBlockByBlockNumber("8869");
+      print(jsonEncode(block));
       expect(block != null, true);
     } catch (error) {
       print(error.toString());

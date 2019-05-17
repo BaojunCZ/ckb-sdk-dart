@@ -9,6 +9,7 @@ import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 
 class CellWithStatus {
   static String LIVE = 'live';
+  static String DEAD = 'dead';
 
   CellOutput cell;
   String status;
