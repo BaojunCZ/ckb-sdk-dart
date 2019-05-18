@@ -16,7 +16,7 @@ class RPCResponse<T> {
 
   RPCResponse(this.id, this.jsonrpc, this.result, this.error);
 
-   Map<String, dynamic> toJson() => <String, dynamic>{
+  Map<String, dynamic> toJson() => <String, dynamic>{
         'id': this.id,
         'jsonrpc': this.jsonrpc,
         'result': this.result,

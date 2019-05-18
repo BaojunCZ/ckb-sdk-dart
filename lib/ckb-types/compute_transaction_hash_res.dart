@@ -1,17 +1,11 @@
-/*
- * @Author: BaojunCZ
- * @Date: 2019-01-11 11:56:20
- * @LastEditors: your name
- * @LastEditTime: 2019-03-11 17:54:23
- * @Description: file content
- */
 import 'package:ckb_sdk/ckb-types/response.dart';
 
-class SendTransactionRes extends RPCResponse<String> {
-  SendTransactionRes(id, jsonrpc, result, error) : super(id, jsonrpc, result, error);
+class ComputeTransactionHashRes extends RPCResponse<String> {
+  ComputeTransactionHashRes(int id, String jsonrpc, String result, RPCError error)
+      : super(id, jsonrpc, result, error);
 
-  factory SendTransactionRes.fromJson(Map<String, dynamic> json) {
-    return SendTransactionRes(
+  factory ComputeTransactionHashRes.fromJson(Map<String, dynamic> json) {
+    return ComputeTransactionHashRes(
         json['id'],
         json['jsonrpc'],
         json['result'] == null ? null : json['result'],

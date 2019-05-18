@@ -1,7 +1,8 @@
-import 'package:pointycastle/src/utils.dart' as pcUtils;
-import 'package:convert/convert.dart';
 import 'dart:typed_data';
+
 import 'package:ckb_sdk/ckb_error/ckb_error.dart';
+import 'package:convert/convert.dart';
+import 'package:pointycastle/src/utils.dart' as pcUtils;
 
 BigInt bytesToInt(List<int> bytes) => pcUtils.decodeBigInt(bytes);
 
@@ -72,8 +73,21 @@ int digitHex(String hex) {
   }
 }
 
+String littleEndian(int number) {
+  List<int> bytes = toBytesPadded(BigInt.from(number), 8);
+  for (int i = 0; i < bytes.length / 2; i++) {
+    int temp = bytes[i];
+    bytes[i] = bytes[bytes.length - 1 - i];
+    bytes[bytes.length - 1 - i] = temp;
+  }
+  return bytesToHex(bytes, include0x: true);
+}
+
 List<int> toBytesPadded(BigInt value, int length) {
-  List<int> result = List<int>(length);
+  List<int> result = [];
+  for (int i = 0; i < length; i++) {
+    result.add(0);
+  }
   List<int> bytes = intToBytes(value);
 
   int bytesLength;

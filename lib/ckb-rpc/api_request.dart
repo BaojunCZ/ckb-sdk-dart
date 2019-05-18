@@ -20,13 +20,13 @@ class ApiRequest {
     _nodeUrl = nodeUrl;
   }
 
-  requestRpc(String url, params) async {
+  requestRpc(String url, List params) async {
     var body = {"jsonrpc": jsonrpc, "id": id};
     body["method"] = url;
     body["params"] = params;
     var response = await http
         .post(_nodeUrl, headers: {'Content-type': 'application/json'}, body: jsonEncode(body))
-        .timeout(Duration(seconds: 10), onTimeout: () {
+        .timeout(Duration(seconds: 20), onTimeout: () {
       throw RPCTimeOutException(url);
     });
     id = id + 1;
@@ -44,9 +44,6 @@ class ApiRequest {
     var json = jsonDecode(data);
     if (null == json) {
       throw EmptyResponseException(url);
-    }
-    if (null == json['result']) {
-      throw NullResultException(url);
     }
     if (null != json["error"]) {
       var error = json["error"];

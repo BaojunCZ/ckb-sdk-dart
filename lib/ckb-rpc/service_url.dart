@@ -15,5 +15,15 @@ class ServiceUrl {
   static final tipBlockNumber = "get_tip_block_number";
   static final localNodeInfo = "local_node_info";
   static final sendTransaction = "send_transaction";
+  static final traceTransaction = "trace_transaction";
+  static final getTransactionTrace = "get_transaction_trace";
   static final getBlockByBlockNumber = "get_block_by_number";
+  static final getCurrentEpoch = 'get_current_epoch';
+  static final getEpochByNumber = 'get_epoch_by_number';
+  static final getPeers = 'get_peers';
+  static final txPoolInfo = 'tx_pool_info';
+  static final getBlockchainInfo = 'get_blockchain_info';
+  static final getPeersState = 'get_peers_state';
+  static final dryRunTransaction = 'dry_run_transaction';
+  static final computeTransactionHash = '_compute_transaction_hash';
 }

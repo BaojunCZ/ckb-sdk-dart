@@ -3,7 +3,6 @@ import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
 import 'package:ckb_sdk/ckb_address/ckb_address.dart';
-import 'package:convert/convert.dart';
 import 'package:test/test.dart';
 
 main() {
@@ -15,8 +14,8 @@ main() {
   test('publicKey hash to address TestNet', () {
     var ckbAddress = CKBAddress(Network.TestNet);
     var address =
-        ckbAddress.generate("0x024a501efd328e062c8675f2365970728c859c592beeefd6be8ead3d901330bc01");
-    expect("ckt1q9gry5zgxmpjnmtrp4kww5r39frh2sm89tdt2l6v234ygf", address);
+        ckbAddress.generate("390e45945092cbd81192cadd8ef268a398b49f521173d4c135f88893232b5c1af");
+    expect("ckt1q9gry5zgqnlmxcfvrjrm6m2ck2cmg9zev2rrpnnc3d940f", address);
   });
 
   test('publicKey hash to address MainNet', () {
@@ -40,5 +39,12 @@ main() {
     Bech32 bech32 = ckbAddress.parse(address);
     String hash = bytesToHex(bech32.data, include0x: true, pad: true);
     expect(hash, payload);
+  });
+
+  test('public key from address', () {
+    var ckbAddress = CKBAddress(Network.TestNet);
+    String address = "ckt1q9gry5zgxmpjnmtrp4kww5r39frh2sm89tdt2l6v234ygf";
+    String publicKey = ckbAddress.blake160FromAddress(address);
+    expect(publicKey, "36c329ed630d6ce750712a477543672adab57f4c");
   });
 }

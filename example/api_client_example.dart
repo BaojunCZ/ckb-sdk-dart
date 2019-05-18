@@ -1,6 +1,13 @@
 import 'dart:convert';
 
 import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
+import 'package:ckb_sdk/ckb-types/item/block.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
+import 'package:ckb_sdk/ckb-types/item/cell_with_status.dart';
+import 'package:ckb_sdk/ckb-types/item/header.dart';
+import 'package:ckb_sdk/ckb-types/item/node_info.dart';
+import 'package:ckb_sdk/ckb-types/item/out_point.dart';
 import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
 
@@ -13,17 +20,23 @@ main() async {
   print(jsonEncode(blockRes));
   String blockHash = await apiClient.getBlockHash("20");
   print(blockHash);
-  TransactionWithStatus transactionWithStatus =
-      await apiClient.getTransaction('0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324');
+  TransactionWithStatus transactionWithStatus = await apiClient
+      .getTransaction('0x3abd21e6e51674bb961bb4c5f3cee9faa5da30e64be10628dc1cef292cbae324');
   print(jsonEncode(transactionWithStatus));
   Header header = await apiClient.getTipHeader();
-  print(jsonEncode(header));
+  print(header.number);
+
   List<CellWithOutPoint> cells = await apiClient.getCellsByLockHash(
-      '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', '0', '2');
-  print(jsonEncode(cells));
-  CellWithStatus liveCellRes = await apiClient
-      .getLiveCell(new OutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", 0));
-  print(jsonEncode(liveCellRes));
+      '0x0da2fe99fe549e082d4ed483c2e968a89ea8d11aabf5d79e5cbf06522de6e674', "1", "1000");
+  CellWithOutPoint cell = cells[0];
+  OutPoint point = cell.outPoint;
+  print(point.cell.txHash);
+  print(point.cell.index);
+
+  CellWithStatus liveCellRes = await apiClient.getLiveCell(OutPoint(
+      '', CellOutPoint("0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")));
+  print(liveCellRes.cell.capacity);
+
   String tipBlockNumber = await apiClient.getTipBlockNumber();
   print(tipBlockNumber);
   NodeInfo localNodeId = await apiClient.getLocalNodeInfo();
