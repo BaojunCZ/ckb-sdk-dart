@@ -10,6 +10,6 @@ main() {
 
   test("blake2bUtf8String", () {
     String hash = blake2bUtf8String("The quick brown fox jumps over the lazy dog");
-    expect("0xabfa2c08d62f6f567d088d6ba41d3bbbb9a45c241a8e3789ef39700060b5cee2", hash);
+    expect("abfa2c08d62f6f567d088d6ba41d3bbbb9a45c241a8e3789ef39700060b5cee2", hash);
   });
 }
