@@ -21,7 +21,7 @@ String blake2bHexString(String hexInput) {
 }
 
 String blake2bUtf8String(String utf8Input) {
-  return number.bytesToHex(blake2b(utf8.encode(utf8Input)), include0x: true);
+  return number.bytesToHex(blake2b(utf8.encode(utf8Input)));
 }
 
 String lockScriptToHash(Script script) {
