@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.12.0
+
+Support [ ckb release v0.12.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.12.0)
+
+- add sign transaction hash to witness
+- add RPC txPoolInfo,getPeers,epoch,dryTransaction,computeTransactionHash
+
 ## 0.11.0
 
 Support [ ckb release v0.11.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.11.0)
