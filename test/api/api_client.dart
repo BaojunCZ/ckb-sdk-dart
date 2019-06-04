@@ -173,7 +173,6 @@ void main() {
                 '',
                 CellOutPoint(
                     "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")),
-            [],
             "0")
       ], [
         CellOutput('10000', '0x',
@@ -264,7 +263,6 @@ void main() {
                 '',
                 CellOutPoint(
                     "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")),
-            [],
             "0")
       ], [
         CellOutput('10000', '0x',
@@ -286,7 +284,6 @@ void main() {
                 '',
                 CellOutPoint(
                     "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")),
-            [],
             "0")
       ], [
         CellOutput('10000', '0x',
