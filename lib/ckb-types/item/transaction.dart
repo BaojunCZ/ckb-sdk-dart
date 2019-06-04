@@ -5,10 +5,17 @@
  * @LastEditTime: 2019-03-01 14:33:42
  * @Description: file content
  */
+import 'dart:typed_data';
+
 import 'package:ckb_sdk/ckb-types/item/cell_input.dart';
 import 'package:ckb_sdk/ckb-types/item/cell_output.dart';
 import "package:ckb_sdk/ckb-types/item/out_point.dart";
 import 'package:ckb_sdk/ckb-types/item/witness.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
+import 'package:ckb_sdk/ckb-utils/crypto/sign.dart';
+import 'package:ckb_sdk/ckb-utils/number.dart';
+import 'package:ckb_sdk/ckb_error/ckb_error.dart';
+import 'package:convert/convert.dart';
 
 class Transaction {
   String version;
@@ -44,4 +51,19 @@ class Transaction {
         'outputs': outputs,
         'witnesses': witnesses,
       };
+
+  signTx(List<Uint8List> privateKeys, String txHash) {
+    if (privateKeys.length != witnesses.length) {
+      throw InvalidNumberOfWitnessesException();
+    }
+    for (int i = 0; i < witnesses.length; i++) {
+      final oldData = witnesses[i].data;
+      var txHashBytes = hex.decode(remove0x(txHash));
+      Uint8List signatureBytes = sign(txHashBytes, privateKeys[i]).getDerSignature();
+      String signature = bytesToHex(signatureBytes, include0x: true);
+      String publicKey =
+          bytesToHex(publicKeyFromPrivate(privateKeys[i]), include0x: true, forcePadLen: 66);
+      witnesses[i].data = [publicKey, signature, ...oldData];
+    }
+  }
 }

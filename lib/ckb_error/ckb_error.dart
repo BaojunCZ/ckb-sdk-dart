@@ -48,6 +48,10 @@ class RPCErrorException extends RPCBaseException {
   String toString() => '"$url": RPC Error Code ${error.code}, Message: ${error.message}';
 }
 
+class InvalidNumberOfWitnessesException implements Exception {
+  String toString() => "Check your inputs size and private key size";
+}
+
 class CommonException {
   final String message;
 
