@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.13.0
+
+Support [ ckb release v0.13.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.13.0)
+
+### Features
+
+- update data type in RPC tx_pool_info ([41c4120](https://github.com/BaojunCZ/ckb-sdk-dart/commit/41c4120ebc247d744d01113cb2785394445c5b1e))
+
 ## 0.12.0
 
 Support [ ckb release v0.12.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.12.0)
