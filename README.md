@@ -9,7 +9,7 @@ Dart SDK for [CKB](https://github.com/nervosnetwork/ckb).Nervos test network has
 
 To build CKB SDK, you'll need:
 
-- Dart sdk: ">=2.1.0 <3.0.0"
+- Dart sdk: ">=2.2.2 <3.0.0"
 
 ## Usage
 
