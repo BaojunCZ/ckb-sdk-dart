@@ -28,6 +28,15 @@ String toHex(dynamic number, {bool pad = false, bool include0x = false, int forc
   return hexString;
 }
 
+/// Converts the hexadecimal string, which can be prefixed with 0x, to a byte
+/// sequence.
+Uint8List hexToBytes(String hexStr) {
+  final bytes = hex.decode(remove0x(hexStr));
+  if (bytes is Uint8List) return bytes;
+
+  return Uint8List.fromList(bytes);
+}
+
 List<int> numberToBytes(dynamic number) =>
     number is BigInt ? pcUtils.encodeBigInt(number) : hex.decode(toHex(number, pad: true));
 
