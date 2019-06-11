@@ -3,10 +3,19 @@ import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
 import 'package:ckb_sdk/ckb_address/ckb_address.dart';
+import 'package:convert/convert.dart';
 import 'package:test/test.dart';
 
 main() {
-  test('publicKey hash', () {
+  test('privateKey to blake160', () {
+    String privateKey = "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3";
+    String publicKey = hex.encode(publicKeyFromPrivate(hex.decode(privateKey)));
+    print(publicKey);
+    String hash = blake160(publicKey);
+    print(hash);
+  });
+
+  test('publicKey to blake160', () {
     String hash = blake160("0x024a501efd328e062c8675f2365970728c859c592beeefd6be8ead3d901330bc01");
     expect("36c329ed630d6ce750712a477543672adab57f4c", hash);
   });

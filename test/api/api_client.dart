@@ -21,7 +21,7 @@ import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final apiClient = new CKBApiClient("http://192.168.2.78:8114");
+  final apiClient = new CKBApiClient("http://localhost:8114");
 
   test("genesisBlockHash", () async {
     try {
@@ -96,12 +96,12 @@ void main() {
   test("get cell by lock hash", () async {
     try {
       List<CellWithOutPoint> cells = await apiClient.getCellsByLockHash(
-          '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21', '0', '2');
+          '0x07bab3ada3cc0ff223b387d7f5038ef57b335aa1d8dadc418d5d8ad3b19aeadb', '0', '2');
       // jsonEncode(cells);
       if (cells.length > 0)
         expect(
             cells[0].lock.scriptHash ==
-                '0x266cec97cbede2cfbce73666f08deed9560bdf7841a7a5a51b3a3f09da249e21',
+                '0x07bab3ada3cc0ff223b387d7f5038ef57b335aa1d8dadc418d5d8ad3b19aeadb',
             true);
     } catch (error) {
       print(error.toString());
@@ -156,7 +156,7 @@ void main() {
 
   test('get block by block number', () async {
     try {
-      Block block = await apiClient.getBlockByBlockNumber("8869");
+      Block block = await apiClient.getBlockByBlockNumber("2");
       print(jsonEncode(block));
       expect(block != null, true);
     } catch (error) {
