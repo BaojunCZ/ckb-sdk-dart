@@ -2,15 +2,20 @@
 
 ## 0.14.0
 
-Support [ ckb release v0.13.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.14.0)
+Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.14.0)
 
 ### Features
 
 - remove the args field in cell input type([7caac4](https://github.com/BaojunCZ/ckb-sdk-dart/pull/45/commits/7caac4a118cd5c3290e01f062ea224a0bed275ad))
 
+### Refactor
+
+- clear up library([pull/47](https://github.com/BaojunCZ/ckb-sdk-dart/pull/47))
+
 ### Breaking Changes
 
 - the type of cell input changes, its args field is removed
+- make sdk more in line with the dart rules
 
 ## 0.13.0
 
