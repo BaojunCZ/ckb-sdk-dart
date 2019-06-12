@@ -1,7 +1,6 @@
 import 'dart:convert';
 
-import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
-import 'package:ckb_sdk/ckb_sdk.dart';
+import 'package:ckb_sdk/ckb_rpc.dart';
 import 'package:ckb_sdk/ckb_types.dart';
 import 'package:test/test.dart';
 

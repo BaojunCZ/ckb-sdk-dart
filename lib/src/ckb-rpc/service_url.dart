@@ -1,10 +1,5 @@
-/*
- * @Author: BaojunCZ
- * @Date: 2019-01-09 16:22:23
- * @LastEditors: your name
- * @LastEditTime: 2019-03-08 15:29:01
- * @Description: RPC url
- */
+part of 'package:ckb_sdk/ckb_rpc.dart';
+
 class ServiceUrl {
   static final block = "get_block";
   static final transaction = "get_transaction";

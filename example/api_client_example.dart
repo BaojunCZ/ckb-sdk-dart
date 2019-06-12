@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
-import 'package:ckb_sdk/ckb_types.dart';
 
 main() async {
   final apiClient = new CKBApiClient('http://192.168.2.78:8114');

@@ -1,14 +1,4 @@
-/*
- * @Author: BaojunCZ
- * @Date: 2019-01-11 13:10:13
- * @LastEditors: your name
- * @LastEditTime: 2019-03-12 13:24:40
- * @Description: json rpc api client
- */
-import 'package:ckb_sdk/ckb-rpc/api_request.dart';
-import 'package:ckb_sdk/ckb-rpc/service_url.dart';
-
-import '../ckb_types.dart';
+part of 'package:ckb_sdk/ckb_rpc.dart';
 
 class CKBApiClient {
   ApiRequest _request;
