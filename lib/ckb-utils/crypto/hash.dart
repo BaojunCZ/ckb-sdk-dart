@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:ckb_sdk/ckb-types/item/script.dart';
 import 'package:ckb_sdk/ckb-utils/crypto/blake2b.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart' as number;
 import 'package:convert/convert.dart';
+
+import '../../ckb_types.dart';
 
 const CKB_HASH_PERSONALIZATION = "ckb-default-hash";
 

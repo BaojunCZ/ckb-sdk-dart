@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb-types/item/witness.dart';
+import 'package:ckb_sdk/ckb_types.dart' show Witness;
 import 'package:convert/convert.dart';
 import 'package:test/test.dart';
 

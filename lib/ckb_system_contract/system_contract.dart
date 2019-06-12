@@ -1,4 +1,4 @@
-import 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';
+import '../ckb_types.dart' show CellOutPoint;
 
 class SystemContract {
   final String codeHash;

@@ -1,15 +1,8 @@
 import 'dart:convert';
 
 import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
-import 'package:ckb_sdk/ckb-types/item/block.dart';
-import 'package:ckb_sdk/ckb-types/item/cell_out_point.dart';
-import 'package:ckb_sdk/ckb-types/item/cell_with_outpoint.dart';
-import 'package:ckb_sdk/ckb-types/item/cell_with_status.dart';
-import 'package:ckb_sdk/ckb-types/item/header.dart';
-import 'package:ckb_sdk/ckb-types/item/node_info.dart';
-import 'package:ckb_sdk/ckb-types/item/out_point.dart';
-import 'package:ckb_sdk/ckb-types/item/transaction_with_status.dart';
 import 'package:ckb_sdk/ckb_sdk.dart';
+import 'package:ckb_sdk/ckb_types.dart';
 
 main() async {
   final apiClient = new CKBApiClient('http://192.168.2.78:8114');
