@@ -1,7 +1,6 @@
 import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
 import 'package:ckb_sdk/ckb-utils/network.dart';
-import 'package:ckb_sdk/ckb_system_contract/ckb_system_contract.dart';
-import 'package:ckb_sdk/ckb_system_contract/system_contract.dart';
+import 'package:ckb_sdk/ckb_system_contract.dart';
 import 'package:test/test.dart';
 
 main() {
