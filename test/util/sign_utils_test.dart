@@ -1,9 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:ckb_sdk/ckb-utils/number.dart';
+import 'package:ckb_sdk/ckb_crypto.dart';
 import 'package:convert/convert.dart';
 import 'package:test/test.dart';
-import 'package:ckb_sdk/ckb-utils/crypto/sign.dart';
 
 void main() {
   Uint8List privateKey =

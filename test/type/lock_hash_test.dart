@@ -1,9 +1,8 @@
-import 'package:ckb_sdk/ckb-rpc/ckb_api_client.dart';
-import 'package:ckb_sdk/ckb-types/item/script.dart';
-import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
-import 'package:ckb_sdk/ckb-utils/network.dart';
-import 'package:ckb_sdk/ckb_system_contract/ckb_system_contract.dart';
-import 'package:ckb_sdk/ckb_system_contract/system_contract.dart';
+import 'package:ckb_sdk/ckb_address.dart';
+import 'package:ckb_sdk/ckb_crypto.dart';
+import 'package:ckb_sdk/ckb_rpc.dart';
+import 'package:ckb_sdk/ckb_system_contract.dart';
+import 'package:ckb_sdk/ckb_types.dart' show Script;
 import 'package:convert/convert.dart';
 import 'package:test_api/test_api.dart';
 

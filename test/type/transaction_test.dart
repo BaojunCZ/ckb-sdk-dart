@@ -1,8 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:ckb_sdk/ckb-types/item/cell_input.dart';
-import 'package:ckb_sdk/ckb-types/item/transaction.dart';
-import 'package:ckb_sdk/ckb-types/item/witness.dart';
+import 'package:ckb_sdk/ckb_types.dart';
 import 'package:convert/convert.dart';
 import 'package:test/test.dart';
 
