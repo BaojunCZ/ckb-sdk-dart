@@ -66,7 +66,7 @@ class CKBAddress {
   String _binIdx(String binIdx) {
     String result = "";
     binIdx.codeUnits.forEach((code) {
-      result += toHex(code);
+      result += numberToHex(code);
     });
     return result;
   }

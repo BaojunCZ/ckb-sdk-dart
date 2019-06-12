@@ -2,10 +2,7 @@ import 'dart:typed_data';
 
 import 'package:convert/convert.dart';
 
-import 'ckb-utils/crypto/blake2b.dart';
-import 'ckb-utils/crypto/crypto.dart';
-import 'ckb-utils/crypto/sign.dart';
-import 'ckb-utils/number.dart';
+import 'ckb_crypto.dart';
 import 'ckb_error.dart';
 
 part 'src/ckb-types/block_res.dart';

@@ -1,12 +1,4 @@
-import 'dart:typed_data';
-import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
-import "package:ckb_sdk/ckb-utils/number.dart" as number;
-import 'package:pointycastle/api.dart';
-import 'package:pointycastle/digests/sha256.dart';
-import 'package:pointycastle/ecc/api.dart';
-import 'package:pointycastle/ecc/curves/secp256k1.dart';
-import 'package:pointycastle/macs/hmac.dart';
-import 'package:pointycastle/signers/ecdsa_signer.dart';
+part of 'package:ckb_sdk/ckb_crypto.dart';
 
 final ECDomainParameters params = new ECCurve_secp256k1();
 final BigInt _halfCurveOrder = params.n ~/ BigInt.two;
@@ -31,9 +23,9 @@ class MsgSignature {
 
     if ((r[0] & 0xFF) > 0x7F) {
       sig[4] = 0x00;
-      number.arrayCopy(r, 0, sig, 5, rLen - 1);
+      arrayCopy(r, 0, sig, 5, rLen - 1);
     } else {
-      number.arrayCopy(r, 0, sig, 4, rLen);
+      arrayCopy(r, 0, sig, 4, rLen);
     }
 
     sig[4 + rLen] = 0x02;
@@ -41,9 +33,9 @@ class MsgSignature {
 
     if ((s[0] & 0xFF) > 0x7F) {
       sig[4 + rLen + 2] = 0x00;
-      number.arrayCopy(s, 0, sig, 4 + rLen + 3, sLen - 1);
+      arrayCopy(s, 0, sig, 4 + rLen + 3, sLen - 1);
     } else {
-      number.arrayCopy(s, 0, sig, 4 + rLen + 2, sLen);
+      arrayCopy(s, 0, sig, 4 + rLen + 2, sLen);
     }
 
     return sig;
@@ -53,7 +45,7 @@ class MsgSignature {
 MsgSignature sign(Uint8List messageHash, Uint8List privateKey) {
   var digest = new SHA256Digest();
   var signer = new ECDSASigner(null, new HMac(digest, 64));
-  var key = new ECPrivateKey(number.bytesToInt(privateKey), params);
+  var key = new ECPrivateKey(bytesToInt(privateKey), params);
 
   signer.init(true, new PrivateKeyParameter(key));
   ECSignature sig = signer.generateSignature(messageHash);
@@ -63,7 +55,7 @@ MsgSignature sign(Uint8List messageHash, Uint8List privateKey) {
     sig = new ECSignature(sig.r, canonicalisedS);
   }
 
-  var publicKey = number.bytesToInt(publicKeyFromPrivateSign(privateKey));
+  var publicKey = bytesToInt(publicKeyFromPrivateSign(privateKey));
 
   var recId = -1;
   for (var i = 0; i < 4; i++) {
@@ -78,8 +70,8 @@ MsgSignature sign(Uint8List messageHash, Uint8List privateKey) {
     throw new Exception("Could not construct a recoverable key. This should never happen");
   }
 
-  return new MsgSignature(Uint8List.fromList(number.toBytesPadded(sig.r, 32)),
-      Uint8List.fromList(number.toBytesPadded(sig.s, 32)), recId);
+  return new MsgSignature(Uint8List.fromList(toBytesPadded(sig.r, 32)),
+      Uint8List.fromList(toBytesPadded(sig.s, 32)), recId);
 }
 
 BigInt _recoverFromSignature(int recId, ECSignature sig, Uint8List msg, ECDomainParameters params) {
@@ -94,7 +86,7 @@ BigInt _recoverFromSignature(int recId, ECSignature sig, Uint8List msg, ECDomain
   var R = _decompressKey(x, (recId & 1) == 1, params.curve);
   if (!(R * n).isInfinity) return null;
 
-  var e = number.bytesToInt(msg);
+  var e = bytesToInt(msg);
 
   var eInv = (BigInt.zero - e) % n;
   var rInv = sig.r.modInverse(n);
@@ -104,12 +96,12 @@ BigInt _recoverFromSignature(int recId, ECSignature sig, Uint8List msg, ECDomain
   var q = (params.G * eInvrInv) + (R * srInv);
 
   var bytes = q.getEncoded(false);
-  return number.bytesToInt(bytes.sublist(1));
+  return bytesToInt(bytes.sublist(1));
 }
 
 ECPoint _decompressKey(BigInt xBN, bool yBit, ECCurve c) {
   List<int> x9IntegerToBytes(BigInt s, int qLength) {
-    var bytes = number.intToBytes(s);
+    var bytes = intToBytes(s);
 
     if (qLength < bytes.length) {
       return bytes.sublist(0, bytes.length - qLength);
