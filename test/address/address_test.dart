@@ -1,8 +1,7 @@
 import 'package:bip_bech32/bip_bech32.dart';
 import 'package:ckb_sdk/ckb-utils/crypto/crypto.dart';
-import 'package:ckb_sdk/ckb-utils/network.dart';
 import 'package:ckb_sdk/ckb-utils/number.dart';
-import 'package:ckb_sdk/ckb_address/ckb_address.dart';
+import 'package:ckb_sdk/ckb_address.dart';
 import 'package:convert/convert.dart';
 import 'package:test/test.dart';
 

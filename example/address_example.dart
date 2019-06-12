@@ -1,5 +1,4 @@
-import 'package:ckb_sdk/ckb-utils/network.dart';
-import 'package:ckb_sdk/ckb_address/ckb_address.dart';
+import 'package:ckb_sdk/ckb_address.dart';
 
 main() {
   final ckbAddressTestNet = CKBAddress(Network.TestNet);
