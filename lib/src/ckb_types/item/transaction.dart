@@ -48,12 +48,14 @@ class Transaction {
     }
     for (int i = 0; i < witnesses.length; i++) {
       final oldData = witnesses[i].data;
-      var txHashBytes = hex.decode(remove0x(txHash));
-      Uint8List signatureBytes = sign(txHashBytes, privateKeys[i]).getDerSignature();
+      Blake2b blake2b = Blake2b();
+      blake2b.update(hex.decode(remove0x(txHash)));
+      oldData.forEach((data) {
+        blake2b.update(hexStringToByteArray(data));
+      });
+      Uint8List signatureBytes = sign(blake2b.doFinal(), privateKeys[i]).getSignature();
       String signature = bytesToHex(signatureBytes, include0x: true);
-      String publicKey =
-          bytesToHex(publicKeyFromPrivate(privateKeys[i]), include0x: true, forcePadLen: 66);
-      witnesses[i].data = [publicKey, signature, ...oldData];
+      witnesses[i].data = [signature, ...oldData];
     }
   }
 }

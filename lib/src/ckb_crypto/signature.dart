@@ -10,6 +10,14 @@ class MsgSignature {
 
   MsgSignature(this.r, this.s, this.v);
 
+  Uint8List getSignature() {
+    Uint8List sig = Uint8List(65);
+    arrayCopy(r, 0, sig, 0, 32);
+    arrayCopy(s, 0, sig, 32, 32);
+    sig[64] = v;
+    return sig;
+  }
+
   Uint8List getDerSignature() {
     int rLen = (r[0] & 0xFF) > 0x7F ? r.length + 1 : r.length;
     int sLen = (s[0] & 0xFF) > 0x7F ? s.length + 1 : s.length;
