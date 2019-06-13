@@ -7,7 +7,7 @@ import 'package:test/test.dart';
 main() {
   test('signTx', () {
     CellInput cellInput = CellInput(null, "");
-    Witness witness1 = Witness(['123']);
+    Witness witness1 = Witness([]);
     Witness witness2 = Witness(['456']);
     Witness witness3 = Witness(['789']);
     Uint8List privateKey =
@@ -15,13 +15,11 @@ main() {
     Transaction transaction = Transaction(
         "1", "", [], [cellInput, cellInput, cellInput], [], [witness1, witness2, witness3]);
     transaction.signTx([privateKey, privateKey, privateKey],
-        'e4253550e49e1a78c8ae9e9e7f66506e11ce87d102fd1aad5dad04c88eca2bb2');
+        '0xac1bb95455cdfb89b6e977568744e09b6b80e08cab9477936a09c4ca07f5b8ab');
     expect(transaction.witnesses.length, 3);
     expect(transaction.witnesses[0].data[0],
-        "0x024a501efd328e062c8675f2365970728c859c592beeefd6be8ead3d901330bc01");
-    expect(transaction.witnesses[0].data[1],
-        '0x304402207d29d0b659bc6c7cd6545938b93e11910abfa1864c52588934876dfa3dd3bb570220067e61b89989525c3551530a4c17bb5e76c7723ab6690bd5c492bd39cb4b35f9');
-    expect(transaction.witnesses[0].data[2], '123');
-    expect(transaction.witnesses[1].data[2], '456');
+        '0x2c643579e47045be050d3842ed9270151af8885e33954bddad0e53e81d1c2dbe2dc637877a8302110846ebc6a16d9148c106e25f945063ad1c4d4db2b695240800');
+    expect(transaction.witnesses[2].data[1], '789');
+    expect(transaction.witnesses[1].data[1], '456');
   });
 }
