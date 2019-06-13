@@ -1,7 +1,7 @@
 part of 'package:ckb_sdk/ckb_address.dart';
 
 class CKBAddress {
-  final Network network;
+  final CKBNetwork network;
 
   CKBAddress(this.network);
 
@@ -61,7 +61,7 @@ class CKBAddress {
     return result;
   }
 
-  String _prefix() => network == Network.MainNet ? MainNetPrefix : TestNetPrefix;
+  String _prefix() => network == CKBNetwork.Mainnet ? MainNetPrefix : TestNetPrefix;
 
   String _binIdx(String binIdx) {
     String result = "";

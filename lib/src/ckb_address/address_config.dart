@@ -1,6 +1,6 @@
 part of 'package:ckb_sdk/ckb_address.dart';
 
-enum Network { MainNet, TestNet }
+enum CKBNetwork { Mainnet, Testnet }
 
 const String TYPE1 = "01";
 

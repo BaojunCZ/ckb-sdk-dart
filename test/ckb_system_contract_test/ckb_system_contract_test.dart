@@ -7,7 +7,7 @@ main() {
   test('get system contract', () async {
     try {
       SystemContract systemContract =
-          await getSystemContract(CKBApiClient("http://localhost:8114"), Network.TestNet);
+          await getSystemContract(CKBApiClient("http://localhost:8114"), CKBNetwork.Testnet);
       expect(systemContract.codeHash,
           "f1951123466e4479842387a66fabfd6b65fc87fd84ae8e6cd3053edb27fff2fd");
     } catch (error) {

@@ -10,7 +10,7 @@ main() {
   test('get system contract', () async {
     try {
       SystemContract systemContract =
-          await getSystemContract(CKBApiClient("http://localhost:8114"), Network.TestNet);
+          await getSystemContract(CKBApiClient("http://localhost:8114"), CKBNetwork.Testnet);
       String privateKey = "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3";
       String publicKey = hex.encode(publicKeyFromPrivate(hex.decode(privateKey)));
       String hash = blake160(publicKey);
