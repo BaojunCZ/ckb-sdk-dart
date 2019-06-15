@@ -8,6 +8,8 @@ Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag
 
 - remove the args field in cell input type([7caac4](https://github.com/BaojunCZ/ckb-sdk-dart/pull/45/commits/7caac4a118cd5c3290e01f062ea224a0bed275ad))
 
+- implement Secp256k1 recoverable sign([885e85](https://github.com/BaojunCZ/ckb-sdk-dart/commit/885e857cc9c493bfb2641777ef1527b96f083d07))
+
 ### Refactor
 
 - clear up library([pull/47](https://github.com/BaojunCZ/ckb-sdk-dart/pull/47))
