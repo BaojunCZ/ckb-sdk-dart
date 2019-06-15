@@ -4,7 +4,7 @@ import 'package:ckb_sdk/ckb_rpc.dart';
 import 'package:ckb_sdk/ckb_system_contract.dart';
 import 'package:ckb_sdk/ckb_types.dart' show Script;
 import 'package:convert/convert.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 main() {
   test('get system contract', () async {
