@@ -1,10 +1,3 @@
-/*
- * @Author: BaojunCZ
- * @Date: 2019-01-11 11:41:43
- * @LastEditors: your name
- * @LastEditTime: 2019-03-01 14:29:19
- * @Description: file content
- */
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class CellWithStatus {
