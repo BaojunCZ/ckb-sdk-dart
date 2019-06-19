@@ -82,6 +82,17 @@ class CKBApiClient {
 
   //==========================Indexer RPC Methods========================================
 
+  Future<List<CellWithCreate>> getLiveCellsByLockHash(
+      String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : CellWithCreate.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
   //==========================Net RPC Methods============================================
 
   Future<List<NodeInfo>> getPeers() async {

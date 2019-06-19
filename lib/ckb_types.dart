@@ -25,3 +25,4 @@ part 'src/ckb_types/transaction_with_status.dart';
 part 'src/ckb_types/tx_pool_info.dart';
 part 'src/ckb_types/uncle_block.dart';
 part 'src/ckb_types/witness.dart';
+part 'src/ckb_types/cell_with_create.dart';
