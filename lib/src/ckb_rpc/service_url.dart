@@ -15,8 +15,6 @@ class ServiceUrl {
 
   //Experiment
   static final computeTransactionHash = '_compute_transaction_hash';
-  static final computeCodeHash = '_compute_code_hash';
-  static final computeScriptHash = '_compute_script_hash';
   static final dryRunTransaction = 'dry_run_transaction';
 
   //Indexer
