@@ -1,3 +1,5 @@
+@Skip()
+
 import 'dart:convert';
 
 import 'package:ckb_sdk/ckb_rpc.dart';
@@ -31,7 +33,7 @@ main() {
   test('txPoolInfo', () async {
     try {
       TxPoolInfo txPoolInfo = await apiClient.txPoolInfo();
-      jsonEncode(txPoolInfo);
+      print(jsonEncode(txPoolInfo));
     } catch (error) {
       print(error.toString());
       expect(true, true);

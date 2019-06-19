@@ -38,6 +38,6 @@ class ApiRequest {
       var error = json["error"];
       throw RPCErrorException(RPCError(error["code"], error["message"]), url);
     }
-    return json;
+    return json['result'];
   }
 }
