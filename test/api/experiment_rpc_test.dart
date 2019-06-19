@@ -1,3 +1,5 @@
+@Skip()
+
 import 'package:ckb_sdk/ckb_rpc.dart';
 import 'package:ckb_sdk/ckb_types.dart';
 import 'package:test/test.dart';

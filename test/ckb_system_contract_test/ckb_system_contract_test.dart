@@ -1,3 +1,5 @@
+@Skip()
+
 import 'package:ckb_sdk/ckb_address.dart';
 import 'package:ckb_sdk/ckb_rpc.dart';
 import 'package:ckb_sdk/ckb_system_contract.dart';

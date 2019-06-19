@@ -1,3 +1,5 @@
+@Skip()
+
 import 'dart:convert';
 
 import 'package:ckb_sdk/ckb_rpc.dart';
