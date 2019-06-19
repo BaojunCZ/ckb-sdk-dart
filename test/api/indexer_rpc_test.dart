@@ -11,4 +11,9 @@ main() {
         "0xe94e4b509d5946c54ea9bc7500af12fd35eebe0d47a6b3e502127f94d34997ac", "0", "3");
     print(jsonEncode(cells));
   });
+
+  test('get lock hash index states', () async {
+    List<LockHashIndexStates> list = await apiClient.getLockHashIndexStates();
+    print(jsonEncode(list));
+  });
 }

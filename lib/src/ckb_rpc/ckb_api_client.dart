@@ -93,6 +93,16 @@ class CKBApiClient {
             ?.toList();
   }
 
+  Future<List<LockHashIndexStates>> getLockHashIndexStates() async {
+    final result =
+        (await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []))['result'] as List;
+    return result == null
+        ? null
+        : result
+            ?.map((e) => e == null ? null : LockHashIndexStates.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
   //==========================Net RPC Methods============================================
 
   Future<List<NodeInfo>> getPeers() async {
