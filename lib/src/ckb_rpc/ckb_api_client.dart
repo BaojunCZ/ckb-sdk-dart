@@ -92,13 +92,13 @@ class CKBApiClient {
             ?.toList();
   }
 
-  Future<List<LockHashIndexStates>> getLockHashIndexStates() async {
+  Future<List<LockHashIndexState>> getLockHashIndexStates() async {
     final result =
         (await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []))['result'] as List;
     return result == null
         ? null
         : result
-            ?.map((e) => e == null ? null : LockHashIndexStates.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null ? null : LockHashIndexState.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
@@ -112,6 +112,11 @@ class CKBApiClient {
             ?.map(
                 (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
             ?.toList();
+  }
+
+  Future<LockHashIndexState> getIndexLockHash(String lockHash, String indexFrom) async {
+    final result = _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
+    return result == null ? null : LockHashIndexState.fromJson(result);
   }
 
   //==========================Net RPC Methods============================================

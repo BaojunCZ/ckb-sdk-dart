@@ -1,13 +1,13 @@
 part of 'package:ckb_sdk/ckb_types.dart';
 
-class LockHashIndexStates {
+class LockHashIndexState {
   String blockHash;
   String blockNumber;
   String lockHash;
 
-  LockHashIndexStates(this.blockHash, this.blockNumber, this.lockHash);
+  LockHashIndexState(this.blockHash, this.blockNumber, this.lockHash);
 
-  factory LockHashIndexStates.fromJson(Map<String, dynamic> json) => LockHashIndexStates(
+  factory LockHashIndexState.fromJson(Map<String, dynamic> json) => LockHashIndexState(
         json['block_hash'] as String,
         json['block_number'] as String,
         json['lock_hash'] as String,
