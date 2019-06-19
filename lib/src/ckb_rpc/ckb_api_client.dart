@@ -82,6 +82,10 @@ class CKBApiClient {
 
   //==========================Indexer RPC Methods========================================
 
+  Future DeindexLockHash(String lockHash) async {
+    await _request.requestRpc(ServiceUrl.deindexLockHash, [lockHash]);
+  }
+
   Future<List<LiveCell>> getLiveCellsByLockHash(String lockHash, String page, String per) async {
     final result =
         await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash, [lockHash, page, per]);
