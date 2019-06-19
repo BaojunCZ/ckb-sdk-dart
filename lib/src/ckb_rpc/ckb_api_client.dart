@@ -103,6 +103,18 @@ class CKBApiClient {
             ?.toList();
   }
 
+  Future<List<TransactionByLockHash>> getTransactionByLockHash(
+      String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getTransactionsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : result
+            ?.map(
+                (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
   //==========================Net RPC Methods============================================
 
   Future<List<NodeInfo>> getPeers() async {

@@ -27,3 +27,5 @@ part 'src/ckb_types/uncle_block.dart';
 part 'src/ckb_types/witness.dart';
 part 'src/ckb_types/cell_with_create.dart';
 part 'src/ckb_types/lock_hash_index_states.dart';
+part 'src/ckb_types/transaction_by_lock_hash.dart';
+part 'src/ckb_types/transaction_point.dart';
