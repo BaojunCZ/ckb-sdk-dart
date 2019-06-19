@@ -31,7 +31,7 @@ main() {
   test('txPoolInfo', () async {
     try {
       TxPoolInfo txPoolInfo = await apiClient.txPoolInfo();
-      jsonEncode(txPoolInfo);
+      print(jsonEncode(txPoolInfo));
     } catch (error) {
       print(error.toString());
       expect(true, true);

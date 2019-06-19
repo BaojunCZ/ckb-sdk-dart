@@ -10,7 +10,7 @@ main() {
   test('getPeers', () async {
     try {
       List<NodeInfo> peers = await apiClient.getPeers();
-      jsonEncode(peers);
+      print(jsonEncode(peers));
     } catch (error) {
       print(error.toString());
       expect(true, true);
@@ -20,7 +20,7 @@ main() {
   test("get local node info", () async {
     try {
       NodeInfo localNodeId = await apiClient.getLocalNodeInfo();
-      jsonEncode(localNodeId);
+      print(jsonEncode(localNodeId));
       expect(localNodeId != null, true);
     } catch (error) {
       print(error.toString());

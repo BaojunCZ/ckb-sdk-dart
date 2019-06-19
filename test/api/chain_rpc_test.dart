@@ -18,9 +18,9 @@ main() {
 
   test("genesisBlock", () async {
     try {
-      Block blockRes = await apiClient.genesisBlock();
-      jsonEncode(blockRes);
-      expect(blockRes != null, true);
+      Block block = await apiClient.genesisBlock();
+      jsonEncode(block);
+      expect(block != null, true);
     } catch (error) {
       print(error.toString());
       expect(true, true);
@@ -30,7 +30,7 @@ main() {
   test("get block by block hash", () async {
     try {
       Block block = await apiClient
-          .getBlock("0xfe9c111a4149e553f8bfc93cbc518d59eb7f073ac74e1ffa1369d4c5a77cdb48");
+          .getBlock("0xac1766e14aa988b41d6ac3fe8216a1ab83f10359ca34478a8c0902069cbb0296");
       print(block.header.number);
       expect(block != null, true);
     } catch (error) {
@@ -42,6 +42,7 @@ main() {
   test("get block hash", () async {
     try {
       String blockHash = await apiClient.getBlockHash("1");
+      print(blockHash);
       expect(blockHash != null, true);
     } catch (error) {
       print(error.toString());
@@ -63,12 +64,12 @@ main() {
   test("get cell by lock hash", () async {
     try {
       List<CellWithOutPoint> cells = await apiClient.getCellsByLockHash(
-          '0x07bab3ada3cc0ff223b387d7f5038ef57b335aa1d8dadc418d5d8ad3b19aeadb', '0', '2');
-      // jsonEncode(cells);
+          '0xe94e4b509d5946c54ea9bc7500af12fd35eebe0d47a6b3e502127f94d34997ac', '11', '22');
+      print(jsonEncode(cells));
       if (cells.length > 0)
         expect(
             cells[0].lock.scriptHash ==
-                '0x07bab3ada3cc0ff223b387d7f5038ef57b335aa1d8dadc418d5d8ad3b19aeadb',
+                '0xe94e4b509d5946c54ea9bc7500af12fd35eebe0d47a6b3e502127f94d34997ac',
             true);
     } catch (error) {
       print(error.toString());
@@ -82,7 +83,7 @@ main() {
       if (epoch == null) {
         print('There is no epoch');
       } else {
-        jsonEncode(epoch);
+        print(jsonEncode(epoch));
       }
     } catch (error) {
       print(error.toString());
@@ -92,11 +93,11 @@ main() {
 
   test('getEpochByNumber', () async {
     try {
-      Epoch epoch = await apiClient.getEpochByNumber('0');
+      Epoch epoch = await apiClient.getEpochByNumber('1');
       if (epoch == null) {
         print('There is no epoch');
       } else {
-        jsonEncode(epoch);
+        print(jsonEncode(epoch));
       }
     } catch (error) {
       print(error.toString());
@@ -106,10 +107,10 @@ main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCellRes = await apiClient.getLiveCell(OutPoint(null,
-          CellOutPoint("0xa824b7338f72b4af93ce79d57cc257e7014b7c120eac43d3b002503d78971cda", "1")));
-      jsonEncode(liveCellRes);
-      expect(liveCellRes != null, true);
+      CellWithStatus liveCell = await apiClient.getLiveCell(OutPoint(null,
+          CellOutPoint("0x8fbf8ecc60907c304a524ab94755f06b205a55651cea625b02687443bdb87aa2", "0")));
+      print(jsonEncode(liveCell));
+      expect(liveCell != null, true);
     } catch (error) {
       print(error.toString());
       expect(true, true);

@@ -10,7 +10,7 @@ void main() {
   test('getBlockchainInfo', () async {
     try {
       BlockchainInfo blockchainInfo = await apiClient.getBlockchainInfo();
-      jsonEncode(blockchainInfo);
+      print(jsonEncode(blockchainInfo));
     } catch (error) {
       print(error.toString());
       expect(true, true);
@@ -20,7 +20,6 @@ void main() {
   test('getPeersState', () async {
     try {
       List<PeerState> peersState = await apiClient.getPeersState();
-      jsonEncode(peersState);
       print(jsonEncode(peersState));
     } catch (error) {
       print(error.toString());
