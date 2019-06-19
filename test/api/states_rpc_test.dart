@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 void main() {
   final apiClient = new CKBApiClient("http://127.0.0.1:8114");
 
-  test('getBlockchainInfo', () async {
+  test('get blockchain info', () async {
     try {
       BlockchainInfo blockchainInfo = await apiClient.getBlockchainInfo();
       print(jsonEncode(blockchainInfo));
