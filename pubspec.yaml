@@ -10,7 +10,7 @@ environment:
 
 dependencies:
   pointycastle: ^1.0.1
-  http: ^0.12.0+1
+  http: ^0.12.0+2
   convert: ^2.1.1
   bip_bech32: ^0.1.3
 
