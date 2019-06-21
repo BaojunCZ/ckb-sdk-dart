@@ -119,7 +119,7 @@ class CKBApiClient {
   }
 
   Future<LockHashIndexState> getIndexLockHash(String lockHash, String indexFrom) async {
-    final result = _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
+    final result = await _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
     return result == null ? null : LockHashIndexState.fromJson(result);
   }
 
