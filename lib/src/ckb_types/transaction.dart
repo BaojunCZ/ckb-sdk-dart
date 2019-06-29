@@ -1,10 +1,3 @@
-/*
- * @Author: BaojunCZ
- * @Date: 2019-01-10 21:18:58
- * @LastEditors: your name
- * @LastEditTime: 2019-03-01 14:33:42
- * @Description: file content
- */
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class Transaction {

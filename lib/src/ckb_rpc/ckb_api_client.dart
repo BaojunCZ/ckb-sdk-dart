@@ -82,6 +82,47 @@ class CKBApiClient {
 
   //==========================Indexer RPC Methods========================================
 
+  Future DeindexLockHash(String lockHash) async {
+    await _request.requestRpc(ServiceUrl.deindexLockHash, [lockHash]);
+  }
+
+  Future<List<LiveCell>> getLiveCellsByLockHash(String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : LiveCell.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<List<LockHashIndexState>> getLockHashIndexStates() async {
+    final result =
+        (await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []))['result'] as List;
+    return result == null
+        ? null
+        : result
+            ?.map((e) => e == null ? null : LockHashIndexState.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<List<TransactionByLockHash>> getTransactionByLockHash(
+      String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getTransactionsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : result
+            ?.map(
+                (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<LockHashIndexState> getIndexLockHash(String lockHash, String indexFrom) async {
+    final result = await _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
+    return result == null ? null : LockHashIndexState.fromJson(result);
+  }
+
   //==========================Net RPC Methods============================================
 
   Future<List<NodeInfo>> getPeers() async {
