@@ -4,7 +4,8 @@ Future<SystemContract> getSystemContract(CKBApiClient _ckbApiClient, CKBNetwork 
   if (network == CKBNetwork.Testnet) {
     Transaction sysContract = (await _ckbApiClient.genesisBlock()).transactions[0];
     CellOutput cellOutput = sysContract.outputs[1];
-    return SystemContract(blake2bHexString(cellOutput.data), CellOutPoint(sysContract.hash, "1"));
+    return SystemContract(
+        hexAdd0x(blake2bHexString(cellOutput.data)), CellOutPoint(sysContract.hash, "1"));
   } else {
     return null;
   }

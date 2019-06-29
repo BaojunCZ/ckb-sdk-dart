@@ -17,94 +17,152 @@ class CKBApiClient {
 
   //==============================Chain RPC Methods================================
 
+  Future<Block> getBlock(String blockHash) async {
+    return Block.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash]));
+  }
+
   Future<String> getBlockHash(String blockNumber) async {
-    return BlockHashRes.fromJson(await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]))
-        .result;
+    return await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]);
   }
 
-  Future<TransactionWithStatus> getTransaction(String hash) async {
-    return TransactionRes.fromJson(await _request.requestRpc(ServiceUrl.transaction, [hash]))
-        .result;
-  }
-
-  Future<Header> getTipHeader() async {
-    return HeaderRes.fromJson(await _request.requestRpc(ServiceUrl.tipHeader, [])).result;
+  Future<Block> getBlockByBlockNumber(String blockNumber) async {
+    return Block.fromJson(
+        await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber]));
   }
 
   Future<List<CellWithOutPoint>> getCellsByLockHash(
       String hash, String fromBlockNumber, String toBlockNumber) async {
-    return CellsByLockHashRes.fromJson(await _request
-            .requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]))
-        .result;
-  }
-
-  Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
-    return LiveCellRes.fromJson(await _request.requestRpc(ServiceUrl.liveCell, [outPoint])).result;
-  }
-
-  Future<String> getTipBlockNumber() async {
-    return TipBlockNumberRes.fromJson(await _request.requestRpc(ServiceUrl.tipBlockNumber, []))
-        .result;
-  }
-
-  Future<NodeInfo> getLocalNodeInfo() async {
-    return LocalNodeInfoRes.fromJson(await _request.requestRpc(ServiceUrl.localNodeInfo, []))
-        .result;
-  }
-
-  Future<Block> getBlock(String blockHash) async {
-    return BlockRes.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash])).result;
-  }
-
-  Future<Block> getBlockByBlockNumber(String blockNumber) async {
-    return BlockRes.fromJson(
-            await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber]))
-        .result;
+    final result = await _request
+        .requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : CellWithOutPoint.fromJson(e as Map<String, dynamic>))
+            ?.toList();
   }
 
   Future<Epoch> getCurrentEpoch() async {
-    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [])).result;
+    final result = await _request.requestRpc(ServiceUrl.getCurrentEpoch, []);
+    return result == null ? null : Epoch.fromJson(result);
   }
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
-    return EpochRes.fromJson(await _request.requestRpc(ServiceUrl.getCurrentEpoch, [epochNumber]))
-        .result;
+    final result = await _request.requestRpc(ServiceUrl.getEpochByNumber, [epochNumber]);
+    return result == null ? null : Epoch.fromJson(result);
   }
 
-  Future<List<NodeInfo>> getPeers() async {
-    return PeersRes.fromJson(await _request.requestRpc(ServiceUrl.getPeers, [])).result;
+  Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
+    final result = await _request.requestRpc(ServiceUrl.liveCell, [outPoint]);
+    return result == null ? null : CellWithStatus.fromJson(result);
   }
 
-  Future<BlockchainInfo> getBlockchainInfo() async {
-    return BlockchainIfnoRes.fromJson(await _request.requestRpc(ServiceUrl.getBlockchainInfo, []))
-        .result;
+  Future<String> getTipBlockNumber() async {
+    return await _request.requestRpc(ServiceUrl.tipBlockNumber, []);
   }
 
-  Future<List<PeerState>> getPeersState() async {
-    return PeerStateRes.fromJson(await _request.requestRpc(ServiceUrl.getPeersState, [])).result;
+  Future<Header> getTipHeader() async {
+    return Header.fromJson(await _request.requestRpc(ServiceUrl.tipHeader, []));
   }
 
-  //================================Pool RPC Methods===============================
+  Future<TransactionWithStatus> getTransaction(String hash) async {
+    final result = await _request.requestRpc(ServiceUrl.transaction, [hash]);
+    return result == null ? null : TransactionWithStatus.fromJson(result);
+  }
 
-  Future<String> sendTransaction(Transaction transaction) async {
-    return SendTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]))
-        .result;
+  //==========================Experiment RPC Methods==================================
+
+  Future<String> computeTransactionHash(Transaction transaction) async {
+    return await _request.requestRpc(ServiceUrl.computeTransactionHash, [transaction]);
   }
 
   Future<Cycles> dryRunTransaction(Transaction transaction) async {
-    return DryRunTransactionRes.fromJson(
-            await _request.requestRpc(ServiceUrl.dryRunTransaction, [transaction]))
-        .result;
+    final result = await _request.requestRpc(ServiceUrl.dryRunTransaction, [transaction]);
+    return result == null ? null : Cycles.fromJson(result);
   }
 
-  Future<String> computeTransactionHash(Transaction transaction) async {
-    return ComputeTransactionHashRes.fromJson(
-            await _request.requestRpc(ServiceUrl.computeTransactionHash, [transaction]))
-        .result;
+  //==========================Indexer RPC Methods========================================
+
+  Future DeindexLockHash(String lockHash) async {
+    await _request.requestRpc(ServiceUrl.deindexLockHash, [lockHash]);
+  }
+
+  Future<List<LiveCell>> getLiveCellsByLockHash(String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : LiveCell.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<List<LockHashIndexState>> getLockHashIndexStates() async {
+    final result =
+        (await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []))['result'] as List;
+    return result == null
+        ? null
+        : result
+            ?.map((e) => e == null ? null : LockHashIndexState.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<List<TransactionByLockHash>> getTransactionByLockHash(
+      String lockHash, String page, String per) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.getTransactionsByLockHash, [lockHash, page, per]);
+    return result == null
+        ? null
+        : result
+            ?.map(
+                (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<LockHashIndexState> getIndexLockHash(String lockHash, String indexFrom) async {
+    final result = await _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
+    return result == null ? null : LockHashIndexState.fromJson(result);
+  }
+
+  //==========================Net RPC Methods============================================
+
+  Future<List<NodeInfo>> getPeers() async {
+    final result = await _request.requestRpc(ServiceUrl.getPeers, []);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : NodeInfo.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
+  Future<NodeInfo> getLocalNodeInfo() async {
+    final result = await _request.requestRpc(ServiceUrl.localNodeInfo, []);
+    return result == null ? null : NodeInfo.fromJson(result);
+  }
+
+//================================Pool RPC Methods===============================
+
+  Future<String> sendTransaction(Transaction transaction) async {
+    return await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]);
   }
 
   Future<TxPoolInfo> txPoolInfo() async {
-    return TxPoolInfoRes.fromJson(await _request.requestRpc(ServiceUrl.txPoolInfo, [])).result;
+    final result = await _request.requestRpc(ServiceUrl.txPoolInfo, []);
+    return result == null ? null : TxPoolInfo.fromJson(result);
+  }
+
+  //=============================States RPC Methods=====================================
+
+  Future<BlockchainInfo> getBlockchainInfo() async {
+    final result = await _request.requestRpc(ServiceUrl.getBlockchainInfo, []);
+    return result == null ? null : BlockchainInfo.fromJson(result);
+  }
+
+  Future<List<PeerState>> getPeersState() async {
+    final result = await _request.requestRpc(ServiceUrl.getPeersState, []);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : PeerState.fromJson(e as Map<String, dynamic>))
+            ?.toList();
   }
 }
