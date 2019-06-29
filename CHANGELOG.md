@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.15.0
+
+Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.15.0)
+
+### Features
+
+- add Indexer rpc ([56](https://github.com/BaojunCZ/ckb-sdk-dart/pull/56))
+
+- update get_blockchain_info rpc([a0c2b7](https://github.com/BaojunCZ/ckb-sdk-dart/pull/45/commits/a0c2b71776e6412ae41afeb873df9b82562752f1))
+
 ## 0.14.0
 
 Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.14.0)
