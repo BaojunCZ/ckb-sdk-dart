@@ -4,6 +4,14 @@
 
 Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.15.0)
 
+### Fix
+
+- indexer rpc error([af3434](https://github.com/BaojunCZ/ckb-sdk-dart/commit/af3434dc796510d4f254fad033c82ca3920dc7de))
+
+## 0.15.0
+
+Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.15.0)
+
 ### Features
 
 - add Indexer rpc ([56](https://github.com/BaojunCZ/ckb-sdk-dart/pull/56))
