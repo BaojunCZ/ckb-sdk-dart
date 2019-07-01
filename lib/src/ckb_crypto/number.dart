@@ -1,6 +1,6 @@
 part of 'package:ckb_sdk/ckb_crypto.dart';
 
-BigInt bytesToInt(List<int> bytes) => pcUtils.decodeBigInt(bytes);
+BigInt bytesToInt(List<int> bytes) => pc_utils.decodeBigInt(bytes);
 
 String remove0x(String hex) => hex.startsWith("0x") ? hex.substring(2) : hex;
 
@@ -26,12 +26,12 @@ String numberToHex(dynamic number, {bool pad = false, bool include0x = false, in
 }
 
 List<int> numberToBytes(dynamic number) =>
-    number is BigInt ? pcUtils.encodeBigInt(number) : hex.decode(numberToHex(number, pad: true));
+    number is BigInt ? pc_utils.encodeBigInt(number) : hex.decode(numberToHex(number, pad: true));
 
 String bytesToHex(List<int> bytes, {bool pad = false, bool include0x = false, int forcePadLen}) =>
     numberToHex(bytesToInt(bytes), pad: pad, include0x: include0x, forcePadLen: forcePadLen);
 
-List<int> intToBytes(BigInt number) => pcUtils.encodeBigInt(number);
+List<int> intToBytes(BigInt number) => pc_utils.encodeBigInt(number);
 
 String littleEndian(int number) {
   List<int> bytes = toBytesPadded(BigInt.from(number), 8);
