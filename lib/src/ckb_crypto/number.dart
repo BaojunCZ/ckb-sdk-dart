@@ -8,12 +8,13 @@ String hexAdd0x(String hex) => hex.startsWith("0x") ? hex : "0x$hex";
 
 String numberToHex(dynamic number, {bool pad = false, bool include0x = false, int forcePadLen}) {
   String toHexSimple() {
-    if (number is int)
+    if (number is int) {
       return number.toRadixString(16);
-    else if (number is BigInt)
+    } else if (number is BigInt) {
       return number.toRadixString(16);
-    else
-      throw new TypeError();
+    } else {
+      throw TypeError();
+    }
   }
 
   var hexString = toHexSimple();
