@@ -97,13 +97,13 @@ class CKBApiClient {
   }
 
   Future<List<LockHashIndexState>> getLockHashIndexStates() async {
-    final result =
-        (await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []))['result'] as List;
-    return result == null
+    final result = await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []);
+    List<LockHashIndexState> states = result == null
         ? null
-        : result
+        : (result as List)
             ?.map((e) => e == null ? null : LockHashIndexState.fromJson(e as Map<String, dynamic>))
             ?.toList();
+    return states;
   }
 
   Future<List<TransactionByLockHash>> getTransactionByLockHash(
@@ -112,7 +112,7 @@ class CKBApiClient {
         await _request.requestRpc(ServiceUrl.getTransactionsByLockHash, [lockHash, page, per]);
     return result == null
         ? null
-        : result
+        : (result as List)
             ?.map(
                 (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
             ?.toList();
