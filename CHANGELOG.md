@@ -1,8 +1,16 @@
 # CHANGELOG
 
+## 0.16.0
+
+Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
+
+### Feature
+
+- update epoch schema([406605f](https://github.com/BaojunCZ/ckb-sdk-dart/commit/406605f7d3138389d1d0e0a482162e74b0f72cc0))
+
 ## 0.15.0
 
-Support [ ckb release v0.14.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.15.0)
+Support [ ckb release v0.15.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.15.0)
 
 ### Fix
 
