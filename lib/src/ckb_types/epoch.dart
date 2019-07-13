@@ -1,31 +1,24 @@
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class Epoch {
-  String blockReward;
-  String lastBlockHashInPreviousEpoch;
+  String epochReward;
   String startNumber;
   String length;
   String difficulty;
-  String remainderReward;
 
-  Epoch(this.blockReward, this.lastBlockHashInPreviousEpoch, this.startNumber, this.length,
-      this.difficulty, this.remainderReward);
+  Epoch(this.epochReward, this.startNumber, this.length, this.difficulty);
 
   factory Epoch.fromJson(Map<String, dynamic> json) => Epoch(
-        json['block_reward'] as String,
-        json['last_block_hash_in_previous_epoch'] as String,
+        json['epoch_reward'] as String,
         json['start_number'] as String,
         json['length'] as String,
         json['difficulty'] as String,
-        json['remainder_reward'] as String,
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'block_reward': blockReward,
-        'last_block_hash_in_previous_epoch': lastBlockHashInPreviousEpoch,
+        'epoch_reward': epochReward,
         'start_number': startNumber,
         'length': length,
         'difficulty': difficulty,
-        'remainder_reward': remainderReward,
       };
 }
