@@ -17,7 +17,7 @@ class CKBAddress {
     Bech32Codec bech32codec = Bech32Codec();
     Bech32 parsed = bech32codec.decode(address);
     Uint8List data = _convertBits(parsed.data, 5, 8, false);
-    if (data.length == 0) {
+    if (data.isEmpty) {
       return null;
     }
     return Bech32(parsed.hrp, data);

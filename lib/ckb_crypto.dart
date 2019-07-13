@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:convert/convert.dart';
-import 'package:pointycastle/src/utils.dart' as pcUtils;
 import 'package:pointycastle/digests/blake2b.dart';
 import 'package:pointycastle/digests/sha3.dart';
 import 'package:pointycastle/ecc/curves/secp256k1.dart';
 import 'package:pointycastle/export.dart';
+import 'package:pointycastle/src/utils.dart' as pc_utils;
 
 import 'ckb_error.dart';
 

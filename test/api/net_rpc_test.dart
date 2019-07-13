@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:ckb_sdk/ckb_rpc.dart';
 import 'package:ckb_sdk/ckb_types.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 main() {
   final apiClient = new CKBApiClient("http://127.0.0.1:8114");
