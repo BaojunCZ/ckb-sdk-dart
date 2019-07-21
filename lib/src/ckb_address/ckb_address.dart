@@ -5,9 +5,13 @@ class CKBAddress {
 
   CKBAddress(this.network);
 
-  String generate(String publicKey) {
+  String generateFromPublicKey(String publicKey) {
+    return generate(blake160(publicKey));
+  }
+
+  String generate(String args) {
     // Payload: type(01) | bin-idx("P2PH") | pubkey blake160
-    String payload = TYPE1 + _binIdx(BIN_IDX1) + blake160(publicKey);
+    String payload = TYPE1 + _binIdx(BIN_IDX1) + remove0x(args);
     Uint8List data = hexStringToByteArray(payload);
     Bech32Codec bech32codec = Bech32Codec();
     return bech32codec.encode(Bech32(_prefix(), _convertBits(data, 8, 5, true)));
@@ -33,32 +37,29 @@ class CKBAddress {
   }
 
   Uint8List _convertBits(Uint8List data, int fromBits, int toBits, bool pad) {
-    int length = pad ? data.length * fromBits ~/ toBits : (data.length * fromBits / toBits).ceil();
-    int mask = ((1 << toBits) - 1) & 0xff;
-    Uint8List result = Uint8List(length);
-    int index = 0;
-    int accumulator = 0;
+    int acc = 0;
     int bits = 0;
+    int maxv = (1 << toBits) - 1;
+    List<int> ret = List<int>();
     for (int i = 0; i < data.length; i++) {
-      int value = data[i];
-      accumulator = (((accumulator & 0xff) << fromBits) | (value & 0xff));
+      int b = data[i] & 0xff;
+      if ((b >> fromBits) > 0) {
+        throw Exception("Address format exception");
+      }
+      acc = (acc << fromBits) | b;
       bits += fromBits;
       while (bits >= toBits) {
         bits -= toBits;
-        result[index] = (accumulator >> bits) & mask;
-        ++index;
+        ret.add((acc >> bits) & maxv);
       }
     }
-    if (!pad) {
-      if (bits > 0) {
-        result[index] = (accumulator << (toBits - bits)) & mask;
-      }
-    } else {
-      if (!(bits < fromBits && ((accumulator << (toBits - bits)) & mask) == 0)) {
-        throw Exception("Strict mode was used but input couldn't be converted without padding");
-      }
+
+    if (pad && (bits > 0)) {
+      ret.add((acc << (toBits - bits)) & maxv);
+    } else if (bits >= fromBits || ((acc << (toBits - bits)) & maxv) != 0) {
+      throw Exception("Strict mode was used but input couldn't be converted without padding");
     }
-    return result;
+    return Uint8List.fromList(ret);
   }
 
   String _prefix() => network == CKBNetwork.Mainnet ? MainNetPrefix : TestNetPrefix;
