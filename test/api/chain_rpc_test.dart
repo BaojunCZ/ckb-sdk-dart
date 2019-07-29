@@ -152,6 +152,27 @@ main() {
     }
   });
 
+  test("get header", () async {
+    try {
+      Header header = await apiClient
+          .getHeader("0xac1766e14aa988b41d6ac3fe8216a1ab83f10359ca34478a8c0902069cbb0296");
+      expect(header != null, true);
+    } catch (error) {
+      print(error.toString());
+      expect(true, true);
+    }
+  });
+
+  test("get header by blockNumber", () async {
+    try {
+      Header header = await apiClient.getHeaderByNumber("1");
+      expect(header != null, true);
+    } catch (error) {
+      print(error.toString());
+      expect(true, true);
+    }
+  });
+
   group("get transaction", () {
     test("with right params", () async {
       try {

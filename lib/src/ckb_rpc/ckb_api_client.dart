@@ -74,6 +74,16 @@ class CKBApiClient {
     return result == null ? null : CellbaseOutputCapacity.fromJson(result);
   }
 
+  Future<Header> getHeader(String blockHash) async {
+    final result = await _request.requestRpc(ServiceUrl.getHeader, [blockHash]);
+    return result == null ? null : Header.fromJson(result);
+  }
+
+  Future<Header> getHeaderByNumber(String blockNumber) async {
+    final result = await _request.requestRpc(ServiceUrl.getHeaderByNumber, [blockNumber]);
+    return result == null ? null : Header.fromJson(result);
+  }
+
   //==========================Experiment RPC Methods==================================
 
   Future<String> computeTransactionHash(Transaction transaction) async {
