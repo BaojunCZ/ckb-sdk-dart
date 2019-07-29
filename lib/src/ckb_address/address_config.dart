@@ -4,7 +4,7 @@ enum CKBNetwork { Mainnet, Testnet }
 
 const String TYPE1 = "01";
 
-const String BIN_IDX1 = "P2PH";
+const String CODE_HASH_IDX = "00";
 
 const String MainNetPrefix = "ckb";
 const String TestNetPrefix = "ckt";

@@ -10,8 +10,8 @@ class CKBAddress {
   }
 
   String generate(String args) {
-    // Payload: type(01) | bin-idx("P2PH") | pubkey blake160
-    String payload = TYPE1 + _binIdx(BIN_IDX1) + remove0x(args);
+    // Payload: type(01) | code hash index(00, P2PH) | pubkey blake160
+    String payload = TYPE1 + CODE_HASH_IDX + remove0x(args);
     Uint8List data = hexStringToByteArray(payload);
     Bech32Codec bech32codec = Bech32Codec();
     return bech32codec.encode(Bech32(_prefix(), _convertBits(data, 8, 5, true)));
@@ -31,7 +31,7 @@ class CKBAddress {
     Bech32 bech32 = parse(address);
     String payload = hex.encode(bech32.data);
     if (payload.startsWith(TYPE1)) {
-      return payload.replaceAll(TYPE1 + _binIdx(BIN_IDX1), "");
+      return payload.replaceAll(TYPE1 + CODE_HASH_IDX, "");
     }
     return null;
   }
