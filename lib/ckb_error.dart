@@ -46,6 +46,10 @@ class InvalidNumberOfWitnessesException implements Exception {
   String toString() => "Check your inputs size and private key size";
 }
 
+class InvalidHashTypeException implements Exception {
+  String toString() => "Invalid hash type!";
+}
+
 class CommonException {
   final String message;
 
