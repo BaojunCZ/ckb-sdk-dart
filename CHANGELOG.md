@@ -14,6 +14,8 @@ Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag
 
 - Add get_header and get_header_by_number rpcs ([696fb4](https://github.com/BaojunCZ/ckb-sdk-dart/commit/696fb4d3db48c80d7c7c3a1bba11402c28f1752f))
 
+- Add set_ban and get_banned_address rpcs ([2dd87c](https://github.com/BaojunCZ/ckb-sdk-dart/commit/2dd87cf22d12cb44de0f9fbce63b4c4e43e81f43))
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
