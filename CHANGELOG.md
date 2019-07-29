@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.17.0
+
+Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.17.0)
+
+### Feature
+
+- Add hash_type to Script ([bd9007](https://github.com/BaojunCZ/ckb-sdk-dart/commit/bd900776e2dfdf1c955442f5601feda423e563c8)
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
