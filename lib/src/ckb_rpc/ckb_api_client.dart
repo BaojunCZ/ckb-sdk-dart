@@ -69,6 +69,21 @@ class CKBApiClient {
     return result == null ? null : TransactionWithStatus.fromJson(result);
   }
 
+  Future<CellbaseOutputCapacity> getCellbaseOutputCapacityDetails(String blockHash) async {
+    final result = await _request.requestRpc(ServiceUrl.cellbaseOutputCapacity, [blockHash]);
+    return result == null ? null : CellbaseOutputCapacity.fromJson(result);
+  }
+
+  Future<Header> getHeader(String blockHash) async {
+    final result = await _request.requestRpc(ServiceUrl.getHeader, [blockHash]);
+    return result == null ? null : Header.fromJson(result);
+  }
+
+  Future<Header> getHeaderByNumber(String blockNumber) async {
+    final result = await _request.requestRpc(ServiceUrl.getHeaderByNumber, [blockNumber]);
+    return result == null ? null : Header.fromJson(result);
+  }
+
   //==========================Experiment RPC Methods==================================
 
   Future<String> computeTransactionHash(Transaction transaction) async {
@@ -137,6 +152,25 @@ class CKBApiClient {
   Future<NodeInfo> getLocalNodeInfo() async {
     final result = await _request.requestRpc(ServiceUrl.localNodeInfo, []);
     return result == null ? null : NodeInfo.fromJson(result);
+  }
+
+  Future setBan(BannedAddress bannedAddress) async {
+    await _request.requestRpc(ServiceUrl.setBan, [
+      bannedAddress.address,
+      bannedAddress.command,
+      bannedAddress.banTime,
+      bannedAddress.absolute,
+      bannedAddress.reason,
+    ]);
+  }
+
+  Future<List<BannedAddress>> getBannedAddress() async {
+    final result = await _request.requestRpc(ServiceUrl.getBannerAddresses, []);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : BannedAddress.fromJson(e as Map<String, dynamic>))
+            ?.toList();
   }
 
 //================================Pool RPC Methods===============================

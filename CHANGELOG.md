@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 0.17.0
+
+Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.17.0)
+
+### Feature
+
+- Add hash_type to Script ([bd9007](https://github.com/BaojunCZ/ckb-sdk-dart/commit/bd900776e2dfdf1c955442f5601feda423e563c8)
+
+- Update address format generator according recent RFC ([83ec45](https://github.com/BaojunCZ/ckb-sdk-dart/commit/83ec45168451f509942984b719eee6818fad32c6)
+
+- Add get_cellbase_output_capacity_details rpc ([f845eb](https://github.com/BaojunCZ/ckb-sdk-dart/commit/f845ebdf8591d87ca72f4d69495480ba68cdbb75)
+
+- Add get_header and get_header_by_number rpcs ([696fb4](https://github.com/BaojunCZ/ckb-sdk-dart/commit/696fb4d3db48c80d7c7c3a1bba11402c28f1752f))
+
+- Add set_ban and get_banned_address rpcs ([2dd87c](https://github.com/BaojunCZ/ckb-sdk-dart/commit/2dd87cf22d12cb44de0f9fbce63b4c4e43e81f43))
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)

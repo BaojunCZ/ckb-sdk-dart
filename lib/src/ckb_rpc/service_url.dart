@@ -12,6 +12,9 @@ class ServiceUrl {
   static final tipBlockNumber = "get_tip_block_number";
   static final tipHeader = "get_tip_header";
   static final transaction = "get_transaction";
+  static final cellbaseOutputCapacity = "get_cellbase_output_capacity_details";
+  static final getHeader = "get_header";
+  static final getHeaderByNumber = "get_header_by_number";
 
   //Experiment
   static final computeTransactionHash = '_compute_transaction_hash';
@@ -27,6 +30,8 @@ class ServiceUrl {
   //Net
   static final getPeers = 'get_peers';
   static final localNodeInfo = "local_node_info";
+  static final setBan = "set_ban";
+  static final getBannerAddresses = "get_banned_addresses";
 
   //Pool
   static final sendTransaction = "send_transaction";
