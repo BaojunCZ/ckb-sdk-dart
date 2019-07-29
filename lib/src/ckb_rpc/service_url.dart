@@ -13,6 +13,8 @@ class ServiceUrl {
   static final tipHeader = "get_tip_header";
   static final transaction = "get_transaction";
   static final cellbaseOutputCapacity = "get_cellbase_output_capacity_details";
+  static final getHeader = "get_header";
+  static final getHeaderByNumber = "get_header_by_number";
 
   //Experiment
   static final computeTransactionHash = '_compute_transaction_hash';

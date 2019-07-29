@@ -1,6 +1,7 @@
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class Header {
+  String dao;
   String difficulty;
   String hash;
   String number;
