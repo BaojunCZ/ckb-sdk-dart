@@ -10,6 +10,8 @@ Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag
 
 - Update address format generator according recent RFC ([83ec45](https://github.com/BaojunCZ/ckb-sdk-dart/commit/83ec45168451f509942984b719eee6818fad32c6)
 
+- Add get_cellbase_output_capacity_details rpc ([f845eb](https://github.com/BaojunCZ/ckb-sdk-dart/commit/f845ebdf8591d87ca72f4d69495480ba68cdbb75)
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
