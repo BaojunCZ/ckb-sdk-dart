@@ -28,6 +28,8 @@ class ServiceUrl {
   //Net
   static final getPeers = 'get_peers';
   static final localNodeInfo = "local_node_info";
+  static final setBan = "set_ban";
+  static final getBannerAddresses = "get_banned_addresses";
 
   //Pool
   static final sendTransaction = "send_transaction";

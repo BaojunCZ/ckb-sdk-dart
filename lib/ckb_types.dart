@@ -30,3 +30,4 @@ part 'src/ckb_types/lock_hash_index_state.dart';
 part 'src/ckb_types/transaction_by_lock_hash.dart';
 part 'src/ckb_types/transaction_point.dart';
 part 'src/ckb_types/cell_base_output_capacity.dart';
+part 'src/ckb_types/banned_address.dart';

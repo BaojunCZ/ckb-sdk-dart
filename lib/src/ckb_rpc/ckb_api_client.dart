@@ -144,6 +144,25 @@ class CKBApiClient {
     return result == null ? null : NodeInfo.fromJson(result);
   }
 
+  Future setBan(BannedAddress bannedAddress) async {
+    await _request.requestRpc(ServiceUrl.setBan, [
+      bannedAddress.address,
+      bannedAddress.command,
+      bannedAddress.banTime,
+      bannedAddress.absolute,
+      bannedAddress.reason,
+    ]);
+  }
+
+  Future<List<BannedAddress>> getBannedAddress() async {
+    final result = await _request.requestRpc(ServiceUrl.getBannerAddresses, []);
+    return result == null
+        ? null
+        : (result as List)
+            ?.map((e) => e == null ? null : BannedAddress.fromJson(e as Map<String, dynamic>))
+            ?.toList();
+  }
+
 //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(Transaction transaction) async {
