@@ -8,6 +8,8 @@ Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag
 
 - Add hash_type to Script ([bd9007](https://github.com/BaojunCZ/ckb-sdk-dart/commit/bd900776e2dfdf1c955442f5601feda423e563c8)
 
+- Update address format generator according recent RFC ([83ec45](https://github.com/BaojunCZ/ckb-sdk-dart/commit/83ec45168451f509942984b719eee6818fad32c6)
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
