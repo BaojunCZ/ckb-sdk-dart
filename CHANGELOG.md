@@ -12,6 +12,8 @@ Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag
 
 - Add get_cellbase_output_capacity_details rpc ([f845eb](https://github.com/BaojunCZ/ckb-sdk-dart/commit/f845ebdf8591d87ca72f4d69495480ba68cdbb75)
 
+- Add get_header and get_header_by_number rpcs ([696fb4](https://github.com/BaojunCZ/ckb-sdk-dart/commit/696fb4d3db48c80d7c7c3a1bba11402c28f1752f))
+
 ## 0.16.0
 
 Support [ ckb release v0.16.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.16.0)
