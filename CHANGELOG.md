@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.18.0
+
+Support [ ckb release v0.18.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.18.0)
+
 ## 0.17.0
 
 Support [ ckb release v0.17.0](https://github.com/nervosnetwork/ckb/releases/tag/v0.17.0)
