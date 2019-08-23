@@ -1,3 +1,5 @@
+import 'package:ckb_sdk/ckb_error.dart';
+
 import 'ckb_address.dart';
 import 'ckb_crypto.dart';
 import 'ckb_rpc.dart';
