@@ -1,10 +1,12 @@
 part of 'package:ckb_sdk/ckb_system_contract.dart';
 
 Future<SystemContract> getSystemContract(CKBApiClient _ckbApiClient) async {
-  Transaction sysContract =
+  Transaction transaction0 =
+      (await _ckbApiClient.genesisBlock()).transactions[0];
+  Transaction transaction1 =
       (await _ckbApiClient.genesisBlock()).transactions[1];
-  if (sysContract == null) throw NoSystemContactException();
-  return SystemContract(
-      hexAdd0x(blake2bHexString(sysContract.outputs[0].lock.scriptHash)),
-      OutPoint(sysContract.hash, "0"));
+  if (transaction0 == null || transaction1 == null)
+    throw NoSystemContactException();
+  return SystemContract(hexAdd0x(blake2bHexString(transaction0.outputsData[1])),
+      OutPoint(transaction1.hash, "0"));
 }
