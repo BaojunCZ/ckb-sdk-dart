@@ -1,8 +1,8 @@
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class Script {
-  static const String DATA = "Data";
-  static const String TYPE = "Type";
+  static const String DATA = "data";
+  static const String TYPE = "type";
 
   String codeHash;
   List<String> args;
