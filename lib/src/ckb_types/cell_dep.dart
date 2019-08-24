@@ -1,17 +1,20 @@
 part of 'package:ckb_sdk/ckb_types.dart';
 
 class CellDep {
-  OutPoint outPoint;
-  bool isDepGroup;
+  static const String CODE = "code";
+  static const String DEP_GROUP = "dep_group";
 
-  CellDep(this.outPoint, this.isDepGroup);
+  OutPoint outPoint;
+  String depType;
+
+  CellDep(this.outPoint, this.depType);
 
   factory CellDep.fromJson(Map<String, dynamic> json) => CellDep(
       json['out_point'] == null
           ? null
           : OutPoint.fromJson(json['out_point'] as Map<String, dynamic>),
-      json['is_dep_group'] as bool);
+      json['dep_type'] as String);
 
-    Map<String, dynamic> toJson() =>
-      <String, dynamic>{'out_point': outPoint, 'is_dep_group': isDepGroup};
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'out_point': outPoint, 'dep_type': depType};
 }
