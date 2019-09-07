@@ -1,6 +1,5 @@
 import 'package:ckb_sdk/ckb_error.dart';
 
-import 'ckb_crypto.dart';
 import 'ckb_rpc.dart';
 import 'ckb_types.dart';
 
