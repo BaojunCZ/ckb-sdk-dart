@@ -10,10 +10,17 @@ main() {
     Witness witness1 = Witness([]);
     Witness witness2 = Witness(['456']);
     Witness witness3 = Witness(['789']);
-    Uint8List privateKey =
-        hex.decode("e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3");
+    Uint8List privateKey = hex.decode(
+        "e79f3207ea4980b7fed79956d5934249ceac4751a4fae01a0f7c4a96884bc4e3");
     Transaction transaction = Transaction(
-        "1", "", [], [cellInput, cellInput, cellInput], [], [witness1, witness2, witness3]);
+        "1",
+        "",
+        [],
+        [],
+        [cellInput, cellInput, cellInput],
+        [],
+        [],
+        [witness1, witness2, witness3]);
     transaction.signTx([privateKey, privateKey, privateKey],
         '0xac1bb95455cdfb89b6e977568744e09b6b80e08cab9477936a09c4ca07f5b8ab');
     expect(transaction.witnesses.length, 3);

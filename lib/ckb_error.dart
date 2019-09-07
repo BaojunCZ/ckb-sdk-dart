@@ -39,7 +39,8 @@ class RPCErrorException extends RPCBaseException {
 
   RPCErrorException(this.error, this.url) : super(url);
 
-  String toString() => '"$url": RPC Error Code ${error.code}, Message: ${error.message}';
+  String toString() =>
+      '"$url": RPC Error Code ${error.code}, Message: ${error.message}';
 }
 
 class InvalidNumberOfWitnessesException implements Exception {
@@ -48,6 +49,10 @@ class InvalidNumberOfWitnessesException implements Exception {
 
 class InvalidHashTypeException implements Exception {
   String toString() => "Invalid hash type!";
+}
+
+class NoSystemContactException implements Exception {
+  String toString() => "Genesis block second transaction not found";
 }
 
 class CommonException {

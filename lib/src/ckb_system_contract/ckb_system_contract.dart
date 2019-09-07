@@ -1,12 +1,9 @@
 part of 'package:ckb_sdk/ckb_system_contract.dart';
 
-Future<SystemContract> getSystemContract(CKBApiClient _ckbApiClient, CKBNetwork network) async {
-  if (network == CKBNetwork.Testnet) {
-    Transaction sysContract = (await _ckbApiClient.genesisBlock()).transactions[0];
-    CellOutput cellOutput = sysContract.outputs[1];
-    return SystemContract(
-        hexAdd0x(blake2bHexString(cellOutput.data)), CellOutPoint(sysContract.hash, "1"));
-  } else {
-    return null;
-  }
+Future<SystemContract> getSystemContract(CKBApiClient _ckbApiClient) async {
+  Block block = await _ckbApiClient.genesisBlock();
+  if (block.transactions == null || block.transactions.length < 2)
+    throw NoSystemContactException();
+  return SystemContract(block.transactions[0].outputs[1].type.codeHash,
+      OutPoint(block.transactions[1].hash, "0"));
 }
