@@ -9,3 +9,4 @@ part 'src/ckb_serialization/base/fixed_type.dart';
 
 part 'src/ckb_serialization/fixed/byte1.dart';
 part 'src/ckb_serialization/fixed/byte32.dart';
+part 'src/ckb_serialization/fixed/empty.dart';
