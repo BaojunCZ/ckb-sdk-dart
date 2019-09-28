@@ -13,3 +13,4 @@ part 'src/ckb_serialization/fixed/empty.dart';
 part 'src/ckb_serialization/fixed/fixed.dart';
 part 'src/ckb_serialization/fixed/uint32.dart';
 part 'src/ckb_serialization/fixed/uint64.dart';
+part 'src/ckb_serialization/fixed/struct.dart';
