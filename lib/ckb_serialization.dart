@@ -15,3 +15,5 @@ part 'src/ckb_serialization/fixed/uint64.dart';
 part 'src/ckb_serialization/fixed/struct.dart';
 
 part 'src/ckb_serialization/dynamic/bytes.dart';
+part 'src/ckb_serialization/dynamic/dynamic.dart';
+part 'src/ckb_serialization/dynamic/table.dart';

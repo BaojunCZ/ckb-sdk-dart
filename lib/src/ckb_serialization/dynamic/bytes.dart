@@ -12,7 +12,7 @@ class Bytes implements DynType<Uint8List> {
 
   @override
   int getLength() {
-    return value.length;
+    return value.length + Uint32.BYTE_SIZE;
   }
 
   @override
