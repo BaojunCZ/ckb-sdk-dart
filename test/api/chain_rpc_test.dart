@@ -111,9 +111,11 @@ main() {
 
   test("get live cell", () async {
     try {
-      CellWithStatus liveCell = await apiClient.getLiveCell(OutPoint(
-          "0x8fbf8ecc60907c304a524ab94755f06b205a55651cea625b02687443bdb87aa2",
-          "0"));
+      CellWithStatus liveCell = await apiClient.getLiveCell(
+          OutPoint(
+              "0x8fbf8ecc60907c304a524ab94755f06b205a55651cea625b02687443bdb87aa2",
+              "0"),
+          true);
       print(jsonEncode(liveCell));
       expect(liveCell != null, true);
     } catch (error) {
