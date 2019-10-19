@@ -13,7 +13,7 @@ class Uint32 implements FixedType<int> {
       intValue = result;
     }
     if (string != null) {
-      intValue = int.parse(string, radix: 16);
+      intValue = int.parse(remove0x(string), radix: 16);
     }
     value = intValue;
   }

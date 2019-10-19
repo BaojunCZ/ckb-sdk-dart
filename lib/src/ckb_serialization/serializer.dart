@@ -2,7 +2,7 @@ part of 'package:ckb_sdk/ckb_serialization.dart';
 
 Struct serializeOutPoint(OutPoint outPoint) {
   Byte32 txHash = new Byte32(string: outPoint.txHash);
-  Uint32 index = new Uint32(intValue: int.parse(outPoint.index, radix: 16));
+  Uint32 index = new Uint32(string: outPoint.index);
   return new Struct([txHash, index]);
 }
 
@@ -16,14 +16,15 @@ Table serializeScript(Script script) {
 
 Struct serializeCellInput(CellInput cellInput) {
   Uint64 sinceUInt64 =
-      new Uint64(intValue: BigInt.parse(cellInput.since, radix: 16));
+      new Uint64(intValue: BigInt.parse(remove0x(cellInput.since), radix: 16));
   Struct outPointStruct = serializeOutPoint(cellInput.previousOutput);
   return new Struct([sinceUInt64, outPointStruct]);
 }
 
 Table serializeCellOutput(CellOutput cellOutput) {
   return new Table([
-    new Uint64(intValue: BigInt.parse(cellOutput.capacity, radix: 16)),
+    new Uint64(
+        intValue: BigInt.parse(remove0x(cellOutput.capacity), radix: 16)),
     serializeScript(cellOutput.lock),
     cellOutput.type != null ? serializeScript(cellOutput.type) : new Empty()
   ]);

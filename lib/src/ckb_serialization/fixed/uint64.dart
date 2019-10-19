@@ -12,7 +12,7 @@ class Uint64 implements FixedType<BigInt> {
       this.value = BigInt.from(result);
     }
     if (string != null) {
-      intValue = BigInt.parse(string, radix: 16);
+      intValue = BigInt.parse(remove0x(string), radix: 16);
     }
     this.value = intValue;
   }

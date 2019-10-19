@@ -8,9 +8,9 @@ class Table implements DynType<List<Type>> {
   @override
   int getLength() {
     int length = 0;
-    value.forEach((type) {
-      length += type.getLength();
-    });
+    for (int i = 0; i < value.length; i++) {
+      length += value[i].getLength();
+    }
     return length + (1 + value.length) * Uint32.BYTE_SIZE;
   }
 

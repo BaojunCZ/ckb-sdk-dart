@@ -7,7 +7,11 @@ class Fixed<T extends FixedType> implements Type<List<T>> {
 
   @override
   int getLength() {
-    return null;
+    int length = Uint32.BYTE_SIZE;
+    for (FixedType type in value) {
+      length += type.getLength();
+    }
+    return length;
   }
 
   @override
@@ -17,6 +21,19 @@ class Fixed<T extends FixedType> implements Type<List<T>> {
 
   @override
   Uint8List toBytes() {
-    return null;
+    int fullLength = getLength();
+    Uint8List dest = Uint8List(fullLength);
+
+    // full length bytes
+    arrayCopy(new Uint32(intValue: value.length).toBytes(), 0, dest, 0,
+        Uint32.BYTE_SIZE);
+
+    int offset = Uint32.BYTE_SIZE;
+    for (FixedType type in value) {
+      // Bytes through offset
+      arrayCopy(type.toBytes(), 0, dest, offset, type.getLength());
+      offset += type.getLength();
+    }
+    return dest;
   }
 }

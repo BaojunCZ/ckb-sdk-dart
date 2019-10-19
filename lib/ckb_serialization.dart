@@ -1,4 +1,3 @@
-import 'dart:ffi' as prefix0;
 import 'dart:typed_data';
 
 import 'package:ckb_sdk/ckb_sdk.dart';
@@ -21,3 +20,4 @@ part 'src/ckb_serialization/dynamic/table.dart';
 
 part 'src/ckb_serialization/serializer.dart';
 part 'src/ckb_serialization/convert.dart';
+part 'src/ckb_serialization/calculator.dart';
