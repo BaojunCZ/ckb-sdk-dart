@@ -55,8 +55,9 @@ class CKBApiClient {
     return result == null ? null : Epoch.fromJson(result);
   }
 
-  Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
-    final result = await _request.requestRpc(ServiceUrl.liveCell, [outPoint]);
+  Future<CellWithStatus> getLiveCell(OutPoint outPoint, bool withData) async {
+    final result =
+        await _request.requestRpc(ServiceUrl.liveCell, [outPoint, withData]);
     return result == null ? null : CellWithStatus.fromJson(result);
   }
 
