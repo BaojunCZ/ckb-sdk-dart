@@ -1,3 +1,5 @@
+@Skip()
+
 import 'package:ckb_sdk/ckb_sdk.dart';
 import 'package:ckb_sdk/ckb_types.dart' show Script;
 import 'package:test/test.dart';
