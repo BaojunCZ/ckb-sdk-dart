@@ -6,7 +6,8 @@ String remove0x(String hex) => hex.startsWith("0x") ? hex.substring(2) : hex;
 
 String hexAdd0x(String hex) => hex.startsWith("0x") ? hex : "0x$hex";
 
-String numberToHex(dynamic number, {bool pad = false, bool include0x = false, int forcePadLen}) {
+String numberToHex(dynamic number,
+    {bool pad = false, bool include0x = false, int forcePadLen}) {
   String toHexSimple() {
     if (number is int) {
       return number.toRadixString(16);
@@ -25,11 +26,22 @@ String numberToHex(dynamic number, {bool pad = false, bool include0x = false, in
   return hexString;
 }
 
-List<int> numberToBytes(dynamic number) =>
-    number is BigInt ? pc_utils.encodeBigInt(number) : hex.decode(numberToHex(number, pad: true));
+List<int> numberToBytes(dynamic number) => number is BigInt
+    ? pc_utils.encodeBigInt(number)
+    : hex.decode(numberToHex(number, pad: true));
 
-String bytesToHex(List<int> bytes, {bool pad = false, bool include0x = false, int forcePadLen}) =>
-    numberToHex(bytesToInt(bytes), pad: pad, include0x: include0x, forcePadLen: forcePadLen);
+String bytesToHex(List<int> bytes,
+        {bool pad = false, bool include0x = false, int forcePadLen}) =>
+    numberToHex(bytesToInt(bytes),
+        pad: pad, include0x: include0x, forcePadLen: forcePadLen);
+
+String toHex(String input) {
+  if (input.startsWith("0x")) {
+    return input;
+  } else {
+    return numberToHex(BigInt.parse(input, radix: 16));
+  }
+}
 
 List<int> intToBytes(BigInt number) => pc_utils.encodeBigInt(number);
 
@@ -61,7 +73,8 @@ List<int> toBytesPadded(BigInt value, int length) {
   }
 
   if (bytesLength > length) {
-    throw CommonException("Input is too large to put in byte array of size " + length.toString());
+    throw CommonException(
+        "Input is too large to put in byte array of size " + length.toString());
   }
 
   int destOffset = length - bytesLength;
@@ -102,7 +115,8 @@ Uint8List hexStringToByteArray(String input) {
   }
 
   for (int i = startIdx; i < len; i += 2) {
-    data[(i + 1) ~/ 2] = (digitHex(cleanInput[i]) << 4) + digitHex(cleanInput[i + 1]);
+    data[(i + 1) ~/ 2] =
+        (digitHex(cleanInput[i]) << 4) + digitHex(cleanInput[i + 1]);
   }
   return data;
 }

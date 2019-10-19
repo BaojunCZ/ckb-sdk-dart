@@ -11,17 +11,20 @@ main() {
 
   test('send transaction', () async {
     try {
-      var transaction = Transaction("0", "", [], [
+      var transaction = Transaction("0", "", [], [], [
         CellInput(
             OutPoint(
-                '',
-                CellOutPoint(
-                    "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d", "0")),
+                "0x8d37f0856ebb70c12871830667d82224e6619896c7f12bb73a14dd9329af9c8d",
+                "0"),
             "0")
       ], [
-        CellOutput('10000', '0x',
-            Script('0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5', []), null)
-      ], []);
+        CellOutput(
+            '10000',
+            Script(
+                '0x28e83a1277d48add8e72fadaa9248559e1b632bab2bd60b27955ebc4c03800a5',
+                ''),
+            null)
+      ], [], []);
       String hash = await apiClient.sendTransaction(transaction);
       print(hash);
     } catch (e) {

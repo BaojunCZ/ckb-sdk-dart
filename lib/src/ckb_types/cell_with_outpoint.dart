@@ -3,17 +3,19 @@ part of 'package:ckb_sdk/ckb_types.dart';
 class CellWithOutPoint {
   String capacity;
   Script lock;
-  OutPoint outPoint;
+  String blcokHash;
 
-  CellWithOutPoint(this.capacity, this.lock, this.outPoint);
+  CellWithOutPoint(this.capacity, this.lock, this.blcokHash);
 
-  factory CellWithOutPoint.fromJson(Map<String, dynamic> json) => CellWithOutPoint(
-      json['capacity'] as String,
-      json['lock'] == null ? null : Script.fromJson(json['lock']),
-      json['out_point'] == null
-          ? null
-          : OutPoint.fromJson(json['out_point'] as Map<String, dynamic>));
+  factory CellWithOutPoint.fromJson(Map<String, dynamic> json) =>
+      CellWithOutPoint(
+          json['capacity'] as String,
+          json['lock'] == null ? null : Script.fromJson(json['lock']),
+          json['block_hash'] as String);
 
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'capacity': capacity, 'lock': lock, 'out_point': outPoint};
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'capacity': capacity,
+        'lock': lock,
+        'block_hash': blcokHash
+      };
 }

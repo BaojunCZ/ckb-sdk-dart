@@ -64,11 +64,4 @@ class CKBAddress {
 
   String _prefix() => network == CKBNetwork.Mainnet ? MainNetPrefix : TestNetPrefix;
 
-  String _binIdx(String binIdx) {
-    String result = "";
-    binIdx.codeUnits.forEach((code) {
-      result += numberToHex(code);
-    });
-    return result;
-  }
 }

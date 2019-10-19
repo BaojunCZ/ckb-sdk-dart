@@ -8,36 +8,40 @@ class CKBApiClient {
   }
 
   Future<String> genesisBlockHash() async {
-    return await getBlockHash("0");
+    return await getBlockHash("0x0");
   }
 
   Future<Block> genesisBlock() async {
-    return await getBlockByBlockNumber("0");
+    return await getBlockByBlockNumber("0x0");
   }
 
   //==============================Chain RPC Methods================================
 
   Future<Block> getBlock(String blockHash) async {
-    return Block.fromJson(await _request.requestRpc(ServiceUrl.block, [blockHash]));
+    return Block.fromJson(
+        await _request.requestRpc(ServiceUrl.block, [blockHash]));
   }
 
   Future<String> getBlockHash(String blockNumber) async {
-    return await _request.requestRpc(ServiceUrl.blockHash, [blockNumber]);
+    return await _request
+        .requestRpc(ServiceUrl.blockHash, [toHex(blockNumber)]);
   }
 
   Future<Block> getBlockByBlockNumber(String blockNumber) async {
-    return Block.fromJson(
-        await _request.requestRpc(ServiceUrl.getBlockByBlockNumber, [blockNumber]));
+    return Block.fromJson(await _request
+        .requestRpc(ServiceUrl.getBlockByBlockNumber, [toHex(blockNumber)]));
   }
 
   Future<List<CellWithOutPoint>> getCellsByLockHash(
       String hash, String fromBlockNumber, String toBlockNumber) async {
-    final result = await _request
-        .requestRpc(ServiceUrl.cellsByLockHash, [hash, fromBlockNumber, toBlockNumber]);
+    final result = await _request.requestRpc(ServiceUrl.cellsByLockHash,
+        [hash, toHex(fromBlockNumber), toHex(toBlockNumber)]);
     return result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : CellWithOutPoint.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null
+                ? null
+                : CellWithOutPoint.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
@@ -47,12 +51,14 @@ class CKBApiClient {
   }
 
   Future<Epoch> getEpochByNumber(String epochNumber) async {
-    final result = await _request.requestRpc(ServiceUrl.getEpochByNumber, [epochNumber]);
+    final result = await _request
+        .requestRpc(ServiceUrl.getEpochByNumber, [toHex(epochNumber)]);
     return result == null ? null : Epoch.fromJson(result);
   }
 
-  Future<CellWithStatus> getLiveCell(OutPoint outPoint) async {
-    final result = await _request.requestRpc(ServiceUrl.liveCell, [outPoint]);
+  Future<CellWithStatus> getLiveCell(OutPoint outPoint, bool withData) async {
+    final result = await _request
+        .requestRpc(ServiceUrl.liveCell, [parseOutPoint(outPoint), withData]);
     return result == null ? null : CellWithStatus.fromJson(result);
   }
 
@@ -69,8 +75,10 @@ class CKBApiClient {
     return result == null ? null : TransactionWithStatus.fromJson(result);
   }
 
-  Future<CellbaseOutputCapacity> getCellbaseOutputCapacityDetails(String blockHash) async {
-    final result = await _request.requestRpc(ServiceUrl.cellbaseOutputCapacity, [blockHash]);
+  Future<CellbaseOutputCapacity> getCellbaseOutputCapacityDetails(
+      String blockHash) async {
+    final result = await _request
+        .requestRpc(ServiceUrl.cellbaseOutputCapacity, [blockHash]);
     return result == null ? null : CellbaseOutputCapacity.fromJson(result);
   }
 
@@ -80,18 +88,24 @@ class CKBApiClient {
   }
 
   Future<Header> getHeaderByNumber(String blockNumber) async {
-    final result = await _request.requestRpc(ServiceUrl.getHeaderByNumber, [blockNumber]);
+    final result = await _request
+        .requestRpc(ServiceUrl.getHeaderByNumber, [toHex(blockNumber)]);
     return result == null ? null : Header.fromJson(result);
   }
 
   //==========================Experiment RPC Methods==================================
 
   Future<String> computeTransactionHash(Transaction transaction) async {
-    return await _request.requestRpc(ServiceUrl.computeTransactionHash, [transaction]);
+    return await _request.requestRpc(ServiceUrl.computeTransactionHash, []);
+  }
+
+  Future<String> computeScriptHash(Script script) async {
+    return await _request.requestRpc(ServiceUrl.computeScriptHash, [script]);
   }
 
   Future<Cycles> dryRunTransaction(Transaction transaction) async {
-    final result = await _request.requestRpc(ServiceUrl.dryRunTransaction, [transaction]);
+    final result = await _request.requestRpc(
+        ServiceUrl.dryRunTransaction, [parseTransaction(transaction)]);
     return result == null ? null : Cycles.fromJson(result);
   }
 
@@ -101,40 +115,49 @@ class CKBApiClient {
     await _request.requestRpc(ServiceUrl.deindexLockHash, [lockHash]);
   }
 
-  Future<List<LiveCell>> getLiveCellsByLockHash(String lockHash, String page, String per) async {
-    final result =
-        await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash, [lockHash, page, per]);
+  Future<List<LiveCell>> getLiveCellsByLockHash(
+      String lockHash, String page, String size) async {
+    final result = await _request.requestRpc(ServiceUrl.getLiveCellsByLockHash,
+        [lockHash, toHex(page), toHex(size)]);
     return result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : LiveCell.fromJson(e as Map<String, dynamic>))
+            ?.map((e) =>
+                e == null ? null : LiveCell.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
   Future<List<LockHashIndexState>> getLockHashIndexStates() async {
-    final result = await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []);
+    final result =
+        await _request.requestRpc(ServiceUrl.getLockHashIndexStates, []);
     List<LockHashIndexState> states = result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : LockHashIndexState.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null
+                ? null
+                : LockHashIndexState.fromJson(e as Map<String, dynamic>))
             ?.toList();
     return states;
   }
 
   Future<List<TransactionByLockHash>> getTransactionByLockHash(
-      String lockHash, String page, String per) async {
-    final result =
-        await _request.requestRpc(ServiceUrl.getTransactionsByLockHash, [lockHash, page, per]);
+      String lockHash, String page, String size) async {
+    final result = await _request.requestRpc(
+        ServiceUrl.getTransactionsByLockHash,
+        [lockHash, toHex(page), toHex(size)]);
     return result == null
         ? null
         : (result as List)
-            ?.map(
-                (e) => e == null ? null : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null
+                ? null
+                : TransactionByLockHash.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
-  Future<LockHashIndexState> getIndexLockHash(String lockHash, String indexFrom) async {
-    final result = await _request.requestRpc(ServiceUrl.indexLockHash, [lockHash, indexFrom]);
+  Future<LockHashIndexState> getIndexLockHash(
+      String lockHash, String indexFrom) async {
+    final result = await _request
+        .requestRpc(ServiceUrl.indexLockHash, [lockHash, toHex(indexFrom)]);
     return result == null ? null : LockHashIndexState.fromJson(result);
   }
 
@@ -145,7 +168,8 @@ class CKBApiClient {
     return result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : NodeInfo.fromJson(e as Map<String, dynamic>))
+            ?.map((e) =>
+                e == null ? null : NodeInfo.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
@@ -169,14 +193,17 @@ class CKBApiClient {
     return result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : BannedAddress.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null
+                ? null
+                : BannedAddress.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 
 //================================Pool RPC Methods===============================
 
   Future<String> sendTransaction(Transaction transaction) async {
-    return await _request.requestRpc(ServiceUrl.sendTransaction, [transaction]);
+    return await _request.requestRpc(
+        ServiceUrl.sendTransaction, [parseTransaction(transaction)]);
   }
 
   Future<TxPoolInfo> txPoolInfo() async {
@@ -196,7 +223,9 @@ class CKBApiClient {
     return result == null
         ? null
         : (result as List)
-            ?.map((e) => e == null ? null : PeerState.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null
+                ? null
+                : PeerState.fromJson(e as Map<String, dynamic>))
             ?.toList();
   }
 }
