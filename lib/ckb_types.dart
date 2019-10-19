@@ -24,7 +24,6 @@ part 'src/ckb_types/transaction.dart';
 part 'src/ckb_types/transaction_with_status.dart';
 part 'src/ckb_types/tx_pool_info.dart';
 part 'src/ckb_types/uncle_block.dart';
-part 'src/ckb_types/witness.dart';
 part 'src/ckb_types/live_cell.dart';
 part 'src/ckb_types/lock_hash_index_state.dart';
 part 'src/ckb_types/transaction_by_lock_hash.dart';

@@ -8,7 +8,7 @@ class Transaction {
   List<CellInput> inputs;
   List<CellOutput> outputs;
   List<String> outputsData;
-  List<Witness> witnesses;
+  List<String> witnesses;
 
   Transaction(this.version, this.hash, this.cellDeps, this.headerDeps,
       this.inputs, this.outputs, this.outputsData, this.witnesses);
@@ -30,10 +30,7 @@ class Transaction {
               e == null ? null : CellOutput.fromJson(e as Map<String, dynamic>))
           ?.toList(),
       (json['outputs_data'] as List)?.map((e) => e as String)?.toList(),
-      (json['witnesses'] as List)
-          ?.map((e) =>
-              e == null ? null : Witness.fromJson(e as Map<String, dynamic>))
-          ?.toList());
+      (json['witnesses'] as List)?.map((e) => e as String)?.toList());
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'version': version,
@@ -46,21 +43,27 @@ class Transaction {
         'witnesses': witnesses,
       };
 
-  signTx(List<Uint8List> privateKeys, String txHash) {
+  String computeHash() {
+    Blake2b blake2b = new Blake2b();
+    blake2b.update(serializeRawTransaction(this).toBytes());
+    return bytesToHex(blake2b.doFinal());
+  }
+
+  signTx(List<Uint8List> privateKeys) {
     if (privateKeys.length != witnesses.length) {
       throw InvalidNumberOfWitnessesException();
     }
+    String txHash = computeHash();
+    List<String> signedWitness = [];
     for (int i = 0; i < witnesses.length; i++) {
-      final oldData = witnesses[i].data;
       Blake2b blake2b = Blake2b();
       blake2b.update(hex.decode(remove0x(txHash)));
-      oldData.forEach((data) {
-        blake2b.update(hexStringToByteArray(data));
-      });
+      blake2b.update(hex.decode(remove0x(witnesses[i])));
       Uint8List signatureBytes =
           sign(blake2b.doFinal(), privateKeys[i]).getSignature();
       String signature = bytesToHex(signatureBytes, include0x: true);
-      witnesses[i].data = [signature, ...oldData];
+      signedWitness.add(signature);
     }
+    witnesses = signedWitness;
   }
 }

@@ -77,7 +77,7 @@ Fixed<Byte32> serializeByte32(List<String> bytes) {
   return new Fixed<Byte32>(byte32List);
 }
 
-Table serializeTransaction(Transaction transaction) {
+Table serializeRawTransaction(Transaction transaction) {
   Transaction tx = parseTransaction(transaction);
   Uint32 versionUInt32 = new Uint32(string: tx.version);
   Fixed<Struct> cellDepFixed = serializeCellDeps(tx.cellDeps);
@@ -93,4 +93,10 @@ Table serializeTransaction(Transaction transaction) {
     outputsVec,
     dataVec
   ]);
+}
+
+Table serializeTransaction(Transaction transaction) {
+  Table rawTransactionTable = serializeRawTransaction(transaction);
+  Dynamic<Bytes> witnessesVec = serializeBytes(transaction.witnesses);
+  return new Table([rawTransactionTable, witnessesVec]);
 }

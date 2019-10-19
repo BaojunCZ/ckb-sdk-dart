@@ -22,9 +22,8 @@ main() async {
       "1",
       "1000");
   CellWithOutPoint cell = cells[0];
-  OutPoint point = cell.outPoint;
-  print(point.txHash);
-  print(point.index);
+  String blcokHash = cell.blcokHash;
+  print(blcokHash);
 
   CellWithStatus liveCellRes = await apiClient.getLiveCell(
       OutPoint(
