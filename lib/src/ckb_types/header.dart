@@ -7,6 +7,7 @@ class Header {
   String nonce;
   String number;
   String epoch;
+  String compactTarget;
   String parentHash;
   String timestamp;
   String transactionsRoot;
@@ -22,6 +23,7 @@ class Header {
       this.nonce,
       this.number,
       this.epoch,
+      this.compactTarget,
       this.parentHash,
       this.timestamp,
       this.transactionsRoot,
@@ -37,6 +39,7 @@ class Header {
       json['nonce'] as String,
       json['number'] as String,
       json['epoch'] as String,
+      json['compact_target'] as String,
       json['parent_hash'] as String,
       json['timestamp'] as String,
       json['transactions_root'] as String,
@@ -49,9 +52,10 @@ class Header {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'difficulty': difficulty,
         'hash': hash,
-        'nonce':nonce,
+        'nonce': nonce,
         'number': number,
         'epoch': epoch,
+        'compact_target': compactTarget,
         'parent_hash': parentHash,
         'timestamp': timestamp,
         'transactions_root': transactionsRoot,
