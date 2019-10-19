@@ -4,13 +4,16 @@ class Uint32 implements FixedType<int> {
   static const BYTE_SIZE = 4;
   int value;
 
-  Uint32({int intValue, Uint8List bytesValue}) {
+  Uint32({int intValue, Uint8List bytesValue, String string}) {
     if (bytesValue != null) {
       int result = 0;
       for (int i = 3; i >= 0; i--) {
         result += (bytesValue[i] & 0xff) << 8 * i;
       }
       intValue = result;
+    }
+    if (string != null) {
+      intValue = int.parse(string, radix: 16);
     }
     value = intValue;
   }

@@ -3,13 +3,16 @@ part of 'package:ckb_sdk/ckb_serialization.dart';
 class Uint64 implements FixedType<BigInt> {
   BigInt value;
 
-  Uint64({BigInt intValue, Uint8List bytesValue}) {
+  Uint64({BigInt intValue, Uint8List bytesValue, String string}) {
     if (bytesValue != null) {
       int result = 0;
       for (int i = 7; i >= 0; i--) {
         result += (bytesValue[i] & 0xff) << 8 * i;
       }
       this.value = BigInt.from(result);
+    }
+    if (string != null) {
+      intValue = BigInt.parse(string, radix: 16);
     }
     this.value = intValue;
   }

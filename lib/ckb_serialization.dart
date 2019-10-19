@@ -1,3 +1,4 @@
+import 'dart:ffi' as prefix0;
 import 'dart:typed_data';
 
 import 'package:ckb_sdk/ckb_sdk.dart';
@@ -17,3 +18,6 @@ part 'src/ckb_serialization/fixed/struct.dart';
 part 'src/ckb_serialization/dynamic/bytes.dart';
 part 'src/ckb_serialization/dynamic/dynamic.dart';
 part 'src/ckb_serialization/dynamic/table.dart';
+
+part 'src/ckb_serialization/serializer.dart';
+part 'src/ckb_serialization/convert.dart';

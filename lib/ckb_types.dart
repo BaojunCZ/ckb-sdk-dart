@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:ckb_sdk/ckb_serialization.dart';
 import 'package:convert/convert.dart';
 
 import 'ckb_crypto.dart';

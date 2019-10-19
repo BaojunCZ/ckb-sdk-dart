@@ -15,7 +15,7 @@ main() {
       String publicKey =
           hex.encode(publicKeyFromPrivate(hex.decode(privateKey)));
       String hash = blake160(publicKey);
-      Script lockScript = Script(systemContract.codeHash, [hash]);
+      Script lockScript = Script(systemContract.codeHash, hash);
       String lockHash = lockScript.scriptHash;
       print(lockHash);
     } catch (error) {
